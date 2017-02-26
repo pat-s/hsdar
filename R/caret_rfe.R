@@ -158,6 +158,7 @@ setMethod("rfe", signature(x = "Nri"),
       {
         tmp <- as.data.frame(matrix(attribute(x)[,cols_keep], ncol = 1))
         names(tmp) <- names(attribute(x))[cols_keep]
+        
       } else {
         tmp <- attribute(x)[,sapply(names(attribute(x)), FUN = function(x, pred) any(pred == x), pred)]
       }

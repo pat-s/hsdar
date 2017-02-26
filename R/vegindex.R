@@ -73,7 +73,6 @@ if (returnHCR)
 
 if (length(index)>1)
 {
-  
     
   result <- as.data.frame(matrix(data = NA,
                                  nrow = dim(x)[1],

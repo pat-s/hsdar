@@ -116,6 +116,11 @@ setMethod("as.data.frame", signature(x = "Speclib"),
   }
 )
 
+setMethod("speclib", signature(spectra = "hyperSpec"), 
+          function(spectra, ...)
+  return(createspeclib(as.matrix(spectra), spectra@wavelength, ...))
+)
+
 
 createspeclib <- function (spectra,
                            wavelength,
@@ -133,7 +138,9 @@ createspeclib <- function (spectra,
   if (class(spectra) %in% c("RasterBrick", "HyperSpecRaster"))
   {
     fromRaster <- TRUE
-  } else {
+#     valid_data <- NULL
+  } else {   
+#     valid_data <- attr(spectra, "valid_data")
     fromRaster <- FALSE
     dim_spectra <- c(nrow(spectra), ncol(spectra))
   }
@@ -225,11 +232,16 @@ createspeclib <- function (spectra,
   
   if (!wavelength.is.range)
   {
-    range <- wavelength[-1] - wavelength[-1*length(wavelength)]
-    range <- c(as.numeric(range),range[length(range)])
-    if (sd(range)==0)
-      range <- mean(range)
-    fwhm <- range
+    if (length(wavelength) > 1)
+    {
+      range <- wavelength[-1] - wavelength[-1*length(wavelength)]
+      range <- c(as.numeric(range),range[length(range)])
+      if (sd(range)==0)
+        range <- mean(range)
+      fwhm <- range
+    } else {
+      fwhm <- 1
+    }
   } else {
     if (!is.null(fwhm))
     {
@@ -237,7 +249,7 @@ createspeclib <- function (spectra,
         wavelength <- rowMeans(wavelength)
     }
   }
-    
+  
   if (is.null(attributes)) 
     attributes <- data.frame()
     
@@ -266,6 +278,11 @@ createspeclib <- function (spectra,
                )
   idSpeclib(result) <- rn
   bandnames(result) <- cn
+#   if (!is.null(valid_data))
+#   {
+#     result@spectra@valid_spec@removedPixel <- sum(!valid_data)
+#     result@spectra@valid_spec@validPixel <- valid_data
+#   }
   if (validObject(result))
   { 
     return(result)
@@ -284,7 +301,12 @@ setMethod("initialize", signature(.Object = "Speclib"),
         stop("continuousdata must be 'auto', TRUE or FALSE")
       continuousdata <- dots$continuousdata
     } else {
-      continuousdata <- max(dots$wavelength[-1*length(dots$wavelength)]-dots$wavelength[-1]) <= 20
+      if (length(dots$wavelength) > 1)
+      {
+        continuousdata <- max(dots$wavelength[-1*length(dots$wavelength)]-dots$wavelength[-1]) <= 20
+      } else {
+        continuousdata <- FALSE
+      }
     }
   } else {
     continuousdata <- TRUE

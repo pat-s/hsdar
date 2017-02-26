@@ -1,13 +1,26 @@
+# setClass(".ValidDataFromRaster",
+#          representation(
+#            removedPixel = "numeric",
+#            validPixel   = "logical"
+#          ),
+#          prototype(
+#            removedPixel = 0,
+#            validPixel   = TRUE
+#          )
+#          )
+
 setClass(".Spectra",
          representation(
            fromRaster = "logical",
            spectra_ma = "matrix",
-           spectra_ra = 'RasterBrick'
+           spectra_ra = 'RasterBrick'#,
+#            valid_spec = '.ValidDataFromRaster'
          ),
          prototype(
            fromRaster = FALSE,
            spectra_ma = matrix(),
-           spectra_ra = new("RasterBrick")
+           spectra_ra = new("RasterBrick")#,
+#            valid_spec = new(".ValidDataFromRaster")
          )
 )
 
@@ -163,7 +176,9 @@ setClass('Specfeat',
 #            return(TRUE)
 #          }
         )
+        
 
+         
 setClassUnion(".CaretHyperspectral", c("Speclib", "Nri", "Specfeat"))
 
 if (!isGeneric("speclib")) {
