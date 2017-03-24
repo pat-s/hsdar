@@ -6,6 +6,9 @@
 - Bug fixes:
    - Indexing of Nri-objects now works with attributes encompassing a data.frame with
      one single column
+   - NA values in raster images are removed before data is converted to
+     Speclib. 
+   - Bug from indexing of Specfeat objects removed
      
 ------------------------------------------------------------------------------------------
 --- 09-December-2016, version 0.5.1
