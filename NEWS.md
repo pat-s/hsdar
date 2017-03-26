@@ -14,6 +14,7 @@
 
 ## Miscellanoueous:
   * Converting documentation to roxygen2 v6.0
+  * start using tests (test_that)
 
 # hsdar 0.5.2
 
