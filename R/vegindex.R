@@ -200,11 +200,15 @@
 #' Consequently, the NDVI would be written as "(R800-R680)/(R800+R680)".
 #' }
 #' 
-#' \subsection{HyperSpecRaster}{If the input object is of class `HyperSpecRaster`, a raster 
+#' \subsection{HyperSpecRaster objects}{If the input object is of class `HyperSpecRaster`, a raster 
 #' file is written to disk if a file name is provided. 
 #' Otherwise an `HyperSpecRaster` object is returned. If the file is written to disk,
 #' the user needs to specify the final number of bands. This information is required 
-#' by `writeRaster`. NAs are handled internally. }
+#' by `writeRaster`. NAs are handled internally. 
+#' 
+#' If no method is set for an input of class `HyperSpecraster`, `method = "finApprox"` 
+#' will be used. Note that `method = sgolay` only works if there are no NAs in 
+#' the hyperspectral image.}
 #' 
 #' @param x Object of class `Speclib` or `HyperSpecRaster`.
 #' @param index Character string. Name or definition of index or vector with
@@ -219,18 +223,18 @@
 #' values of nearest neighbour to passed position are returned. See
 #' [=get_reflectance.speclib::get_reflectance()] for further
 #' explanation.
-#' @param filename Filename of the raster file written to disk. Only used if 
-#' an object of class `HyperSpecRaster` is provided
+#' @param filename (optional) Filename of the raster file written to disk. Only used if 
+#' an object of class `HyperSpecRaster` is provided.
 #' @param bnames (optional) Character vector of band names. Only used if 
-#' an object of class `HyperSpecRaster` is provided
+#' an object of class `HyperSpecRaster` is provided.
 #' @param ...  Further arguments passed to derivative functions. Only used for
 #' indices requiring derivations.
-#' 
-#' 
+#' @param method Character string giving the method to be used in `derivate_speclib`. 
+#' Valid options are "finApprox" or "sgolay". See details for more.
 #' 
 #' @return A vector containing indices values. If index is a vector with 
-#' `length > 1`, a data frame with ncol = length(index) and nrow = number of spectra in
-#' x is returned.
+#' `length > 1`, a data frame with `ncol = length(index)` and 
+#' `nrow = number of spectra in x` is returned.
 #' 
 #' If function is called without any arguments, return value will be a vector
 #' containing all available indices in alphabetical order.
@@ -279,6 +283,10 @@ vegindex <- function(
   # - hand over "nl" argument automatically from length(index)
   # - when not writing to disk, return rasterlayer/stack instead of HyperSpecRaster
 {  
+  # to avoid possible errors introduced by NAs in hyperspectral images
+  if (is.null(method) && class(x) == "HyperSpecRaster") {
+    method <- "finApprox"
+  }
   
   ### HyperSpecRaster approach  Sat Mar 25 09:20:18 2017 ------------------------------
   # HyperSpecRaster is converted in speclib in `hsdar::getValuesBlock`. 
@@ -381,7 +389,7 @@ vegindex <- function(
     
     for (i in 1:length(index))
     {
-      temp <- vegindex(x, index[i], returnHCR = FALSE, ...)
+      temp <- vegindex(x, index[i], returnHCR = FALSE, method = method, ...)
       if (!is.null(temp))
       {
         result[,i] <- temp
@@ -409,8 +417,9 @@ vegindex <- function(
   # index_current <<- index
   # row_names_x <<- row.names(x$spectra)
   
-  if (any(index == d_indexs)) 
-    x <- derivative.speclib(x, m = m[d_indexs == index], ...)
+  if (any(index == d_indexs)) {
+    x <- derivative.speclib(x, m = m[d_indexs == index], method = method, ...)
+  }
   
   y <- spectra(x)
   x <- wavelength(x)
