@@ -14,88 +14,19 @@ setClass(".Spectra",
            fromRaster = "logical",
            spectra_ma = "matrix",
            spectra_ra = 'RasterBrick'#,
-#            valid_spec = '.ValidDataFromRaster'
+           #            valid_spec = '.ValidDataFromRaster'
          ),
          prototype(
            fromRaster = FALSE,
            spectra_ma = matrix(),
            spectra_ra = new("RasterBrick")#,
-#            valid_spec = new(".ValidDataFromRaster")
+           #            valid_spec = new(".ValidDataFromRaster")
          )
 )
 
 setClass("Speclib",
          representation(
-
-
-#' Handling spectra
-#' 
-#' Returning and setting spectra in Speclib
-#' 
-#' For `spectra<-`, the function does not check if dimensions of spectra
-#' match dimensions of Speclib. Additionally, no conversion into `matrix`
-#' is performed! If spectra are not correctly stored, errors in other functions
-#' may arise. Thus check always carefully, if spectra are modified by hand.
-#' 
-#' @aliases spectra.Speclib spectra spectra<- spectra,Speclib-method
-#' spectra<-,Speclib,data.frame-method spectra<-,Speclib,matrix-method
-#' spectra<-,Speclib,numeric-method spectra<-,Speclib,RasterBrick-method
-#' [,.Spectra,ANY,ANY,ANY-method show,.Spectra-method print,.Spectra-method
-#' cellFromCol,Speclib-method cellFromLine,Speclib-method
-#' cellFromPolygon,Speclib-method cellFromRow,Speclib-method
-#' cellFromRowCol,Speclib-method cellFromRowColCombine,Speclib-method
-#' cellFromXY,Speclib-method colFromX,Speclib-method
-#' fourCellsFromXY,Speclib-method rowFromY,Speclib-method
-#' readAll,Speclib-method
-#' @param object Object of class `Speclib`.
-#' @param i Index of spectra to return. If missing all spectra are returned.
-#' @param j Index of bands to return. If missing all bands are returned.
-#' @param ...  Passed to internal function. Currently only one parameter is
-#' accepted: `return_names`: Logical indicating, if names of columns and
-#' rows should be set to [bandnames()] and [idSpeclib()].
-#' @param value Matrix or RasterBrick-object containing spectral values. If
-#' value is a matrix, columns are band values and rows are spectra.
-#' @return For `spectra<-`, the updated object. Otherwise a matrix of the
-#' spectra in x is returned.
-#' @author Lukas Lehnert
-#' @seealso \code{\linkS4class{Speclib}}
-#' @keywords utilities
-#' @examples
-#' 
-#' data(spectral_data)
-#' 
-#' ## Manual plot of the first spectrum
-#' plot(wavelength(spectral_data), spectra(spectral_data)[1,], type="l")
-#' 
-#' @export spectra
            spectra = ".Spectra", 
-
-
-#' Handling wavelength and fwhm
-#' 
-#' Returning and setting wavelength and full-width-half-max (fwhm) values in
-#' Speclib and HyperSpecRaster
-#' 
-#' 
-#' @aliases wavelength wavelength<- wavelength,Speclib-method
-#' wavelength<-,Speclib,data.frame-method wavelength<-,Speclib,numeric-method
-#' fwhm<- fwhm<-,Speclib,numeric-method fwhm fwhm,Speclib-method
-#' wavelength,HyperSpecRaster-method
-#' wavelength<-,HyperSpecRaster,numeric-method
-#' @param object Object of class `Speclib` or `HyperSpecRaster`.
-#' @param value Numeric vector or data.frame containing wavelength values.
-#' @return For `wavelength<-` and `fwhm<-`, the updated object.
-#' Otherwise a numeric vector of the wavelength and fwhm-values is returned.
-#' @author Lukas Lehnert
-#' @seealso \code{\linkS4class{Speclib}}, \code{\linkS4class{HyperSpecRaster}}
-#' @keywords utilities
-#' @examples
-#' 
-#' data(spectral_data)
-#' 
-#' wavelength(spectral_data)
-#' 
-#' @export wavelength
            wavelength = "numeric",
            attributes = "data.frame",
            fwhm = "numeric",
@@ -106,40 +37,6 @@ setClass("Speclib",
            ID = "character",
            wavelength.is.range = "logical",
            transformation = "character",
-
-
-#' History of usage
-#' 
-#' Handling history of usage of Speclibs
-#' 
-#' 
-#' @aliases usagehistory usagehistory<-
-#' @param x Object of class Speclib
-#' @param value Character string to be added to usagehistory or NULL, if
-#' usagehistory should be deleted.
-#' @return For `usagehistory<-`, the updated object. Otherwise a vector
-#' giving the history of usage of Speclib is returned.
-#' @author Lukas Lehnert
-#' @seealso \code{\linkS4class{Speclib}}
-#' @keywords utilities
-#' @examples
-#' 
-#' data(spectral_data)
-#' 
-#' ## Return history of usage
-#' usagehistory(spectral_data)
-#' 
-#' ## Deleting history of usage
-#' usagehistory(spectral_data) <- character() 
-#' spectral_data
-#' 
-#' ## Adding entries
-#' usagehistory(spectral_data) <- "New entry" ## Adding new entry
-#' usagehistory(spectral_data) <- "New entry 2" ## Adding second entry
-#' spectral_data
-#' 
-#' 
-#' @export usagehistory
            usagehistory = "character",
            rastermeta = "list"
          ),
@@ -189,8 +86,8 @@ setClass('HyperSpecRaster',
            wavelength = numeric(),
            fwhm       = numeric(),
            attributes = data.frame()
-                   )
-        )
+         )
+)
 
 setClass("DistMat3D",
          representation(
@@ -245,7 +142,7 @@ setClass('Clman',
          prototype (
            cp         = matrix(),
            hull       = matrix()
-                   ),
+         ),
          validity = function(object)
          {
            if (ncol(object@cp) != length(object@wavelength))
@@ -256,7 +153,7 @@ setClass('Clman',
              stop("Number of samples in spectra and continuum points differ") 
            return(TRUE)
          }
-        )
+)
 
 setClass('Specfeat',
          contains = 'Speclib',
@@ -267,94 +164,94 @@ setClass('Specfeat',
          prototype (
            features      = list(),
            featureLimits = list()
-                   )#,
-#          validity = function(object)
-#          {
-#            if (ncol(object@cp) != length(object@wavelength))
-#              stop("Number of bands in continuum points and length of wavelength differ")
-#            if (ncol(object@spectra) != length(object@wavelength))
-#              stop("Number of bands in spectra and length of wavelength differ")
-#            if (nrow(object@spectra) != nrow(object@cp))
-#              stop("Number of samples in spectra and continuum points differ") 
-#            return(TRUE)
-#          }
-        )
-        
+         )#,
+         #          validity = function(object)
+         #          {
+         #            if (ncol(object@cp) != length(object@wavelength))
+         #              stop("Number of bands in continuum points and length of wavelength differ")
+         #            if (ncol(object@spectra) != length(object@wavelength))
+         #              stop("Number of bands in spectra and length of wavelength differ")
+         #            if (nrow(object@spectra) != nrow(object@cp))
+         #              stop("Number of samples in spectra and continuum points differ") 
+         #            return(TRUE)
+         #          }
+)
 
-         
+
+
 setClassUnion(".CaretHyperspectral", c("Speclib", "Nri", "Specfeat"))
 
 if (!isGeneric("speclib")) {
   setGeneric("speclib", function(spectra, wavelength, ...)
-  standardGeneric("speclib"))
+    standardGeneric("speclib"))
 }
 
 if (!isGeneric("spectra")) {
   setGeneric("spectra", function(object, ...)
-  standardGeneric("spectra"))
+    standardGeneric("spectra"))
 }
 if (!isGeneric("spectra<-")) {
   setGeneric("spectra<-",function(object, value)
-  standardGeneric("spectra<-"))
+    standardGeneric("spectra<-"))
 }
 
 if (!isGeneric("mask")) {
   setGeneric("mask", function(object, ...)
-  standardGeneric("mask"))
+    standardGeneric("mask"))
 }
 if (!isGeneric("mask<-")) {
   setGeneric("mask<-",function(object, value)
-  standardGeneric("mask<-"))
+    standardGeneric("mask<-"))
 }
 
 if (!isGeneric("attribute")) {
   setGeneric("attribute", function(object)
-  standardGeneric("attribute"))
+    standardGeneric("attribute"))
 }
 if (!isGeneric("attribute<-")) {
   setGeneric("attribute<-", function(object, value)
-  standardGeneric("attribute<-"))
+    standardGeneric("attribute<-"))
 }
 
 if (!isGeneric("wavelength")) {
   setGeneric("wavelength", function(object, ...)
-  standardGeneric("wavelength"))
+    standardGeneric("wavelength"))
 }
 if (!isGeneric("wavelength<-")) {
   setGeneric("wavelength<-",function(object, value)
-  standardGeneric("wavelength<-"))
+    standardGeneric("wavelength<-"))
 }
 
 if (!isGeneric("fwhm")) {
   setGeneric("fwhm", function(object, ...)
-  standardGeneric("fwhm"))
+    standardGeneric("fwhm"))
 }
 if (!isGeneric("fwhm<-")) {
   setGeneric("fwhm<-",function(object, value)
-  standardGeneric("fwhm<-"))
+    standardGeneric("fwhm<-"))
 }
 
 
 if (!isGeneric("distMat3D")) {
   setGeneric("distMat3D",function(x, ...)
-  standardGeneric("distMat3D"))
+    standardGeneric("distMat3D"))
 }
 
 if (!isGeneric('HyperSpecRaster')) 
 {
   setGeneric('HyperSpecRaster', function(x, wavelength, ...)
-  standardGeneric('HyperSpecRaster')) 
+    standardGeneric('HyperSpecRaster')) 
 }
 
 
 if (!isGeneric("ncol")) {
   setGeneric("ncol", function(object, ...)
-  standardGeneric("ncol"))
+    standardGeneric("ncol"))
 }
 
 if (!isGeneric("nrow")) {
   setGeneric("nrow", function(object, ...)
-  standardGeneric("nrow"))
+    standardGeneric("nrow"))
 }
 
 if (!isGeneric("as.data.frame")) {

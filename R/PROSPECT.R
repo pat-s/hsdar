@@ -26,11 +26,11 @@
 #' 
 #' @aliases PROSPECT PROSPECTinvert
 #' @param N Structure parameter
-#' @param Cab Chlorophyll content% (in \%)
-#' @param Car Carotenoid content %(in \%)
-#' @param Cbrown Brown pigment content% (arbitrary units)
-#' @param Cw Equivalent water thickness% (\eqn{\textnormal{cm}}{cm})
-#' @param Cm Dry matter content%
+#' @param Cab Chlorophyll content (in \%)
+#' @param Car Carotenoid content (in \%)
+#' @param Cbrown Brown pigment content (arbitrary units)
+#' @param Cw Equivalent water thickness (\eqn{\textnormal{cm}}{cm})
+#' @param Cm Dry matter content
 #' (\eqn{\textnormal{g}/\textnormal{cm}^2}{g/cm^2})
 #' @param transmittance Logical flag, if transmittance instead of reflectance
 #' values are returned.

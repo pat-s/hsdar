@@ -12,8 +12,8 @@
 #' (\eqn{f_{i}}{f_i}): \deqn{ }{ p_{mix} = \sum^{n}_{i=1} p_i f_i, }\deqn{
 #' \rho_{mix} = \sum^{n}_{i=1} \rho_i f_i, }{ p_{mix} = \sum^{n}_{i=1} p_i f_i,
 #' } where \eqn{f_1, f_2 , ..., f_n >= 0} and \eqn{\sum^{n}_{i=1} f_i = 1} to
-#' fulfill two constraints: \enumerate{ \itemAll fractions must be greater or
-#' equal 0 \itemThe sum of all fractions must be 1 } Since this linear equation
+#' fulfill two constraints: \enumerate{ \item All fractions must be greater or
+#' equal 0 \item The sum of all fractions must be 1 } Since this linear equation
 #' system is usually over-determined, a least square solution is performed. The
 #' error between the final approximation and the observed pixel vector is
 #' returned as vector (`error`) in list (`returnSpatialGrid = FALSE`)

@@ -4,7 +4,7 @@
 #' 
 #' Index must be a charater vector containing pre-defined indices (selected by
 #' their name) or self defined indices or any combination of pre- and
-#' self-defined indices. \subsection{Pre-defined indices The following indices
+#' self-defined indices. \subsection{Pre-defined indices}{ The following indices
 #' are available: \tabular{lll}{ \tab\tab\cr \strong{Name}\tab \strong{Formula}
 #' \tab \strong{Reference*}\cr \tab\tab\cr BI_TM \tab \eqn{((TM\_1^2 + TM\_2^2+
 #' TM\_3^2)/3)^{0.5}}** \tab Mathieu et al. (1998)\cr CI_TM \tab \eqn{(TM\_3 -
@@ -20,14 +20,14 @@
 #' SWIR SI\tab \eqn{-41.59 \cdot (R_{2210} - R_{2090}) + } \tab Lobell et al.
 #' (2001)\cr \tab \eqn{1.24 \cdot (R_{2280} - R_{2090}) + 0.64} \tab \cr }
 #' 
-#' * For references please type: `hsdardocs("References.pdf")`.\cr ** TM_1
+#' For references please type: `hsdardocs("References.pdf")`.\cr * TM_1
 #' denotes the first band of Landsat Thematic Mapper. Consequently, the
 #' hyperspectral data is resmapled to Landsat TM using
 #' [spectralResampling()] prior to the calculation of the index. For
 #' resampling, the spectral response function is used. }
-#' \subsection{Self-defining indices Self-defined indices may be passed using
-#' the following syntax: \itemize{ \itemRxxx: Reflectance at wavelength 'xxx'.
-#' Note that R must be upper case.  \itemDxxx: First derivation of reflectance
+#' \subsection{Self-defining indices}{ Self-defined indices may be passed using
+#' the following syntax: \itemize{ \item Rxxx: Reflectance at wavelength 'xxx'.
+#' Note that R must be upper case.  \item Dxxx: First derivation of reflectance
 #' values at wavelength 'xxx'. Note that D must be upper case. } Using this
 #' syntax, complex indices can be easily defined. Note that the entire
 #' definition of the index must be passed as one character string.

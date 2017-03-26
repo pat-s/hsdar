@@ -24,23 +24,22 @@
 #' 
 #' Functions for distribution of leaf angles within the canopy may work in two
 #' modes, which is controlled via `TypeLidf`: \enumerate{
-#' \item`TypeLidf == 1` (default): `lidfa` is the average leaf slope
+#' \item `TypeLidf == 1` (default): `lidfa` is the average leaf slope
 #' and `lidfb` describes bimodality of leaf distribution. The following
 #' list gives an overview on typical settings: \tabular{lrr}{ LIDF type\tab
 #' `lidfa` \tab `lidfb`\cr \tab\tab\cr Planophile \tab 1 \tab 0\cr
 #' Erectophile \tab -1 \tab 0\cr Plagiophile \tab 0 \tab -1\cr Extremophile\tab
 #' 0 \tab 1\cr Spherical (default) \tab -0.35 \tab -0.15\cr }
 #' 
-#' \item`TypeLidf != 1`: `lidfa` is the average leaf angle in degree
+#' \item `TypeLidf != 1`: `lidfa` is the average leaf angle in degree
 #' (0 = planophile / 90 = erectophile); `lidfb` is 0 }
 #' 
 #' @param N Structure parameter
-#' @param Cab Chlorophyll content% (in \eqn{\mu}{u}g/cm\eqn{^2}{2})
-#' @param Car Carotenoid content %(in \eqn{\mu}{u}g/cm\eqn{^2}{2})
-#' @param Cbrown Brown pigment content %(arbitrary units)
-#' @param Cw Equivalent water thickness %(\eqn{\textnormal{cm}}{cm})
-#' @param Cm Dry matter content
-#' %(\eqn{\textnormal{g}/\textnormal{cm}^2}{g/cm^2})
+#' @param Cab Chlorophyll content (in \eqn{\mu}{u}g/cm\eqn{^2}{2})
+#' @param Car Carotenoid content (in \eqn{\mu}{u}g/cm\eqn{^2}{2})
+#' @param Cbrown Brown pigment content (arbitrary units)
+#' @param Cw Equivalent water thickness (\eqn{\textnormal{cm}}{cm})
+#' @param Cm Dry matter content (\eqn{\textnormal{g}/\textnormal{cm}^2}{g/cm^2})
 #' @param psoil Dry/Wet soil factor
 #' @param LAI Leaf area index
 #' @param TypeLidf Type of leaf angle distribution. See details section

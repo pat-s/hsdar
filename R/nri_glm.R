@@ -24,15 +24,15 @@
 #' and generic [print.default()]
 #' @return The function returns an object of class `Nri`. The list in the
 #' slot \emph{multivariate} contains the new (g)lm information which depends on
-#' the kind of model which is applied: \enumerate{ \item`lm.nri`: The list
-#' contains the following items: \itemize{ \itemEstimate: Coefficient estimates
-#' for each index and term \itemStd.Error: Standard errors \itemt.value:
-#' T-values \itemp.value: P-values \itemr.squared: R\eqn{^2} values }
+#' the kind of model which is applied: \enumerate{ \item `lm.nri`: The list
+#' contains the following items: \itemize{ \item Estimate: Coefficient estimates
+#' for each index and term \item Std.Error: Standard errors \item t.value:
+#' T-values \item p.value: P-values \item r.squared: R\eqn{^2} values }
 #' 
-#' \item`glm.nri`: The list contains the following items (depending on
-#' formula used): \itemize{ \itemEstimate: Coefficient estimates for each index
-#' and term \itemStd.Error: Standard errors \itemt.value/z.value: T-values or
-#' Z-values \itemp.value: P-values }
+#' \item `glm.nri`: The list contains the following items (depending on
+#' formula used): \itemize{\item Estimate: Coefficient estimates for each index
+#' and term \item Std.Error: Standard errors \item t.value/z.value: T-values or
+#' Z-values \item p.value: P-values }
 #' 
 #' }
 #' @author Lukas Lehnert

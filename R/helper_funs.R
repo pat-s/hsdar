@@ -4,7 +4,7 @@
 #'
 #' Used in `vegindex`. 
 #' 
-#' @internal
+#' @keywords internal
 #' @export
 #' 
 
@@ -40,7 +40,7 @@ vegindex_available <- function() {
 #'
 #' Used in `vegindex`. 
 #' 
-#' @internal
+#' @keywords internal
 #' @export
 #' 
 return_index <- function(x)

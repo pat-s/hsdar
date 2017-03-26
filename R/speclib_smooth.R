@@ -4,10 +4,10 @@
 #' mean filter.
 #' 
 #' This function allows filtering using four different methods: \itemize{
-#' \itemSavitzky-Golay: Smoothing applying Savitzky-Golay-Filter. See
-#' [sgolayfilt()] for details.  \itemLowess: Smoothing applying
-#' lowess-Filter. See [lowess()] for details.  \itemSpline: Smoothing
-#' applying spline-Filter. See [spline()] for details.  \itemMean:
+#' \item Savitzky-Golay: Smoothing applying Savitzky-Golay-Filter. See
+#' [sgolayfilt()] for details.  \item Lowess: Smoothing applying
+#' lowess-Filter. See [lowess()] for details.  \item Spline: Smoothing
+#' applying spline-Filter. See [spline()] for details.  \item Mean:
 #' Smoothing applying mean-Filter. See [meanfilter()] for details.  }
 #' 
 #' @param x Object of class \code{\linkS4class{Speclib}}.

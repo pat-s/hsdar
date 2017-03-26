@@ -11,6 +11,7 @@ Depends: R (>= 3.3.1), raster (>= 2.5-8), rgdal (>= 1.1-10), rootSolve,
         signal, methods, caret
 Suggests: rgl, RCurl, pracma, foreach, hyperSpec,
     testthat
+Imports: caret
 Description: Transformation of reflectance spectra, calculation of vegetation indices and red edge parameters, spectral resampling for hyperspectral remote sensing, simulation of reflectance and transmittance using the leaf reflectance model PROSPECT and the canopy reflectance model PROSAIL.
 License: GPL
 LazyLoad: yes

@@ -223,8 +223,8 @@ setReplaceMethod("spectra", signature(object = "Clman", value = "numeric"),
 #' @param subset Vector of `length = 2` giving the lower and upper limit
 #' of spectral range.
 #' @return Object of class `list` containing two elements: \itemize{
-#' \itemptscon: Data frame with wavelength and reflectance of fix points
-#' \itemispec: Index of analysed spectrum within passed `Clman`-object.  }
+#' \item ptscon: Data frame with wavelength and reflectance of fix points
+#' \item ispec: Index of analysed spectrum within passed `Clman`-object.  }
 #' @author Lukas Lehnert and Hanna Meyer
 #' @seealso [transformSpeclib()], [deletecp()],
 #' [addcp()], \code{\linkS4class{Clman}}

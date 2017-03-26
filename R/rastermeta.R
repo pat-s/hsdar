@@ -11,9 +11,9 @@
 #' @param ext Optional. Object of class `extent`.
 #' @param crs Optional. Object of class `CRS`.
 #' @return List with following elements (in exactly this order!): \itemize{
-#' \itemdim: Vector with length == 2. The first and second elements give the
-#' number of rows and columns, respectively.  \itemext: Object of class
-#' `extent`.  \itemcrs: Object of class `CRS`.  }
+#' \item dim: Vector with length == 2. The first and second elements give the
+#' number of rows and columns, respectively.  \item ext: Object of class
+#' `extent`.  \item crs: Object of class `CRS`.  }
 #' @author Lukas Lehnert
 #' @seealso \code{\linkS4class{Speclib}}, \code{\linkS4class{HyperSpecRaster}}
 #' @export rastermeta

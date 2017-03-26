@@ -1,5 +1,3 @@
-
-
 #' Apply function for class DistMat3D
 #' 
 #' Apply function to values in a 3-D distance matrix
@@ -36,24 +34,20 @@
 #' spec_WV <- spectralResampling(spectral_data, "WorldView2-8",
 #'                               response_function = FALSE)
 #' nri_WV <- nri(spec_WV, recursive = TRUE)
-#' class(nri_WV@nri)
+#' class(nri_WV@@nri)
 #' 
 #' ## Calculate mean value of all samples for all indices 
-#' meanIndexVals <- apply(nri_WV@nri, MARGIN = 1, FUN = mean)
+#' meanIndexVals <- apply(nri_WV@@nri, MARGIN = 1, FUN = mean)
 #' meanIndexVals
 #' 
 #' ## Same but for array
-#' nri_WV_dat <- as.array(nri_WV@nri)
+#' nri_WV_dat <- as.array(nri_WV@@nri)
 #' meanIndexVals_arr <- apply(nri_WV_dat, MARGIN = c(1, 2), FUN = mean)
 #' 
-#' meanSampleVals <- apply(nri_WV@nri, MARGIN = 3, FUN = mean)
+#' meanSampleVals <- apply(nri_WV@@nri, MARGIN = 3, FUN = mean)
 #' meanSampleVals_arr <- apply(nri_WV_dat, MARGIN = 3, FUN = mean)
 #' 
 NULL
-
-
-
-
 
 #' Apply function for class Speclib
 #' 
@@ -543,8 +537,8 @@ NULL
 #' \code{\linkS4class{Speclib}} class).
 #' 
 #' The class extends \code{\linkS4class{Speclib}}s and adds two additional
-#' slots: \itemize{ \itemcp: Object of class `matrix` containing continuum
-#' points for all spectra (rows) and bands (columns).  \itemhull: Object of
+#' slots: \itemize{ \item cp: Object of class `matrix` containing continuum
+#' points for all spectra (rows) and bands (columns).  \item hull: Object of
 #' class `matrix` containing hull lines for all spectra (rows) and bands
 #' (columns).  }
 #' 
@@ -589,7 +583,7 @@ NULL
 
 
 
-#' * Clman class
+#' Clman class
 #' 
 #' Class to store and handle manual continuum lines
 #' 
@@ -666,9 +660,9 @@ NULL
 #' 
 #' Class to store effectively (large) distance matrices (up to 3D).
 #' 
-#' Object with 3 slots: \itemize{ \itemvalues: Numerical vector containing
-#' distance values \itemncol: Number of columns in the 3D-matrix. Number of
-#' columns equals always the number of rows \itemnlyr: Number of layers in the
+#' Object with 3 slots: \itemize{ \item values: Numerical vector containing
+#' distance values \item ncol: Number of columns in the 3D-matrix. Number of
+#' columns equals always the number of rows \item nlyr: Number of layers in the
 #' 3D-matrix }
 #' 
 #' @name DistMat3D-class
@@ -747,14 +741,14 @@ NULL
 #' measurements or hyperspectral images through the interface of \pkg{raster}.
 #' 
 #' \pkg{hsdar} provides amongst others the following functionality. \itemize{
-#' \itemData handling: \pkg{hsdar} is designed to handle even large sets of
+#' \item Data handling: \pkg{hsdar} is designed to handle even large sets of
 #' spectra. Spectra are stored in a \code{\linkS4class{Speclib}} containing,
 #' amongst other details, the wavelength and reflectance for each spectrum.
 #' \pkg{hsdar} further contains functions for
 #' [=plot.Speclib::plot()]ting spectral data and
 #' [=apply.Speclib::apply()]ing functions to spectra.
 #' 
-#' \itemData manipulation: A variety of established methods for data
+#' \item Data manipulation: A variety of established methods for data
 #' manipulation such as filter functions ([smoothSpeclib()]),
 #' resampling of bands to various satellite sensors
 #' ([spectralResampling()]), continuum removal
@@ -762,14 +756,14 @@ NULL
 #' ([derivative.speclib()]) and extraction of absorption features
 #' ([cut_specfeat()]) are implemented.
 #' 
-#' \itemData analysis: Supported methods to analyse vegetation spectra are the
+#' \item Data analysis: Supported methods to analyse vegetation spectra are the
 #' calculation of red edge parameters ([rededge()]), vegetation
 #' ([vegindex()]) and soil ([soilindex()]) indices as well
 #' as ndvi-like narrow band indices ([nri()]).  \pkg{hsdar} further
 #' enables to perform spectral unmixing of spectra ([unmix()]) by use
 #' of endmember spectra.
 #' 
-#' \itemData simulation: \pkg{hsdar} has implemented the models PROSAIL 5B
+#' \item Data simulation: \pkg{hsdar} has implemented the models PROSAIL 5B
 #' ([PROSAIL()], Jacquemoud et al. 2009) and PROSPECT 5
 #' ([PROSPECT()], Jacquemoud and Baret 1990) to simulate spectra of
 #' canopy and plants.
@@ -958,7 +952,7 @@ NULL
 
 
 
-#' Methods for * Nri-class
+#' Methods for Nri-class
 #' 
 #' Methods to handle data in objects of class Nri.
 #' 
@@ -981,19 +975,19 @@ NULL
 
 
 
-#' * Nri class
+#' Nri class
 #' 
 #' Class to handle datasets containing normalized ratio indices of spectra.
 #' 
-#' Object with slots: \itemize{ \itemnri: Object of class
-#' \code{\linkS4class{DistMat3D}} containing nri values.  \itemfwhm: Vector or
+#' Object with slots: \itemize{ \item nri: Object of class
+#' \code{\linkS4class{DistMat3D}} containing nri values.  \item fwhm: Vector or
 #' single numerical value giving the full-width-half-max value(s) for each
-#' band.  \itemwavelength: Vector with wavelength information.  \itemdimnames:
+#' band.  \item wavelength: Vector with wavelength information.  \item dimnames:
 #' Character vector containing band names used to calculate nri-values.
-#' \itemmultivariate: List defining the kind of test/model applied to the data
+#' \item multivariate: List defining the kind of test/model applied to the data
 #' and the model data. Only used after object has passed e.g.
-#' [=glm.nri::(g)lm.nri()].  \itemattributes: Data.frame containing
-#' additional data \itemusagehistory: Vector giving information on history of
+#' [=glm.nri::(g)lm.nri()].  \item attributes: Data.frame containing
+#' additional data \item usagehistory: Vector giving information on history of
 #' usage of the object. }
 #' 
 #' @name Nri-class
@@ -1233,9 +1227,9 @@ NULL
 #' @format An object of class 'data.frame'
 #' @note This data is kindly provided by operators of satellites. See
 #' \code{\link{hsdardocs}("Copyright")} for copyright information on spectral
-#' response functions. \itemize{ \itemQuickbird: Copyright by DigitalGlobe,
-#' Inc. All Rights Reserved \itemRapidEye: Copyright by RapidEye AG
-#' \itemWorldView-2: Copyright by DigitalGlobe, Inc. All Rights Reserved }
+#' response functions. \itemize{ \item Quickbird: Copyright by DigitalGlobe,
+#' Inc. All Rights Reserved \item RapidEye: Copyright by RapidEye AG
+#' \item WorldView-2: Copyright by DigitalGlobe, Inc. All Rights Reserved }
 #' @keywords datasets
 NULL
 
@@ -1248,8 +1242,8 @@ NULL
 #' Class to handle spectral feature data.
 #' 
 #' Class extends `Speclib`-class and adds two additional slots: \itemize{
-#' \itemfeatures: List containing the spectra according to the features.
-#' \itemfeatureLimits: List containing limits of features defined by
+#' \item features: List containing the spectra according to the features.
+#' \item featureLimits: List containing limits of features defined by
 #' [define.features()]. }
 #' 
 #' @name Specfeat-class
@@ -1265,11 +1259,11 @@ NULL
 
 
 
-#' * Speclib class
+#' Speclib class
 #' 
 #' Class to store and handle hyperspectral data in R
 #' 
-#' \subsection{Spectral data The spectral data (usually reflectance values) are
+#' \subsection{ Spectral data}{ The spectral data (usually reflectance values) are
 #' stored in an object of class `'.Spectra'`. This object may eiter
 #' contain the spectral data as a `RasterBrick` or as a `matrix` with
 #' columns indicating spectral bands and rows different samples, respectively.
@@ -1282,16 +1276,17 @@ NULL
 #' ones and process each of the small files, separately. See the excellent
 #' tutorial 'Writing functions for large raster files' available on
 #' \url{https://CRAN.R-project.org/package=raster} and section '2.2.2 Speclibs
-#' from raster files' in 'hsdar-intro.pdf'.
+#' from raster files' in 'hsdar-intro.pdf'.}
 #' 
-#' } \subsection{Spectral information Speclib contains wavelength information
+#' \subsection{ Spectral information}{ Speclib contains wavelength information
 #' for each band in spectral data. This information is used for spectral
 #' resampling, vegetation indices and plotting etc. Since spectra can be
 #' handled either as continuous lines or as discrete values like for satellite
 #' bands, spectral information is handled in two principle ways: \itemize{
-#' \itemContinuous spectra: Data of spectrometers or hyperspectral (satellite)
+#' \item Continuous spectra: Data of spectrometers or hyperspectral (satellite)
 #' sensors. This data is plotted as lines with dotted lines indicating standard
-#' deviations by default.  \itemNon-continuous spectra: Data of multispectral
+#' deviations by default.
+#' \item Non-continuous spectra: Data of multispectral
 #' satellite sensors. Here, data is plotted as solid lines and error bars at
 #' the mean position of each waveband indicating standard deviations by
 #' default.  } The kind of data may be chosen by the user by setting the
@@ -1304,30 +1299,39 @@ NULL
 #' The unit of spectral data must be set initially, when converting data to
 #' speclib. Note that the package currently supports only "nm" as unit. This is
 #' particularly important for function like [vegindex()], which need
-#' to get correct bands out of the spectral data. } \subsection{Technical
-#' description An object of class `Speclib` contains the following slots:
+#' to get correct bands out of the spectral data. } 
+#' \subsection{Technical description}{ An object of class `Speclib` 
+#' contains the following slots:
 #' 
-#' \itemize{ \itemwavelength: Vector with wavelength information.  \itemfwhm:
+#' \itemize{ \item wavelength: Vector with wavelength information. 
+#' \item fwhm:
 #' Vector or single numerical value giving the full-width-half-max value(s) for
-#' each band.  \itemspectra: Object of class '.Spectra' with three slots:
-#' \itemize{ \itemfromRaster: logical, indicating if spectral data is read from
-#' a RasterBrick-object.  \itemspectra_ma: Matrix with ncol = number of bands
-#' and nrow = number. Used if fromRaster == FALSE \itemspectra_ra:
+#' each band.  
+#' \item spectra: Object of class '.Spectra' with three slots:
+#' 
+#' \itemize{ 
+#' \item fromRaster: logical, indicating if spectral data is read from
+#' a RasterBrick-object.  
+#' \item spectra_ma: Matrix with ncol = number of bands
+#' and nrow = number. Used if fromRaster == FALSE 
+#' \item spectra_ra:
 #' RasterBrick-object which is used if fromRaster == TRUE.  } Contains
 #' reflectance, transmittance or absorbance values. Handle with function
-#' [=spectra.Speclib::spectra()].  \itemattributes: Data frame
+#' [=spectra.Speclib::spectra()].  
+#' \item attributes: Data frame
 #' containing additional data to each spectrum. May be used for linear
 #' regression etc. Handle with function
-#' [=attribute.speclib::attribute()].  \itemusagehistory: Vector
+#' [=attribute.speclib::attribute()].  
+#' \item usagehistory: Vector
 #' giving information on history of usage of speclib. Handle with function
-#' [usagehistory()]. } }
+#' [usagehistory()]. }}
 #' 
 #' @name Speclib-class
 #' @docType class
 #' @note See figure in [hsdar-package()] for an overview of classes
 #' in hsdar.
 #' @author Lukas Lehnert
-#' @seealso [=plot.Speclib::plot()], [readGDAL()],
+#' @seealso [plot.Speclib::plot()], [readGDAL()],
 #' [mask()], [idSpeclib()],
 #' 
 #' [=dim.speclib::dim()], [=spectra.Speclib::spectra()],
@@ -1387,20 +1391,20 @@ NULL
 #' @return An object of class `Speclib` containing the following slots is
 #' returned:
 #' 
-#' \itemize{ \itemwavelength: Vector with wavelength information \itemfwhm:
+#' \itemize{ \item wavelength: Vector with wavelength information \item fwhm:
 #' Vector or single numerical value giving the full-width-half-max value(s) for
-#' each band.  \itemspectra: Object of class '.Spectra' with three slots:
-#' \itemize{ \itemfromRaster: logical, indicating if spectral data is read from
-#' a RasterBrick-object.  \itemspectra_ma: Matrix with ncol = number of bands
-#' and nrow = number. Used if fromRaster == FALSE \itemspectra_ra:
+#' each band.  \item spectra: Object of class '.Spectra' with three slots:
+#' \itemize{ \item fromRaster: logical, indicating if spectral data is read from
+#' a RasterBrick-object.  \item spectra_ma: Matrix with ncol = number of bands
+#' and nrow = number. Used if fromRaster == FALSE \item spectra_ra:
 #' RasterBrick-object which is used if fromRaster == TRUE.  } Contains
 #' reflectance, transmittance or absorbance values. Handle with function
-#' [=spectra.Speclib::spectra()].  \itemattributes: Data frame
+#' [=spectra.Speclib::spectra()].  \item attributes: Data frame
 #' containing additional data to each spectrum. May be used for linear
 #' regression etc. Handle with function
-#' [=attribute.speclib::attribute()].  \itemusagehistory: Vector
+#' [=attribute.speclib::attribute()].  \item usagehistory: Vector
 #' giving information on history of usage of speclib. Handle with function
-#' [usagehistory()].  \itemrastermeta: List containing meta
+#' [usagehistory()].  \item rastermeta: List containing meta
 #' information to create *Raster objects from Speclib. Handle with function
 #' [rastermeta()]. }
 #' @author Lukas Lehnert

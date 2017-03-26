@@ -2,11 +2,11 @@
 #' 
 #' Calculate derivations of spectra
 #' 
-#' Two different methods are available: \itemize{ \itemFinite approximation
+#' Two different methods are available: \itemize{ \item Finite approximation
 #' (`finApprox`):
 #' \deqn{\frac{dr}{d\lambda}=\frac{r(\lambda_i)-r(\lambda_{i+1})}{\Delta\lambda},}
 #' where \eqn{r_i} is the reflection in band \eqn{i} and \eqn{\Delta\lambda}
-#' the spectral difference between adjacent bands.  \itemSavitzky-Golay
+#' the spectral difference between adjacent bands.  \item Savitzky-Golay
 #' derivative computation (`sgolay`)%:
 #' 
 #' % \deqn{\frac{dr^q}{d\lambda}=\sum_{i=-m}^{m}P_i^{(q)}r_{j+i},}

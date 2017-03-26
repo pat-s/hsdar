@@ -11,7 +11,7 @@
 #' wavelength of the spectrum and \eqn{BD} is the band depth.
 #' 
 #' \item\emph{max}: Wavelength position of the maximum value observed in the
-#' feature.  \itemParameters based on half-max values: \itemize{ \item\emph{lo}
+#' feature.  \item Parameters based on half-max values: \itemize{ \item\emph{lo}
 #' and \emph{up}: Wavelength position of the \emph{lo}wer and \emph{up}per
 #' half-max value.  \item\emph{width}: Difference between wavelength positions
 #' of \emph{up}per and \emph{lo}wer half-max values.  \item\emph{gauss_lo}:
