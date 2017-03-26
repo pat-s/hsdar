@@ -38,6 +38,39 @@ list.available.sensors <- function(returnHelp = FALSE)
 }
 
 
+
+
+#' Sensor characteristics
+#' 
+#' Get channel wavelength of satellite sensor
+#' 
+#' 
+#' @aliases get.sensor.characteristics list.available.sensors
+#' @param sensor Character or integer. Name or numerical abbreviation of
+#' sensor. See 'sensor="help"' or 'sensor=0' for an overview of available
+#' sensors.
+#' @param response_function If TRUE, the spectral response function is returned
+#' @author Lukas Lehnert
+#' @seealso \code{\link{spectralResampling}}
+#' @keywords utilities
+#' @examples
+#' 
+#' ## Return implemented sensors
+#' get.sensor.characteristics(0)
+#' 
+#' ## RapidEye
+#' data_wv <- get.sensor.characteristics("RapidEye", TRUE)
+#' 
+#' ## Plot response functions
+#' plot(c(0,1)~c(330,1200), type = "n", xlab = "Wavelength [nm]", 
+#'      ylab = "Spectral response")
+#' xwl_response <- seq.int(attr(data_wv$response, "minwl"),
+#'                         attr(data_wv$response, "maxwl"),
+#'                         attr(data_wv$response, "stepsize"))
+#' for (i in 1:nrow(data_wv$characteristics))
+#'   lines(xwl_response, data_wv$response[,i], col = i)
+#' 
+#' @export get.sensor.characteristics
 get.sensor.characteristics <- function (
                                          sensor,
                                          response_function=FALSE
@@ -338,6 +371,25 @@ get.sensor.characteristics <- function (
   }
 }
 
+
+
+#' Satellite sensor name
+#' 
+#' Get satellite sensor name by integer value
+#' 
+#' See \code{\link{get.sensor.characteristics}} to get overview on available
+#' satellite sensors.
+#' 
+#' @param sensor Integer value to match against predefined satellite sensors.
+#' @return Name of satellite sensor as character string.
+#' @author Lukas Lehnert
+#' @seealso \code{\link{get.sensor.characteristics}}
+#' @keywords utilities
+#' @examples
+#' 
+#' get.sensor.name(1)
+#' 
+#' @export get.sensor.name
 get.sensor.name <- function(sensor)
 {
   if (!is.numeric(sensor)) return (sensor)

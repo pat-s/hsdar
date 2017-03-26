@@ -81,6 +81,66 @@ maskSpeclib <- function(object, lb, ub)
   return(object)
 }
 
+
+
+#' Mask spectra
+#' 
+#' Returning and setting mask of spectra in Speclib. \code{interpolate.mask}
+#' linearly interpolates masked parts in spectra.
+#' 
+#' Value may be an object of class vector, data frame or list. Data frames must
+#' contain 2 columns with the first column giving the lower and the second the
+#' upper boundary values of the mask. List must have two items consisting of
+#' vectors of length = 2. The first entry is used as lower and the second as
+#' upper boundary values. Vectors must contain corresponding lower and upper
+#' boundary values consecutively.
+#' 
+#' Interpolation of masked parts is mainly intended for internal use.
+#' Interpolation is only possible if mask does not exceed spectral range of
+#' Speclib.
+#' 
+#' @aliases mask mask<- maskSpeclib mask,Speclib-method
+#' mask<-,Speclib,data.frame-method mask<-,Speclib,list-method
+#' mask<-,Speclib,numeric-method mask<-,Speclib,matrix-method interpolate.mask
+#' @param object Object of class \code{Speclib}.
+#' @param value Numeric vector, data frame or list giving the mask boundaries
+#' in wavelength units. See details section.
+#' @return For \code{mask<-}, the updated object. Otherwise a data frame giving
+#' the mask boundaries.
+#' 
+#' \code{interpolate.mask} returns a new object of class Speclib.
+#' @author Lukas Lehnert and Hanna Meyer
+#' @seealso \code{\linkS4class{Speclib}}
+#' @keywords utilities
+#' @examples
+#' 
+#' data(spectral_data)
+#' 
+#' mask(spectral_data) ## NULL
+#' 
+#' 
+#' ## Mask from vector
+#' spectral_data_ve <- spectral_data
+#' mask(spectral_data_ve) <- c(1040,1060,1300,1450)
+#' mask(spectral_data_ve)
+#' 
+#' 
+#' ## Mask from data frame
+#' spectral_data_df <- spectral_data
+#' mask(spectral_data_df) <- data.frame(lb=c(1040,1300),ub=c(1060,1450))
+#' mask(spectral_data_df)
+#' 
+#' 
+#' ## Mask from list
+#' spectral_data_li <- spectral_data
+#' mask(spectral_data_li) <- list(lb=c(1040,1300),ub=c(1060,1450))
+#' mask(spectral_data_li)
+#' 
+#' ## Linear interpolation
+#' plot(spectral_data)
+#' plot(interpolate.mask(spectral_data_li), new=FALSE)
+#' 
+#' @export mask
 mask <- function(object)
   return(attr(object, "dropped"))
   

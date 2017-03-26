@@ -211,6 +211,38 @@ setReplaceMethod("spectra", signature(object = "Clman", value = "numeric"),
 }
 )
 
+
+
+#' Get fix points
+#' 
+#' Get fix points of continuum line within spectral range.
+#' 
+#' 
+#' @param x Object of class \code{Clman}.
+#' @param ispec ID or index of spectrum to be analysed.
+#' @param subset Vector of \code{length = 2} giving the lower and upper limit
+#' of spectral range.
+#' @return Object of class \code{list} containing two elements: \itemize{
+#' \itemptscon: Data frame with wavelength and reflectance of fix points
+#' \itemispec: Index of analysed spectrum within passed \code{Clman}-object.  }
+#' @author Lukas Lehnert and Hanna Meyer
+#' @seealso \code{\link{transformSpeclib}}, \code{\link{deletecp}},
+#' \code{\link{addcp}}, \code{\linkS4class{Clman}}
+#' @keywords utilities
+#' @examples
+#' 
+#' ## Model spectra using PROSAIL
+#' parameter <- data.frame(N = rep.int(c(1, 1.5),2), LAI = c(1,1,3,3))
+#' spec <- PROSAIL(parameterList=parameter)
+#' 
+#' ## Transform spectra
+#' spec_clman <- transformSpeclib(spec, method = "sh", out = "raw")
+#' 
+#' ## Fix points
+#' spec_cp <- getcp(spec_clman, 1, c(400, 800))
+#' spec_cp
+#' 
+#' @export getcp
 getcp <- function(
                   x,
                   ispec,
@@ -255,6 +287,53 @@ getcp <- function(
 }
 
 
+
+
+#' Delete fix point
+#' 
+#' Delete fix point from continuum line.
+#' 
+#' 
+#' @param x Object of class \code{Clman}.
+#' @param ispec ID or index of spectrum to be modified.
+#' @param cpdelete Single value or vector of wavelength containing fix point(s)
+#' to be deleted.
+#' @return Object of class \code{\linkS4class{Clman}} containing the updated
+#' version of x.
+#' @author Lukas Lehnert and Hanna Meyer
+#' @seealso \code{\link{transformSpeclib}}, \code{\link{addcp}},
+#' \code{\link{getcp}}, \code{\link{checkhull}}, \code{\link{makehull}},
+#' \code{\link{updatecl}}
+#' @keywords utilities
+#' @examples
+#' 
+#' ## Model spectra using PROSAIL
+#' parameter <- data.frame(N = rep.int(c(1, 1.5),2), LAI = c(1,1,3,3))
+#' spec <- PROSAIL(parameterList=parameter)
+#' ## Mask parts not necessary for the example
+#' mask(spec) <- c(1600, 2600)
+#' 
+#' ## Transform spectra
+#' spec_clman <- transformSpeclib(spec, method = "sh", out = "raw")
+#' 
+#' ## Plot original line
+#' par(mfrow = c(1,2))
+#' plot(spec_clman, ispec = 1, subset = c(1100, 1300))
+#' 
+#' ## Find wavelength of fix point to be deleted
+#' getcp(spec_clman, 1, subset = c(1100, 1300))
+#' 
+#' ## Delete all fix points between 1200 and 1240 nm
+#' spec_clman <- deletecp(spec_clman, 1, c(1200:1240))
+#' 
+#' ## Plot new line
+#' plot(spec_clman, ispec = 1, subset = c(1100, 1300))
+#' 
+#' ## Check new hull
+#' hull <- checkhull(spec_clman, 1)
+#' hull$error
+#' 
+#' @export deletecp
 deletecp <- function (
                       x,   
                       ispec,
@@ -274,6 +353,48 @@ deletecp <- function (
   return(x)
 }
 
+
+
+#' Add fix point
+#' 
+#' Add fix point to continuum line.
+#' 
+#' 
+#' @param x Object of class Clman.
+#' @param ispec ID or index of spectrum to be modified.
+#' @param cpadd Single value or vector of wavelength containing new fix points.
+#' @return Object of class \code{Clman} containing the updated version of x.
+#' @author Lukas Lehnert and Hanna Meyer
+#' @seealso \code{\link{transformSpeclib}}, \code{\link{deletecp}},
+#' \code{\link{getcp}}, \code{\link{checkhull}}, \code{\link{makehull}},
+#' \code{\link{updatecl}},
+#' 
+#' \code{\link{idSpeclib}}
+#' @keywords utilities
+#' @examples
+#' 
+#' ## Model spectra using PROSAIL
+#' parameter <- data.frame(N = rep.int(c(1, 1.5),2), LAI = c(1,1,3,3))
+#' spec <- PROSAIL(parameterList=parameter)
+#' 
+#' ## Transform spectra
+#' spec_clman <- transformSpeclib(spec, method = "sh", out = "raw")
+#' 
+#' ## Plot original line
+#' par(mfrow = c(1,2))
+#' plot(spec_clman, ispec = 1, subset = c(2480, 2500))
+#' 
+#' ## Add fix point at 4595 nm to continuum line of first spectrum
+#' spec_clman <- addcp(spec_clman, 1, 2495)
+#' 
+#' ## Plot new line
+#' plot(spec_clman, ispec = 1, subset = c(2480, 2500))
+#' 
+#' ## Check new hull
+#' hull <- checkhull(spec_clman, 1)
+#' hull$error
+#' 
+#' @export addcp
 addcp <- function (
                    x,   
                    ispec,

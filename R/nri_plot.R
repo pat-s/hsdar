@@ -86,8 +86,78 @@ setMethod("plot", signature(x = "Nri"),
   } else {
     if (is.null(coefficient))
       coefficient <- switch(attr(x@multivariate,"function"),
+
+
+#' t-test for nri values
+#' 
+#' Performs t-tests for nri values.
+#' 
+#' 
+#' @aliases t.test.nri t.test,Nri-method
+#' @param x Object of class \code{'nri'}.
+#' @param ...  Arguments to be passed to \code{\link{t.test}}.
+#' @return An object of class "data.frame"
+#' @author Lukas Lehnert & Hanna Meyer
+#' @seealso \code{\link{t.test}}, \code{\link{cor.test,Nri-method}}
+#' @examples
+#' 
+#' %   \dontrun{
+#' data(spectral_data)
+#' 
+#' 
+#' ## Calculate nri-values for WorldView-2-8
+#' spec_WV <- spectralResampling(spectral_data, "WorldView2-8",
+#'                               response_function = FALSE)
+#' nri_WV <- nri(spec_WV, recursive = TRUE)
+#' 
+#' ## Perform t.tests between nri-values of both sites 
+#' season <- spec_WV$attributes$season
+#' ttestres <- t.test(x = nri_WV, y = season, alternative = "two.sided")
+#' ttestres
+#' 
+#' ## Plot p.values of t.tests
+#' plot(ttestres)
+#' %   }
+#' 
+#' @export t.test
                             t.test = "p.value",
                             glm = "t.value",
+
+
+#' Test for association/correlation between nri values and vector of samples
+#' 
+#' Test for association between paired samples (with one variable being
+#' nri-values), using one of Pearson's product moment correlation coefficient,
+#' Kendall's tau or Spearman's rho.
+#' 
+#' NRI-values may be used as x and/or as y variable. If x and y are NRI-values
+#' the number of samples in both datasets must be equal. For additional
+#' information on correlation tests see details in \code{\link{cor.test}}.
+#' 
+#' @aliases cor.test.nri cor.test,Nri-method
+#' @param x Object of class \code{Nri} or numerical vector
+#' @param y Object of class \code{Nri} or numerical vector
+#' @param ...  Further arguments passed to \code{\link{cor.test}}
+#' @return Object of class \code{\linkS4class{Nri}}
+#' @author Lukas Lehnert
+#' @seealso
+#' 
+#' \code{\link[=plot.Nri]{plot}}, \code{\link{cor.test}},
+#' \code{\link{glm.nri}}, \code{\link{lm.nri}}, \code{\link{getNRI}}
+#' @examples
+#' 
+#' data(spectral_data)
+#' 
+#' ## Calculate all possible combinations for WorldView-2-8
+#' spec_WV <- spectralResampling(spectral_data, "WorldView2-8",
+#'                               response_function = FALSE)
+#' nri_WV <- nri(spec_WV, recursive = TRUE)
+#' 
+#' cortestnri <- cor.test(nri_WV, attribute(spec_WV)$chlorophyll)
+#' 
+#' cortestnri
+#' 
+#' @export cor.test
                             cor.test = "p.value",
                             lm = "r.squared"
                            )

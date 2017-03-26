@@ -1,3 +1,65 @@
+#' Transform spectra
+#' 
+#' Transform spectra by using convex hull or segmented upper hull
+#' 
+#' 
+#' Function performs a continuum removal transformation by firstly establishing
+#' a continuum line/hull which connects the local maxima of the reflectance
+#' spectrum. Two kinds of this hull are well established in scientific
+#' community: the convex hull (e.g. Mutanga et al. 2004) and the segmented hull
+#' (e.g. Clark et al. 1987). Both hulls are established by connecting the local
+#' maxima, however, the precondition of the convex hull is that the resulting
+#' continuum line must be convex whereas considering the segmented hull it
+#' might be concave or convex but the algebraic sign of the slope is not
+#' allowed to change from the global maximum of the spectrum downwards to the
+#' sides. In contrast to a convex hull, the segmented hull is able to identify
+#' small absorption features.
+#' 
+#' Specify \code{method = "ch"} for the convex hull and \code{method = "sh"}
+#' for the segmented hull. The output might be \code{"raw"}, \code{"bd"} or
+#' \code{"ratio"}: \itemize{ \item"raw": the continuum line is returned
+#' \item"bd": the spectra are transformed to band depth by \deqn{BD_\lambda =
+#' 1-\frac{R_\lambda}{CV_\lambda},} where \eqn{BD} is the band depth, \eqn{R}
+#' is the reflectance and \eqn{CV} is the continuum value at the wavelength
+#' \eqn{\lambda}. \item"ratio": the spectra are transformed by \deqn{BD_\lambda
+#' = \frac{R_\lambda}{CV_\lambda}.}
+#' 
+#' } In some cases it might be useful to apply \code{\link{smoothSpeclib}}
+#' before the transformation if too many small local maxima are present in the
+#' spectra. Anyway, a manual improvement of the continuum line is possible
+#' using \code{\link{addcp}} and \code{\link{deletecp}}.
+#' 
+#' @param data Speclib to be transformed
+#' @param method Method to be used. See details section.
+#' @param out Kind of value to be returned. See details section.
+#' @param ...  Further arguments passed to generic functions. Currently
+#' ignored.
+#' @return If \code{out != "raw"} an object of class
+#' \code{\linkS4class{Speclib}} containing transformed spectra is returned.
+#' Otherwise the return object will be of class \code{\link{Clman}}.
+#' @author Hanna Meyer and Lukas Lehnert
+#' @seealso \code{\link{Clman}}, \code{\link{addcp}}, \code{\link{deletecp}},
+#' \code{\link{checkhull}}
+#' @references Clark, R. N., King, T. V. V. and Gorelick, N. S. (1987):
+#' Automatic continuum analysis of reflectance spectra.  Proceedings of the
+#' Third Airborne Imaging Spectrometer Data Analysis Workshop, 30. 138-142.
+#' 
+#' Mutanga, O. and Skidmore, A. K. (2004): Hyperspectral band depth analysis
+#' for a better estimation of grass biomass (Cenchrus ciliaris) measured under
+#' controlled laboratory conditions International Journal of applied Earth
+#' Observation and Geoinformation, 5, 87-96.
+#' @keywords multivariate
+#' @examples
+#' 
+#' data(spectral_data)
+#' 
+#' transformed_spectra <- transformSpeclib(spectral_data)
+#' 
+#' par(mfrow=c(1,2))
+#' plot(spectral_data)
+#' plot(transformed_spectra)
+#' 
+#' @export transformSpeclib
 transformSpeclib <- function(
                                data, ...,
                                method = "ch",
@@ -181,6 +243,51 @@ if (out=="bd")
 }
 }
 
+
+
+#' Check continuum line
+#' 
+#' Check if continuum line is intersecting the reflectance curve.
+#' 
+#' 
+#' @param x Object of class \code{clman}.
+#' @param ispec ID or index of spectrum to be checked.
+#' @return Object of class \code{list}.
+#' @author Lukas Lehnert and Hanna Meyer
+#' @seealso \code{\link{transformSpeclib}}, \code{\link{addcp}},
+#' \code{\link{deletecp}}, \code{\link{makehull}}, \code{\link{updatecl}}
+#' @keywords utilities
+#' @examples
+#' 
+#' ## Model spectra using PROSAIL
+#' parameter <- data.frame(N = rep.int(c(1, 1.5),2), LAI = c(1,1,3,3))
+#' spec <- PROSAIL(parameterList=parameter)
+#' 
+#' ## Transform spectra
+#' spec_clman <- transformSpeclib(spec, method = "sh", out = "raw")
+#' 
+#' ## Plot original line
+#' par(mfrow = c(1,2))
+#' plot(spec_clman, ispec = 1, subset = c(2480, 2500))
+#' 
+#' ## Add fix point at 4595 nm to continuum line of first spectrum
+#' spec_clman <- addcp(spec_clman, 1, 2495)
+#' 
+#' ## Plot new line
+#' plot(spec_clman, ispec = 1, subset = c(2480, 2500))
+#' 
+#' ## Check new hull
+#' hull <- checkhull(spec_clman, 1)
+#' hull$error
+#' 
+#' ## Add fix point at 4596 nm to continuum line of first spectrum
+#' spec_clman <- addcp(spec_clman, 1, 2496)
+#' 
+#' ## Check new hull
+#' hull <- checkhull(spec_clman, 1)
+#' hull$error
+#' 
+#' @export checkhull
 checkhull <- function(
                       x,
                       ispec
@@ -218,6 +325,64 @@ checkhull <- function(
   return(list(hull=external$hull,error=external$res))
 }
 
+
+
+#' Check continuum line
+#' 
+#' Check if continuum line is intersecting the reflectance curve.
+#' 
+#' 
+#' @param x Object of class \code{Clman}.
+#' @param ispec Name or index of spectrum to be checked.
+#' @return Object of class \code{list}.
+#' @author Lukas Lehnert and Hanna Meyer
+#' @seealso \code{\link{transformSpeclib}}, \code{\link{addcp}},
+#' \code{\link{deletecp}}, \code{\link{makehull}}, \code{\link{updatecl}}
+#' 
+#' \code{\linkS4class{Clman}}
+#' @keywords utilities
+#' @examples
+#' 
+#' ## Model spectra using PROSAIL
+#' parameter <- data.frame(N = rep.int(c(1, 1.5),2), LAI = c(1,1,3,3))
+#' spec <- PROSAIL(parameterList=parameter)
+#' 
+#' ## Transform spectra
+#' spec_clman <- transformSpeclib(spec, method = "sh", out = "raw")
+#' 
+#' ## Plot original line
+#' par(mfrow = c(1,2))
+#' plot(spec_clman, ispec = 1, subset = c(2480, 2500))
+#' 
+#' ## Add fix point at 4595 nm to continuum line of first spectrum
+#' spec_clman <- addcp(spec_clman, 1, 2495)
+#' 
+#' ## Plot new line
+#' plot(spec_clman, ispec = 1, subset = c(2480, 2500))
+#' 
+#' ## Check new hull
+#' hull <- checkhull(spec_clman, 1)
+#' hull$error
+#' 
+#' ## Add fix point at 4596 nm to continuum line of first spectrum
+#' spec_clman <- addcp(spec_clman, 1, 2496)
+#' 
+#' ## Check new hull
+#' hull <- checkhull(spec_clman, 1)
+#' hull$error
+#' 
+#' hull <- makehull(spec_clman, 1)
+#' 
+#' ## Transform spectra using band depth
+#' spec_bd <- transformSpeclib(spec, method = "sh", out = "bd")
+#' 
+#' ## Update continuum line of first spectrum
+#' spec_bd <- updatecl(spec_bd, hull)
+#' 
+#' ## Plot modified transformed spectrum
+#' plot(spec_bd, FUN = 1)
+#' 
+#' @export makehull
 makehull <- function(
                       x,
                       ispec
@@ -259,6 +424,64 @@ makehull <- function(
   return(result)
 }
 
+
+
+#' Check continuum line
+#' 
+#' Check if continuum line is intersecting the reflectance curve.
+#' 
+#' 
+#' @param x Object of class \code{\linkS4class{Speclib}} transformed by
+#' \code{\link{transformSpeclib}}.
+#' @param hull Hull to be applied to x. Output of function
+#' \code{\link{makehull}}.
+#' @return Object of class \code{\linkS4class{Speclib}}.
+#' @author Lukas Lehnert and Hanna Meyer
+#' @seealso \code{\link{transformSpeclib}}, \code{\link{makehull}},
+#' \code{\linkS4class{Speclib}}
+#' @keywords utilities
+#' @examples
+#' 
+#' ## Model spectra using PROSAIL
+#' parameter <- data.frame(N = rep.int(c(1, 1.5),2), LAI = c(1,1,3,3))
+#' spec <- PROSAIL(parameterList=parameter)
+#' 
+#' ## Transform spectra
+#' spec_clman <- transformSpeclib(spec, method = "sh", out = "raw")
+#' 
+#' ## Plot original line
+#' par(mfrow = c(1,2))
+#' plot(spec_clman, ispec = 1, subset = c(2480, 2500))
+#' 
+#' ## Add fix point at 4595 nm to continuum line of first spectrum
+#' spec_clman <- addcp(spec_clman, 1, 2495)
+#' 
+#' ## Plot new line
+#' plot(spec_clman, ispec = 1, subset = c(2480, 2500))
+#' 
+#' ## Check new hull
+#' hull <- checkhull(spec_clman, 1)
+#' hull$error
+#' 
+#' ## Add fix point at 4596 nm to continuum line of first spectrum
+#' spec_clman <- addcp(spec_clman, 1, 2496)
+#' 
+#' ## Check new hull
+#' hull <- checkhull(spec_clman, 1)
+#' hull$error
+#' 
+#' hull <- makehull(spec_clman, 1)
+#' 
+#' ## Transform spectra using band depth
+#' spec_bd <- transformSpeclib(spec, method = "sh", out = "bd")
+#' 
+#' ## Update continuum line of first spectrum
+#' spec_bd <- updatecl(spec_bd, hull)
+#' 
+#' ## Plot modified transformed spectrum
+#' plot(spec_bd, FUN = 1)
+#' 
+#' @export updatecl
 updatecl <- function (
                       x,
                       hull

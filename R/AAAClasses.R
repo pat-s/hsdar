@@ -26,7 +26,76 @@ setClass(".Spectra",
 
 setClass("Speclib",
          representation(
+
+
+#' Handling spectra
+#' 
+#' Returning and setting spectra in Speclib
+#' 
+#' For \code{spectra<-}, the function does not check if dimensions of spectra
+#' match dimensions of Speclib. Additionally, no conversion into \code{matrix}
+#' is performed! If spectra are not correctly stored, errors in other functions
+#' may arise. Thus check always carefully, if spectra are modified by hand.
+#' 
+#' @aliases spectra.Speclib spectra spectra<- spectra,Speclib-method
+#' spectra<-,Speclib,data.frame-method spectra<-,Speclib,matrix-method
+#' spectra<-,Speclib,numeric-method spectra<-,Speclib,RasterBrick-method
+#' [,.Spectra,ANY,ANY,ANY-method show,.Spectra-method print,.Spectra-method
+#' cellFromCol,Speclib-method cellFromLine,Speclib-method
+#' cellFromPolygon,Speclib-method cellFromRow,Speclib-method
+#' cellFromRowCol,Speclib-method cellFromRowColCombine,Speclib-method
+#' cellFromXY,Speclib-method colFromX,Speclib-method
+#' fourCellsFromXY,Speclib-method rowFromY,Speclib-method
+#' readAll,Speclib-method
+#' @param object Object of class \code{Speclib}.
+#' @param i Index of spectra to return. If missing all spectra are returned.
+#' @param j Index of bands to return. If missing all bands are returned.
+#' @param ...  Passed to internal function. Currently only one parameter is
+#' accepted: \code{return_names}: Logical indicating, if names of columns and
+#' rows should be set to \code{\link{bandnames}} and \code{\link{idSpeclib}}.
+#' @param value Matrix or RasterBrick-object containing spectral values. If
+#' value is a matrix, columns are band values and rows are spectra.
+#' @return For \code{spectra<-}, the updated object. Otherwise a matrix of the
+#' spectra in x is returned.
+#' @author Lukas Lehnert
+#' @seealso \code{\linkS4class{Speclib}}
+#' @keywords utilities
+#' @examples
+#' 
+#' data(spectral_data)
+#' 
+#' ## Manual plot of the first spectrum
+#' plot(wavelength(spectral_data), spectra(spectral_data)[1,], type="l")
+#' 
+#' @export spectra
            spectra = ".Spectra", 
+
+
+#' Handling wavelength and fwhm
+#' 
+#' Returning and setting wavelength and full-width-half-max (fwhm) values in
+#' Speclib and HyperSpecRaster
+#' 
+#' 
+#' @aliases wavelength wavelength<- wavelength,Speclib-method
+#' wavelength<-,Speclib,data.frame-method wavelength<-,Speclib,numeric-method
+#' fwhm<- fwhm<-,Speclib,numeric-method fwhm fwhm,Speclib-method
+#' wavelength,HyperSpecRaster-method
+#' wavelength<-,HyperSpecRaster,numeric-method
+#' @param object Object of class \code{Speclib} or \code{HyperSpecRaster}.
+#' @param value Numeric vector or data.frame containing wavelength values.
+#' @return For \code{wavelength<-} and \code{fwhm<-}, the updated object.
+#' Otherwise a numeric vector of the wavelength and fwhm-values is returned.
+#' @author Lukas Lehnert
+#' @seealso \code{\linkS4class{Speclib}}, \code{\linkS4class{HyperSpecRaster}}
+#' @keywords utilities
+#' @examples
+#' 
+#' data(spectral_data)
+#' 
+#' wavelength(spectral_data)
+#' 
+#' @export wavelength
            wavelength = "numeric",
            attributes = "data.frame",
            fwhm = "numeric",
@@ -37,6 +106,40 @@ setClass("Speclib",
            ID = "character",
            wavelength.is.range = "logical",
            transformation = "character",
+
+
+#' History of usage
+#' 
+#' Handling history of usage of Speclibs
+#' 
+#' 
+#' @aliases usagehistory usagehistory<-
+#' @param x Object of class Speclib
+#' @param value Character string to be added to usagehistory or NULL, if
+#' usagehistory should be deleted.
+#' @return For \code{usagehistory<-}, the updated object. Otherwise a vector
+#' giving the history of usage of Speclib is returned.
+#' @author Lukas Lehnert
+#' @seealso \code{\linkS4class{Speclib}}
+#' @keywords utilities
+#' @examples
+#' 
+#' data(spectral_data)
+#' 
+#' ## Return history of usage
+#' usagehistory(spectral_data)
+#' 
+#' ## Deleting history of usage
+#' usagehistory(spectral_data) <- character() 
+#' spectral_data
+#' 
+#' ## Adding entries
+#' usagehistory(spectral_data) <- "New entry" ## Adding new entry
+#' usagehistory(spectral_data) <- "New entry 2" ## Adding second entry
+#' spectral_data
+#' 
+#' 
+#' @export usagehistory
            usagehistory = "character",
            rastermeta = "list"
          ),

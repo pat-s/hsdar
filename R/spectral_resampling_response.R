@@ -1,3 +1,30 @@
+#' Satellite response functions
+#' 
+#' Handling satellite sensor response functions
+#' 
+#' 
+#' @aliases get.response get_RapidEye_response get_response_function
+#' @param sensor Name or integer value of satellite sensor. Matched with
+#' \code{\link{get.sensor.name}}.
+#' @param range Vector of length = 2 containing maximum and minimum wavelength
+#' to be considered.
+#' @param response_function If \code{TRUE}, spectral response function else
+#' wise Gaussian response function will be returned.
+#' @param continuousdata Definition if returned \code{\linkS4class{Speclib}} is
+#' containing continuous data or not.
+#' @return Object of class \code{\linkS4class{Speclib}} containing spectral
+#' response values instead of reflectance value. Spectral response values may
+#' be accessed with \code{\link[=spectra.Speclib]{spectra}}.
+#' @author Lukas Lehnert
+#' @seealso \code{\link{get.sensor.name}},
+#' \code{\link{get.sensor.characteristics}},
+#' \code{\link{get.gaussian.response}}
+#' @keywords utilities
+#' @examples
+#' 
+#' ## See example in get.sensor.characteristics
+#' 
+#' @export get.response
 get.response <- function(sensor, range=NULL, response_function=TRUE, continuousdata = "auto")
 {
 if (!is.null(range))

@@ -1,3 +1,46 @@
+#' Best performing model(s) with NRI
+#' 
+#' Get or mark best performing model(s) between narrow band indices and
+#' environmental variables
+#' 
+#' See details in \code{\link{glm.nri}} and \code{\link{glm}}.
+#' 
+#' @aliases nri_best_performance mark_nri_best_performance
+#' @param nri Object of class nri
+#' @param glmnri Object of class glmnri
+#' @param n Number of models to return or mark
+#' @param coefficient Name or index of coefficient to plot
+#' @param predictor Name or index of term to plot
+#' @param abs Use absolute value (e.g. for t-values)
+#' @param findMax Find maximum or minimum values
+#' @param best Output from \code{nri_best_performance}
+#' @param uppertriang Flag to mark the upper triangle
+#' @param ...  Further arguments passed to \code{\link{glm}} function. These
+#' must be the same as used for initial creation of \code{\link{glm.nri}}. For
+#' \code{mark_nri_best_performance} arguments are passed to
+#' \code{\link{polygon}}.
+#' @author Lukas Lehnert
+#' @seealso \code{\link{glm.nri}}, \code{\link{glm}}
+#' @keywords multivariate
+#' @examples
+#' 
+#' data(spectral_data)
+#' 
+#' ## Calculate all possible combinations for WorldView-2-8
+#' spec_WV <- spectralResampling(spectral_data, "WorldView2-8",
+#'                               response_function = FALSE)
+#' nri_WV <- nri(spec_WV, recursive = TRUE)
+#' 
+#' ## Build glm-models
+#' glmnri <- glm.nri(nri_WV ~ chlorophyll, preddata = spec_WV)
+#' 
+#' ## Return best 5 models
+#' BM <- nri_best_performance(glmnri, n = 5, coefficient = "p.value")
+#' 
+#' ## Get nri values for the 5 models
+#' nri_BM <- getNRI(nri_WV, BM)
+#' 
+#' @export nri_best_performance
 nri_best_performance <- function(nri,
                                  n = 1,
                                  coefficient = "p.value",
@@ -83,6 +126,45 @@ nri_best_performance <- function(nri,
 }
 
 
+
+
+#' Return nri-values
+#' 
+#' Return normalized ratio index values giving the wavelength
+#' 
+#' Wavelength can be passed in three ways. As the result of
+#' \code{\link{nri_best_performance}}, as a data frame with two columns or as a
+#' vector of length 2. In the first two cases, the result will be a data frame
+#' (if data frames contain more than one row) with the nri-values of each pair
+#' of wavelengths. In the latter case it will be a vector.
+#' 
+#' @aliases getNRI print.getNRI
+#' @param nri Object of class 'Nri'
+#' @param wavelength Wavelength values where nri is returned. See details
+#' section.
+#' @author Lukas Lehnert
+#' @seealso \code{\link{nri}}, \code{\linkS4class{Nri}}
+#' @keywords multivariate
+#' @examples
+#' 
+#' data(spectral_data)
+#' 
+#' ## Calculate all possible combinations for WorldView-2-8
+#' spec_WV <- spectralResampling(spectral_data, "WorldView2-8",
+#'                               response_function = FALSE)
+#' nri_WV <- nri(spec_WV, recursive = TRUE)
+#' 
+#' ## Build glm-models
+#' glmnri <- glm.nri(nri_WV ~ chlorophyll, preddata = spec_WV)
+#' 
+#' ## Return best 5 models
+#' BM <- nri_best_performance(glmnri, n = 5, coefficient = "p.value")
+#' 
+#' ## Get nri values for the 5 models
+#' nri_BM <- getNRI(nri_WV, BM)
+#' 
+#' 
+#' @export getNRI
 getNRI <- function(nri, wavelength)
 {
   returnNRI <- function(B)
