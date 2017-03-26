@@ -20,7 +20,7 @@
 #' Equivalent water thickness\tab cm \cr Cbrown \tab Brown pigment \tab NA \cr
 #' Cm\tab Dry matter content\tab g/cm\eqn{^2}{2}\cr }
 #' 
-#' The inversion uses the function \code{\link[pracma]{nelder_mead}} from the
+#' The inversion uses the function [pracma::nelder_mead()] from the
 #' \pkg{pracma}-package and implements the Matlab-Code developed by Feret et
 #' al. (2008).
 #' 
@@ -34,7 +34,7 @@
 #' (\eqn{\textnormal{g}/\textnormal{cm}^2}{g/cm^2})
 #' @param transmittance Logical flag, if transmittance instead of reflectance
 #' values are returned.
-#' @param parameterList An optional object of class \code{'data.frame'}.
+#' @param parameterList An optional object of class `'data.frame'`.
 #' Function will iterate over rows of parameterList setting missing entries to
 #' default values. See examples section.
 #' @param x,transmittance_spectra Speclib(s) containing the
@@ -44,14 +44,14 @@
 #' @param sam Logical if spectral angle mapper is used as distance measurement.
 #' If FALSE, the root mean square error is used. Note that this flag has only
 #' an effect if no transmittance spectra are passed.
-#' @param ... Parameters passed to \code{\link[pracma]{nelder_mead}} from the
+#' @param ... Parameters passed to [pracma::nelder_mead()] from the
 #' \pkg{pracma}-package
-#' @return An object of class \code{Speclib}.
+#' @return An object of class `Speclib`.
 #' @note The function is based on the FORTRAN version of the PROSPECT-code
 #' initially developed by Jean-Baptiste FERET, Stephane JACQUEMOUD and
 #' Christophe FRANCOIS.
 #' @author Lukas Lehnert
-#' @seealso \code{\link{PROSAIL}}, \code{\link[pracma]{nelder_mead}},
+#' @seealso [PROSAIL()], [pracma::nelder_mead()],
 #' \code{\linkS4class{Speclib}}
 #' @references Jacquemoud, S. and Baret, F. (1990). PROSPECT: A model of leaf
 #' optical properties spectra, Remote Sensing of Environment 34: 75 - 91.

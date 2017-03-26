@@ -1,10 +1,10 @@
 #' hyperSpec
 #' 
-#' Conversion from \code{Speclib}- to \code{hyperSpec}-object
+#' Conversion from `Speclib`- to `hyperSpec`-object
 #' 
 #' 
-#' @param object Object of class \code{Speclib}.
-#' @return Object of class \code{hyperSpec}.
+#' @param object Object of class `Speclib`.
+#' @return Object of class `hyperSpec`.
 #' @note Package hyperSpec must be installed.
 #' @author Lukas Lehnert
 #' @seealso \code{\linkS4class{Speclib}}

@@ -9,7 +9,7 @@
 #' 
 #' If recursive = TRUE, all possible band combinations are calculated.
 #' 
-#' @param x List of class \code{Speclib} or of class \code{Nri} for print and
+#' @param x List of class `Speclib` or of class `Nri` for print and
 #' as.matrix methods
 #' @param b1 Band 1 given as index or wavelength
 #' @param b2 Band 2 given as index or wavelength
@@ -20,11 +20,11 @@
 #' @param ...  Further arguments passed to generic functions. Currently
 #' ignored.
 #' @return If recursive = FALSE, a data frame with index values is returned.
-#' Otherwise result is an object of class \code{nri}. See \code{\link{glm.nri}}
+#' Otherwise result is an object of class `nri`. See [glm.nri()]
 #' for applying a generalised linear model to an array of normalised ratio
 #' indices.
 #' @author Lukas Lehnert
-#' @seealso \code{\link{glm.nri}}, \code{\link{glm}},
+#' @seealso [glm.nri()], [glm()],
 #' \code{\linkS4class{Speclib}}, \code{\linkS4class{Nri}}
 #' @references Sims, D.A.; Gamon, J.A. (2002). Relationships between leaf
 #' pigment content and spectral reflectance across a wide range of species,

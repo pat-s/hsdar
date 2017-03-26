@@ -2,22 +2,22 @@
 #' 
 #' Simulate Gaussian response function for satellite sensor
 #' 
-#' The characteristics of the sensor must be passed as a \code{data.frame} with
+#' The characteristics of the sensor must be passed as a `data.frame` with
 #' three columns: first column is used as name for bands, second with lower
 #' bounds of channels and third column with upper bounds. Alternatively, the
-#' \code{data.frame} may encompass band centre wavelength and
+#' `data.frame` may encompass band centre wavelength and
 #' full-width-half-maximum values of the sensor. Function will check the kind
 #' of data passed by partially matching the names of the data frame: If any
-#' column is named \code{"fwhm"} or \code{"center"}, it is assumed that data
+#' column is named `"fwhm"` or `"center"`, it is assumed that data
 #' are band centre and full-width-half-maximum values.
 #' 
-#' @param fwhm Object of class \code{data.frame} with three columns. See
+#' @param fwhm Object of class `data.frame` with three columns. See
 #' details and examples sections.
 #' @return Data frame with response values for all bands covering the entire
 #' spectral range of satellite sensor.
 #' @author Lukas Lehnert
-#' @seealso \code{\link{get.sensor.characteristics}},
-#' \code{\link{get.gaussian.response}}
+#' @seealso [get.sensor.characteristics()],
+#' [get.gaussian.response()]
 #' @keywords utilities
 #' @examples
 #' 

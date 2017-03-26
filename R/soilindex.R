@@ -20,10 +20,10 @@
 #' SWIR SI\tab \eqn{-41.59 \cdot (R_{2210} - R_{2090}) + } \tab Lobell et al.
 #' (2001)\cr \tab \eqn{1.24 \cdot (R_{2280} - R_{2090}) + 0.64} \tab \cr }
 #' 
-#' * For references please type: \code{hsdardocs("References.pdf")}.\cr ** TM_1
+#' * For references please type: `hsdardocs("References.pdf")`.\cr ** TM_1
 #' denotes the first band of Landsat Thematic Mapper. Consequently, the
 #' hyperspectral data is resmapled to Landsat TM using
-#' \code{\link{spectralResampling}} prior to the calculation of the index. For
+#' [spectralResampling()] prior to the calculation of the index. For
 #' resampling, the spectral response function is used. }
 #' \subsection{Self-defining indices Self-defined indices may be passed using
 #' the following syntax: \itemize{ \itemRxxx: Reflectance at wavelength 'xxx'.
@@ -34,7 +34,7 @@
 #' Consequently, the NSMI would be written as\cr "(R1800-R2119)/(R1800+R2119)".
 #' }
 #' 
-#' @param x Object of class \code{Speclib}
+#' @param x Object of class `Speclib`
 #' @param index Character string. Name or definition of index or vector with
 #' names/definitions of indices to calculate. See Details section for further
 #' information.
@@ -42,9 +42,9 @@
 #' otherwise it is a data frame. If "auto", the class is automatically
 #' determined by passed Speclib.
 #' @param weighted Logical indicating if reflectance values should be
-#' interpolated to fit wavelength position. If \code{FALSE} the reflectance
+#' interpolated to fit wavelength position. If `FALSE` the reflectance
 #' values of nearest neighbour to passed position are returned. See
-#' \code{\link[=get_reflectance.speclib]{get_reflectance}} for further
+#' [=get_reflectance.speclib::get_reflectance()] for further
 #' explanation.
 #' @param ...  Further arguments passed to derivative functions. Only used for
 #' indices requiring derivations.
@@ -55,9 +55,9 @@
 #' If function is called without any arguments, return value will be a vector
 #' containing all available indices in alphabetical order.
 #' @author Lukas Lehnert
-#' @seealso \code{\link{vegindex}},
-#' \code{\link[=get_reflectance.speclib]{get_reflectance}}
-#' @references See \code{hsdardocs("References.pdf")}
+#' @seealso [vegindex()],
+#' [=get_reflectance.speclib::get_reflectance()]
+#' @references See `hsdardocs("References.pdf")`
 #' @keywords multivariate
 #' @examples
 #' 

@@ -9,7 +9,7 @@
 #' case, if X would be replaced by an array of same dimensions the return value
 #' would be equal if the following code is applied:
 #' 
-#' \code{apply(X, MARGIN = c(1,2), FUN)},
+#' `apply(X, MARGIN = c(1,2), FUN)`,
 #' 
 #' where X is an array (see examples).
 #' 
@@ -17,12 +17,12 @@
 #' @param X Object of class 'DistMat3D'.
 #' @param MARGIN A vector giving the subscripts (dimensions) of the
 #' DistMat3D-object which the function will be applied over (see details).
-#' @param FUN Function to be applied. Matched with \code{\link{match.fun}}.
+#' @param FUN Function to be applied. Matched with [match.fun()].
 #' @param ...  Further arguments passed to FUN.
 #' @return Depending on the length of the return value of the specified
 #' function, objects of classes numeric or matrix are returned.
 #' @author Lukas Lehnert
-#' @seealso \code{\link{apply}}, \code{\link{match.fun}},
+#' @seealso [apply()], [match.fun()],
 #' \code{\linkS4class{DistMat3D}}
 #' @keywords utilities
 #' @examples
@@ -61,14 +61,14 @@ NULL
 #' 
 #' 
 #' @aliases apply.Speclib apply,Speclib-method
-#' @param X Object of class \code{Speclib}
-#' @param FUN Function to be applied. Matched with \code{\link{match.fun}}.
+#' @param X Object of class `Speclib`
+#' @param FUN Function to be applied. Matched with [match.fun()].
 #' @param byattributes Character string giving the name of the column in the
 #' attributes to be used as subsets to apply function FUN on.
 #' @param ...  Further arguments passed to FUN.
 #' @return Object of class Speclib.
 #' @author Lukas Lehnert
-#' @seealso \code{\link{apply}}, \code{\link{match.fun}},
+#' @seealso [apply()], [match.fun()],
 #' \code{\linkS4class{Speclib}}
 #' @keywords utilities
 #' @examples
@@ -99,7 +99,7 @@ NULL
 #' 
 #' @name cancer_spectra
 #' @docType data
-#' @format An object of class \code{Speclib}
+#' @format An object of class `Speclib`
 #' @author Bianca Regeling, Lukas Lehnert
 #' @keywords datasets
 NULL
@@ -108,9 +108,9 @@ NULL
 
 
 
-#' Methods for Function \code{createDataPartition}
+#' Methods for Function `createDataPartition`
 #' 
-#' Methods for function \code{createDataPartition} in package \pkg{caret}
+#' Methods for function `createDataPartition` in package \pkg{caret}
 #' 
 #' 
 #' @name caret::createDataPartition-methods
@@ -120,8 +120,8 @@ NULL
 #' @section Methods: \describe{
 #' 
 #' \item{list("signature(y = \".CaretHyperspectral\")")}{ Wrapper method for
-#' \code{\link{createDataPartition}}.  \cr Note that
-#' \code{".CaretHyperspectral"} is a class union containing classes \Sexpr{
+#' [createDataPartition()].  \cr Note that
+#' `".CaretHyperspectral"` is a class union containing classes \Sexpr{
 #' paste(hsdar:::.getCaretCompatibleClasses(), collapse = ", ") }. } }
 #' @keywords methods
 NULL
@@ -130,9 +130,9 @@ NULL
 
 
 
-#' Methods for Function \code{createFolds} and \code{createMultiFolds}
+#' Methods for Function `createFolds` and `createMultiFolds`
 #' 
-#' Methods for functions \code{createFolds} and \code{createMultiFolds} in
+#' Methods for functions `createFolds` and `createMultiFolds` in
 #' package \pkg{caret}
 #' 
 #' 
@@ -144,8 +144,8 @@ NULL
 #' @section Methods: \describe{
 #' 
 #' \item{list("signature(y = \".CaretHyperspectral\")")}{ Wrapper methods for
-#' \code{\link{createFolds}} and \code{\link{createMultiFolds}}.  \cr Note that
-#' \code{".CaretHyperspectral"} is a class union containing classes \Sexpr{
+#' [createFolds()] and [createMultiFolds()].  \cr Note that
+#' `".CaretHyperspectral"` is a class union containing classes \Sexpr{
 #' paste(hsdar:::.getCaretCompatibleClasses(), collapse = ", ") }. } }
 #' @keywords methods
 NULL
@@ -154,9 +154,9 @@ NULL
 
 
 
-#' Methods for Function \code{createResample}
+#' Methods for Function `createResample`
 #' 
-#' Methods for function \code{createResample} in package \pkg{caret}
+#' Methods for function `createResample` in package \pkg{caret}
 #' 
 #' 
 #' @name caret::createResample-methods
@@ -166,7 +166,7 @@ NULL
 #' @section Methods: \describe{
 #' 
 #' \item{list("signature(y = \".CaretHyperspectral\")")}{ Wrapper method for
-#' \code{\link{createResample}}.  \cr Note that \code{".CaretHyperspectral"} is
+#' [createResample()].  \cr Note that `".CaretHyperspectral"` is
 #' a class union containing classes \Sexpr{
 #' paste(hsdar:::.getCaretCompatibleClasses(), collapse = ", ") }. } }
 #' @keywords methods
@@ -176,9 +176,9 @@ NULL
 
 
 
-#' Methods for Function \code{featurePlot}
+#' Methods for Function `featurePlot`
 #' 
-#' Methods for function \code{featurePlot} in package \pkg{caret}
+#' Methods for function `featurePlot` in package \pkg{caret}
 #' 
 #' 
 #' @name caret::featurePlot-methods
@@ -188,7 +188,7 @@ NULL
 #' @section Methods: \describe{
 #' 
 #' \item{list("signature(x = \".CaretHyperspectral\")")}{ Wrapper method for
-#' \code{\link{featurePlot}}.  \cr Note that \code{".CaretHyperspectral"} is a
+#' [featurePlot()].  \cr Note that `".CaretHyperspectral"` is a
 #' class union containing classes \Sexpr{
 #' paste(hsdar:::.getCaretCompatibleClasses(), collapse = ", ") }. } }
 #' @keywords methods
@@ -198,31 +198,31 @@ NULL
 
 
 
-#' Methods for Function \code{gafs}
+#' Methods for Function `gafs`
 #' 
-#' Methods for function \code{gafs} in package \pkg{caret}.
+#' Methods for function `gafs` in package \pkg{caret}.
 #' 
 #' 
 #' @name caret::gafs
 #' @aliases gafs-methods get_gafs gafs,Speclib-method gafs,Nri-method
 #' gafs,Specfeat-method
 #' @docType methods
-#' @param x Object of class \code{Speclib}, \code{Nri} or \code{Specfeat}. For
-#' \code{get_gafs}, \code{x} must be the output of \code{gafs} as
-#' \code{Speclib} or \code{Nri}.
+#' @param x Object of class `Speclib`, `Nri` or `Specfeat`. For
+#' `get_gafs`, `x` must be the output of `gafs` as
+#' `Speclib` or `Nri`.
 #' @param y A numeric or factor vector containing the outcome for each sample.
-#' If missing, the response variable set by \code{\link{setResponse}} is used.
+#' If missing, the response variable set by [setResponse()] is used.
 #' @param cutoff The cutoff value of the correlation coefficients between
 #' response variables.
-#' @param returnData Logical. If TRUE, the updated object of \code{x} is
-#' returned, otherwise only the result of \code{\link{gafs}} is returned.
-#' @param ...  Further aruments passed to \code{\link{gafs}}.
-#' @return If \code{returnData == TRUE}, an object of class \code{Speclib} or
-#' \code{Nri}, otherwise an object of class \code{gafs}. Note that if \code{x}
-#' is an object of class \code{Specfeat}, the function returns an object of
-#' class \code{Speclib} containing the relevant transformed band values.
+#' @param returnData Logical. If TRUE, the updated object of `x` is
+#' returned, otherwise only the result of [gafs()] is returned.
+#' @param ...  Further aruments passed to [gafs()].
+#' @return If `returnData == TRUE`, an object of class `Speclib` or
+#' `Nri`, otherwise an object of class `gafs`. Note that if `x`
+#' is an object of class `Specfeat`, the function returns an object of
+#' class `Speclib` containing the relevant transformed band values.
 #' @author Lukas Lehnert
-#' @seealso \code{\link{gafs}}
+#' @seealso [gafs()]
 #' @keywords methods
 #' @examples
 #' 
@@ -248,9 +248,9 @@ NULL
 
 
 
-#' Methods for Function \code{preProcess}
+#' Methods for Function `preProcess`
 #' 
-#' Methods for function \code{preProcess} in package \pkg{caret}. The function
+#' Methods for function `preProcess` in package \pkg{caret}. The function
 #' is mainly internally required.
 #' 
 #' 
@@ -262,7 +262,7 @@ NULL
 #' @section Methods: \describe{
 #' 
 #' \item{list("signature(x = \".CaretHyperspectral\")")}{ Wrapper method for
-#' \code{\link{preProcess}}.  \cr Note that \code{".CaretHyperspectral"} is a
+#' [preProcess()].  \cr Note that `".CaretHyperspectral"` is a
 #' class union containing classes \Sexpr{
 #' paste(hsdar:::.getCaretCompatibleClasses(), collapse = ", ") }. } }
 #' @keywords methods
@@ -272,31 +272,31 @@ NULL
 
 
 
-#' Methods for Function \code{rfe}
+#' Methods for Function `rfe`
 #' 
-#' Methods for function \code{rfe} in package \pkg{caret}.
+#' Methods for function `rfe` in package \pkg{caret}.
 #' 
 #' 
 #' @name caret::rfe
 #' @aliases rfe-methods get_rfe rfe,Speclib-method rfe,Nri-method
 #' rfe,Specfeat-method
 #' @docType methods
-#' @param x Object of class \code{Speclib}, \code{Nri} or \code{Specfeat}. For
-#' \code{get_rfe}, \code{x} must be the output of \code{rfe} as \code{Speclib}
-#' or \code{Nri}.
+#' @param x Object of class `Speclib`, `Nri` or `Specfeat`. For
+#' `get_rfe`, `x` must be the output of `rfe` as `Speclib`
+#' or `Nri`.
 #' @param y A numeric or factor vector containing the outcome for each sample.
-#' If missing, the response variable set by \code{\link{setResponse}} is used.
+#' If missing, the response variable set by [setResponse()] is used.
 #' @param cutoff The cutoff value of the correlation coefficients between
 #' response variables.
-#' @param returnData Logical. If TRUE, the updated object of \code{x} is
-#' returned, otherwise only the result of \code{\link{rfe}} is returned.
-#' @param ...  Further aruments passed to \code{\link{rfe}}.
-#' @return If \code{returnData == TRUE}, an object of class \code{Speclib} or
-#' \code{Nri}, otherwise an object of class \code{rfe}. Note that if \code{x}
-#' is an object of class \code{Specfeat}, the function returns an object of
-#' class \code{Speclib} containing the relevant transformed band values.
+#' @param returnData Logical. If TRUE, the updated object of `x` is
+#' returned, otherwise only the result of [rfe()] is returned.
+#' @param ...  Further aruments passed to [rfe()].
+#' @return If `returnData == TRUE`, an object of class `Speclib` or
+#' `Nri`, otherwise an object of class `rfe`. Note that if `x`
+#' is an object of class `Specfeat`, the function returns an object of
+#' class `Speclib` containing the relevant transformed band values.
 #' @author Lukas Lehnert
-#' @seealso \code{\link{rfe}}
+#' @seealso [rfe()]
 #' @keywords methods
 #' @examples
 #' 
@@ -324,31 +324,31 @@ NULL
 
 
 
-#' Methods for Function \code{safs}
+#' Methods for Function `safs`
 #' 
-#' Methods for function \code{safs} in package \pkg{caret}.
+#' Methods for function `safs` in package \pkg{caret}.
 #' 
 #' 
 #' @name caret::safs
 #' @aliases safs-methods get_safs safs,Speclib-method safs,Nri-method
 #' safs,Specfeat-method
 #' @docType methods
-#' @param x Object of class \code{Speclib}, \code{Nri} or \code{Specfeat}. For
-#' \code{get_safs}, \code{x} must be the output of \code{safs} as
-#' \code{Speclib} or \code{Nri}.
+#' @param x Object of class `Speclib`, `Nri` or `Specfeat`. For
+#' `get_safs`, `x` must be the output of `safs` as
+#' `Speclib` or `Nri`.
 #' @param y A numeric or factor vector containing the outcome for each sample.
-#' If missing, the response variable set by \code{\link{setResponse}} is used.
+#' If missing, the response variable set by [setResponse()] is used.
 #' @param cutoff The cutoff value of the correlation coefficients between
 #' response variables.
-#' @param returnData Logical. If TRUE, the updated object of \code{x} is
-#' returned, otherwise only the result of \code{\link{safs}} is returned.
-#' @param ...  Further aruments passed to \code{\link{safs}}.
-#' @return If \code{returnData == TRUE}, an object of class \code{Speclib} or
-#' \code{Nri}, otherwise an object of class \code{safs}. Note that if \code{x}
-#' is an object of class \code{Specfeat}, the function returns an object of
-#' class \code{Speclib} containing the relevant transformed band values.
+#' @param returnData Logical. If TRUE, the updated object of `x` is
+#' returned, otherwise only the result of [safs()] is returned.
+#' @param ...  Further aruments passed to [safs()].
+#' @return If `returnData == TRUE`, an object of class `Speclib` or
+#' `Nri`, otherwise an object of class `safs`. Note that if `x`
+#' is an object of class `Specfeat`, the function returns an object of
+#' class `Speclib` containing the relevant transformed band values.
 #' @author Lukas Lehnert
-#' @seealso \code{\link{safs}}
+#' @seealso [safs()]
 #' @keywords methods
 #' @examples
 #' 
@@ -391,7 +391,7 @@ NULL
 #' (from the attributes).
 #' @return The updated object.
 #' @author Lukas Lehnert
-#' @seealso \code{\link{sbf}}
+#' @seealso [sbf()]
 #' @keywords methods
 #' @examples
 #' 
@@ -444,31 +444,31 @@ NULL
 
 
 
-#' Methods for Function \code{sbf}
+#' Methods for Function `sbf`
 #' 
-#' Methods for function \code{sbf} in package \pkg{caret}.
+#' Methods for function `sbf` in package \pkg{caret}.
 #' 
 #' 
 #' @name caret::sbf
 #' @aliases sbf-methods get_sbf sbf,Speclib-method sbf,Nri-method
 #' sbf,Specfeat-method
 #' @docType methods
-#' @param x Object of class \code{Speclib}, \code{Nri} or \code{Specfeat}. For
-#' \code{get_sbf}, \code{x} must be the output of \code{sbf} as \code{Speclib}
-#' or \code{Nri}.
+#' @param x Object of class `Speclib`, `Nri` or `Specfeat`. For
+#' `get_sbf`, `x` must be the output of `sbf` as `Speclib`
+#' or `Nri`.
 #' @param y A numeric or factor vector containing the outcome for each sample.
-#' If missing, the response variable set by \code{\link{setResponse}} is used.
+#' If missing, the response variable set by [setResponse()] is used.
 #' @param cutoff The cutoff value of the correlation coefficients between
 #' response variables.
-#' @param returnData Logical. If TRUE, the updated object of \code{x} is
-#' returned, otherwise only the result of \code{\link{sbf}} is returned.
-#' @param ...  Further aruments passed to \code{\link{sbf}}.
-#' @return If \code{returnData == TRUE}, an object of class \code{Speclib} or
-#' \code{Nri}, otherwise an object of class \code{sbf}. Note that if \code{x}
-#' is an object of class \code{Specfeat}, the function returns an object of
-#' class \code{Speclib} containing the relevant transformed band values.
+#' @param returnData Logical. If TRUE, the updated object of `x` is
+#' returned, otherwise only the result of [sbf()] is returned.
+#' @param ...  Further aruments passed to [sbf()].
+#' @return If `returnData == TRUE`, an object of class `Speclib` or
+#' `Nri`, otherwise an object of class `sbf`. Note that if `x`
+#' is an object of class `Specfeat`, the function returns an object of
+#' class `Speclib` containing the relevant transformed band values.
 #' @author Lukas Lehnert
-#' @seealso \code{\link{sbf}}
+#' @seealso [sbf()]
 #' @keywords methods
 #' @examples
 #' 
@@ -506,16 +506,16 @@ NULL
 #' @param x Object of one of the following classes: \Sexpr{
 #' paste(hsdar:::.getCaretCompatibleClasses(), collapse = ", ") }.
 #' @author Lukas Lehnert
-#' @seealso \code{\link{sbf}}
+#' @seealso [sbf()]
 NULL
 
 
 
 
 
-#' Methods for Function \code{train}
+#' Methods for Function `train`
 #' 
-#' Methods for functions \code{train} and \code{train.formula} in package
+#' Methods for functions `train` and `train.formula` in package
 #' \pkg{caret}
 #' 
 #' 
@@ -525,11 +525,11 @@ NULL
 #' @section Methods: \describe{
 #' 
 #' \item{list("signature(x = \".CaretHyperspectral\")")}{ Wrapper method for
-#' \code{\link{train}}.  \cr Note that \code{".CaretHyperspectral"} is a class
+#' [train()].  \cr Note that `".CaretHyperspectral"` is a class
 #' union containing classes \Sexpr{ paste(hsdar:::.getCaretCompatibleClasses(),
 #' collapse = ", ") }. } \item{list("signature(form = \"formula\", data =
-#' \"Speclib\")")}{ Wrapper method for \code{\link{train.formula}} to be used
-#' with objects of class \code{Speclib}. } }
+#' \"Speclib\")")}{ Wrapper method for [train.formula()] to be used
+#' with objects of class `Speclib`. } }
 #' @keywords methods
 NULL
 
@@ -543,17 +543,17 @@ NULL
 #' \code{\linkS4class{Speclib}} class).
 #' 
 #' The class extends \code{\linkS4class{Speclib}}s and adds two additional
-#' slots: \itemize{ \itemcp: Object of class \code{matrix} containing continuum
+#' slots: \itemize{ \itemcp: Object of class `matrix` containing continuum
 #' points for all spectra (rows) and bands (columns).  \itemhull: Object of
-#' class \code{matrix} containing hull lines for all spectra (rows) and bands
+#' class `matrix` containing hull lines for all spectra (rows) and bands
 #' (columns).  }
 #' 
 #' @name Clman-class
 #' @docType class
-#' @note See figure in \code{\link{hsdar-package}} for an overview of classes
+#' @note See figure in [hsdar-package()] for an overview of classes
 #' in hsdar.
 #' @author Lukas Lehnert
-#' @seealso \code{\linkS4class{Speclib}}, \code{\link[=plot.Speclib]{plot}}
+#' @seealso \code{\linkS4class{Speclib}}, [=plot.Speclib::plot()]
 #' @keywords classes
 NULL
 
@@ -575,14 +575,14 @@ NULL
 #' 'Clman' objects otherwise object of class 'Clman'.
 #' @param value Object of class numeric, matrix or array which is used for
 #' replacement of the values in x.
-#' @param ...  Arguments passed to \code{\link{createspeclib}}.
-#' @return For \code{spectra<-}, the updated object. Otherwise a matrix
+#' @param ...  Arguments passed to [createspeclib()].
+#' @return For `spectra<-`, the updated object. Otherwise a matrix
 #' returning the spectra in the Clman object.
-#' @note The functions to create objects of class \code{Clman} are mainly
-#' internally needed by \code{\link{transformSpeclib}}.
+#' @note The functions to create objects of class `Clman` are mainly
+#' internally needed by [transformSpeclib()].
 #' @author Lukas Lehnert
-#' @seealso \code{\link{dist.speclib}}, \code{\link{Clman}},
-#' \code{\link{transformSpeclib}}, \code{\link[=plot.Speclib]{plot}}
+#' @seealso [dist.speclib()], [Clman()],
+#' [transformSpeclib()], [=plot.Speclib::plot()]
 NULL
 
 
@@ -606,20 +606,20 @@ NULL
 #' @param outdatedhull Data frame or matrix containing hull of step before for
 #' undo porposes.
 #' @param mask Data frame with masked parts in the spectra. See
-#' \code{\link{mask}}.
-#' @param x Object of class \code{clman}.
+#' [mask()].
+#' @param x Object of class `clman`.
 #' @param ispec Name or index of spectrum to be plotted.
 #' @param subset Lower and upper spectral limits used for plot.
 #' @param numeratepoints Flag if points should be numerated in plot.
-#' @param hull.style List of arguments passed to \code{\link{lines}} to
+#' @param hull.style List of arguments passed to [lines()] to
 #' construct the continuum line.
-#' @param points.style List of arguments passed to \code{\link{points}} to
-#' construct the continuum points. May be \code{NULL} to suppress plotting of
+#' @param points.style List of arguments passed to [points()] to
+#' construct the continuum points. May be `NULL` to suppress plotting of
 #' fix points.
 #' @param ...  Further arguments passed to plot.default.
 #' @return Object of class \code{\linkS4class{Clman}}.
 #' @author Lukas Lehnert and Hanna Meyer
-#' @seealso \code{\link{transformSpeclib}}, \code{\link[=plot.Speclib]{plot}}
+#' @seealso [transformSpeclib()], [=plot.Speclib::plot()]
 #' @keywords classes aplot
 #' @examples
 #' 
@@ -645,7 +645,7 @@ NULL
 #' 
 #' 
 #' @aliases dim.speclib dim,Speclib-method nspectra nbands
-#' @param x Object of class \code{Speclib}.
+#' @param x Object of class `Speclib`.
 #' @return Vector of length = 2 or single integer value.
 #' @author Lukas Lehnert
 #' @seealso \code{\linkS4class{Speclib}}
@@ -673,10 +673,10 @@ NULL
 #' 
 #' @name DistMat3D-class
 #' @docType class
-#' @note See figure in \code{\link{hsdar-package}} for an overview of classes
+#' @note See figure in [hsdar-package()] for an overview of classes
 #' in hsdar.
 #' @author Lukas Lehnert
-#' @seealso \code{\link{distMat3D}}
+#' @seealso [distMat3D()]
 #' @keywords classes
 NULL
 
@@ -688,7 +688,7 @@ NULL
 #' 
 #' Methods to create, manipulate and query objects of class 'DistMat3D'. The
 #' following relational operators are defined to compare values between
-#' 'DistMat3D'-object(s): \code{<, <=, ==, >, >=}
+#' 'DistMat3D'-object(s): `<, <=, ==, >, >=`
 #' 
 #' 
 #' @name distMat3D
@@ -716,7 +716,7 @@ NULL
 #' @param i,j,n Subscripts to access data.
 #' @author Lukas Lehnert
 #' @seealso \code{\linkS4class{DistMat3D}},
-#' \code{\link[=apply.DistMat3D]{apply}}, \code{\linkS4class{Nri}}
+#' [=apply.DistMat3D::apply()], \code{\linkS4class{Nri}}
 #' @keywords classes
 #' @examples
 #' 
@@ -751,27 +751,27 @@ NULL
 #' spectra. Spectra are stored in a \code{\linkS4class{Speclib}} containing,
 #' amongst other details, the wavelength and reflectance for each spectrum.
 #' \pkg{hsdar} further contains functions for
-#' \code{\link[=plot.Speclib]{plot}}ting spectral data and
-#' \code{\link[=apply.Speclib]{apply}}ing functions to spectra.
+#' [=plot.Speclib::plot()]ting spectral data and
+#' [=apply.Speclib::apply()]ing functions to spectra.
 #' 
 #' \itemData manipulation: A variety of established methods for data
-#' manipulation such as filter functions (\code{\link{smoothSpeclib}}),
+#' manipulation such as filter functions ([smoothSpeclib()]),
 #' resampling of bands to various satellite sensors
-#' (\code{\link{spectralResampling}}), continuum removal
-#' (\code{\link{transformSpeclib}}), calculations of derivations
-#' (\code{\link{derivative.speclib}}) and extraction of absorption features
-#' (\code{\link{cut_specfeat}}) are implemented.
+#' ([spectralResampling()]), continuum removal
+#' ([transformSpeclib()]), calculations of derivations
+#' ([derivative.speclib()]) and extraction of absorption features
+#' ([cut_specfeat()]) are implemented.
 #' 
 #' \itemData analysis: Supported methods to analyse vegetation spectra are the
-#' calculation of red edge parameters (\code{\link{rededge}}), vegetation
-#' (\code{\link{vegindex}}) and soil (\code{\link{soilindex}}) indices as well
-#' as ndvi-like narrow band indices (\code{\link{nri}}).  \pkg{hsdar} further
-#' enables to perform spectral unmixing of spectra (\code{\link{unmix}}) by use
+#' calculation of red edge parameters ([rededge()]), vegetation
+#' ([vegindex()]) and soil ([soilindex()]) indices as well
+#' as ndvi-like narrow band indices ([nri()]).  \pkg{hsdar} further
+#' enables to perform spectral unmixing of spectra ([unmix()]) by use
 #' of endmember spectra.
 #' 
 #' \itemData simulation: \pkg{hsdar} has implemented the models PROSAIL 5B
-#' (\code{\link{PROSAIL}}, Jacquemoud et al. 2009) and PROSPECT 5
-#' (\code{\link{PROSPECT}}, Jacquemoud and Baret 1990) to simulate spectra of
+#' ([PROSAIL()], Jacquemoud et al. 2009) and PROSPECT 5
+#' ([PROSPECT()], Jacquemoud and Baret 1990) to simulate spectra of
 #' canopy and plants.
 #' 
 #' }
@@ -785,7 +785,7 @@ NULL
 #' exist.
 #' 
 #' To see the preferable citation of the package, type
-#' \code{citation("hsdar")}.
+#' `citation("hsdar")`.
 #' 
 #' @name hsdar-package
 #' @aliases hsdar-package hsdar
@@ -812,8 +812,8 @@ NULL
 #' band.} \item{list("fwhm")}{ A numeric vector giving the full-width-half-max
 #' values for each band.}\item{ (optional):}{ A numeric vector giving the
 #' full-width-half-max values for each band.} \item{list("attributes")}{ A
-#' \code{data.frame} containing additional information for each pixel.}\item{
-#' (optional):}{ A \code{data.frame} containing additional information for each
+#' `data.frame` containing additional information for each pixel.}\item{
+#' (optional):}{ A `data.frame` containing additional information for each
 #' pixel.} } The information in the three slots are used for the convertion to
 #' \code{\linkS4class{Speclib}}.
 #' 
@@ -821,7 +821,7 @@ NULL
 #' @aliases HyperSpecRaster-class show,HyperSpecRaster-method
 #' @docType class
 #' @author Lukas Lehnert
-#' @seealso \code{\link[raster]{brick}}, \code{\linkS4class{Speclib}}
+#' @seealso [raster::brick()], \code{\linkS4class{Speclib}}
 #' @keywords spatial classes
 NULL
 
@@ -852,19 +852,19 @@ NULL
 #' @param attributes Optional data.frame containing attributes data
 #' @param nrow Optional. Number of rows in HyperspecRaster. If omitted,
 #' function will try to get the information from the attributes in Speclib
-#' (\code{attr(x, "rastermeta")})
+#' (`attr(x, "rastermeta")`)
 #' @param ncol Optional. Number of colums in HyperspecRaster. See nrow above.
 #' @param xmn Optional. Minimum coordiante in x-dimension. See nrow above.
 #' @param xmx Optional. Maximum coordiante in x-dimension. See nrow above.
 #' @param ymn Optional. Minimum coordiante in y-dimension. See nrow above.
 #' @param ymx Optional. Maximum coordiante in y-dimension. See nrow above.
-#' @param crs Optional. Object of class \code{'CRS'} giving the coordinate
+#' @param crs Optional. Object of class `'CRS'` giving the coordinate
 #' system for HyperspecRaster. See nrow above.
-#' @param ... Additional arguments as for \code{\link{brick}}
+#' @param ... Additional arguments as for [brick()]
 #' @param filename Name of file to create
 #' @param v Speclib or matrix of values
 #' @param start Integer. Row number (counting starts at 1) from where to start
-#' writing \code{v}
+#' writing `v`
 #' @return HyperSpecRaster or RasterBrick
 #' @author Lukas Lehnert
 #' @keywords spatial methods
@@ -932,15 +932,15 @@ NULL
 
 #' Merge speclibs
 #' 
-#' Merge 2 \code{Speclib}s and their attributes data
+#' Merge 2 `Speclib`s and their attributes data
 #' 
 #' 
 #' @aliases merge,Speclib,Speclib-method
-#' @param x 1st Object of class \code{Speclib} to be merged.
-#' @param y 2nd Object of class \code{Speclib} to be merged.
+#' @param x 1st Object of class `Speclib` to be merged.
+#' @param y 2nd Object of class `Speclib` to be merged.
 #' @param ...  Further arguments passed to generic functions. Currently
 #' ignored.
-#' @return Object of class \code{Speclib}.
+#' @return Object of class `Speclib`.
 #' @author Lukas Lehnert
 #' @seealso \code{\linkS4class{Speclib}}
 #' @keywords utilities
@@ -974,7 +974,7 @@ NULL
 #' @param ...  Further arguments passed to generic functions. Currently
 #' ignored.
 #' @author Lukas Lehnert
-#' @seealso \code{\link{glm.nri}}, \code{\link{glm}}
+#' @seealso [glm.nri()], [glm()]
 NULL
 
 
@@ -992,13 +992,13 @@ NULL
 #' Character vector containing band names used to calculate nri-values.
 #' \itemmultivariate: List defining the kind of test/model applied to the data
 #' and the model data. Only used after object has passed e.g.
-#' \code{\link[=glm.nri]{(g)lm.nri}}.  \itemattributes: Data.frame containing
+#' [=glm.nri::(g)lm.nri()].  \itemattributes: Data.frame containing
 #' additional data \itemusagehistory: Vector giving information on history of
 #' usage of the object. }
 #' 
 #' @name Nri-class
 #' @docType class
-#' @note See figure in \code{\link{hsdar-package}} for an overview of classes
+#' @note See figure in [hsdar-package()] for an overview of classes
 #' in hsdar.
 #' @author Lukas Lehnert
 #' @seealso \code{\linkS4class{Speclib}}
@@ -1014,7 +1014,7 @@ NULL
 #' Plot values in (generalised) linear modes and correlation tests from narrow
 #' band indices
 #' 
-#' See details in \code{\link{glm.nri}} and \code{\link{glm}}.
+#' See details in [glm.nri()] and [glm()].
 #' 
 #' @aliases plot.Nri plot,Nri-method plot,Nri,ANY-method
 #' @param x Object to be plotted.
@@ -1022,7 +1022,7 @@ NULL
 #' @param predictor Name or index of term to plot.
 #' @param xlab Label for x-axis.
 #' @param ylab Label for y-axis.
-#' @param legend Flag if legend is plotted. If \code{legend == "outer"} the
+#' @param legend Flag if legend is plotted. If `legend == "outer"` the
 #' legend is plotted in the outer margins of the figure. This is useful if both
 #' diagonals are used.
 #' @param colspace Either "hcl" or "rgb". Colour space to be used for the
@@ -1030,21 +1030,21 @@ NULL
 #' @param col If colspace == "hcl", the vector is giving the minimum and
 #' maximum values of hue (element 1 & 2), chroma (element 3 & 4) and luminance
 #' (element 5 & 6). The optional element 7 is used as alpha value. See
-#' \code{\link{hcl}} for further explanation. If colspace == "rgb", a vector of
+#' [hcl()] for further explanation. If colspace == "rgb", a vector of
 #' length >=2 giving the colours to be interpolated using
-#' \code{\link{colorRamp}}.
+#' [colorRamp()].
 #' @param digits Precision of labels in legend.
 #' @param range "auto" or a vector of length = 2 giving the range of values to
 #' be plotted.
 #' @param constraint A character string giving a constraint which values should
 #' be plotted. See examples section.
 #' @param uppertriang Flag if upper triangle is used for the plot. Note that if
-#' \code{TRUE} the current plot is used instead of starting a new plot
-#' @param ...  Further arguments passed to \code{plot.default}.
+#' `TRUE` the current plot is used instead of starting a new plot
+#' @param ...  Further arguments passed to `plot.default`.
 #' @return An invisible vector with minimum and maximum values plotted.
 #' @author Lukas Lehnert
-#' @seealso \code{\link{nri}}, \code{\link{glm.nri}}, \code{\link{glm}},
-#' \code{\link[=cor.test.nri]{cor.test}}, \code{\link[=t.test.nri]{t.test}}
+#' @seealso [nri()], [glm.nri()], [glm()],
+#' [=cor.test.nri::cor.test()], [=t.test.nri::t.test()]
 #' @keywords aplot
 #' @examples
 #' 
@@ -1110,10 +1110,10 @@ NULL
 #' in coloumn defined by stylebysubset
 #' @param autolegend Flag if legend is plotted.
 #' @param new Flag if a new plot is started.
-#' @param ...  Further arguments passed to \code{plot.default}
+#' @param ...  Further arguments passed to `plot.default`
 #' @author Lukas Lehnert
-#' @seealso \code{\link{nri}}, \code{\link{glm.nri}}, \code{\link{glm}},
-#' \code{\link{cor.test,Nri-method}}, \code{\link{t.test,Nri-method}}
+#' @seealso [nri()], [glm.nri()], [glm()],
+#' [cor.test,Nri-method()], [t.test,Nri-method()]
 #' @keywords aplot
 #' @examples
 #' 
@@ -1127,7 +1127,7 @@ NULL
 
 #' Plot speclib
 #' 
-#' Plot \code{Speclib} in a new plot or adding it to an existing plot.
+#' Plot `Speclib` in a new plot or adding it to an existing plot.
 #' 
 #' The function may work in a couple of modes. The default way is to plot mean
 #' values (solid line) of all spectra and the standard deviations within bands.
@@ -1135,10 +1135,10 @@ NULL
 #' dashed lines otherwise error bars will indicate standard deviations.
 #' 
 #' The user has various options to change the way things are looking: With
-#' argument \code{FUN} the name of a function, the ID or the index of a certain
-#' spectrum may be specified. Note that if \code{FUN} is a function, this
+#' argument `FUN` the name of a function, the ID or the index of a certain
+#' spectrum may be specified. Note that if `FUN` is a function, this
 #' function will be applied to all spectra. If function should be applied to a
-#' subset of spectra, use function \code{\link[=subset.speclib]{subset}} to
+#' subset of spectra, use function [=subset.speclib::subset()] to
 #' define rules excluding certain spectra.
 #' 
 #' By passing a subset, the user may specify a spectral range to plot. Limits
@@ -1146,7 +1146,7 @@ NULL
 #' 
 #' @aliases plot.Speclib plot,Speclib,ANY-method plot,Clman,ANY-method
 #' legendSpeclib
-#' @param x Object of class \code{Speclib}.
+#' @param x Object of class `Speclib`.
 #' @param FUN Name of a function (character) or index or ID of single spectrum
 #' to plot (integer).
 #' @param new If FALSE the plot is added to active existing plot.
@@ -1154,14 +1154,14 @@ NULL
 #' @param subset Vector of length = 2 containing minimum and maximum wavelength
 #' to plot.
 #' @param numeratepoints Flag if continuum points are numerated and labeled.
-#' @param hull.style List of arguments passed to \code{\link{lines}} to
+#' @param hull.style List of arguments passed to [lines()] to
 #' construct the continuum line.
-#' @param points.style List of arguments passed to \code{\link{points}} to
-#' construct the continuum points. May be \code{NULL} to suppress plotting of
+#' @param points.style List of arguments passed to [points()] to
+#' construct the continuum points. May be `NULL` to suppress plotting of
 #' fix points.
 #' @param ...  Further arguments passed to internal plot functions or to
-#' \code{\link[=plot.Speclib]{plot}} for objects of class \code{Speclib} and
-#' \code{Clman}.
+#' [=plot.Speclib::plot()] for objects of class `Speclib` and
+#' `Clman`.
 #' @author Lukas Lehnert
 #' @seealso \code{\linkS4class{Speclib}}
 #' @keywords aplot
@@ -1220,7 +1220,7 @@ NULL
 #' 
 #' Please do not access this data directly, since it contains only the response
 #' values without any spectral information. To get response functions use
-#' function \code{\link{get.response}}, instead.
+#' function [get.response()], instead.
 #' 
 #' @name response_functions
 #' @aliases response_functions Landsat_4_response Landsat_5_response
@@ -1247,14 +1247,14 @@ NULL
 #' 
 #' Class to handle spectral feature data.
 #' 
-#' Class extends \code{Speclib}-class and adds two additional slots: \itemize{
+#' Class extends `Speclib`-class and adds two additional slots: \itemize{
 #' \itemfeatures: List containing the spectra according to the features.
 #' \itemfeatureLimits: List containing limits of features defined by
-#' \code{\link{define.features}}. }
+#' [define.features()]. }
 #' 
 #' @name Specfeat-class
 #' @docType class
-#' @note See figure in \code{\link{hsdar-package}} for an overview of classes
+#' @note See figure in [hsdar-package()] for an overview of classes
 #' in hsdar.
 #' @author Lukas Lehnert
 #' @seealso \code{\linkS4class{Speclib}}
@@ -1270,13 +1270,13 @@ NULL
 #' Class to store and handle hyperspectral data in R
 #' 
 #' \subsection{Spectral data The spectral data (usually reflectance values) are
-#' stored in an object of class \code{'.Spectra'}. This object may eiter
-#' contain the spectral data as a \code{RasterBrick} or as a \code{matrix} with
+#' stored in an object of class `'.Spectra'`. This object may eiter
+#' contain the spectral data as a `RasterBrick` or as a `matrix` with
 #' columns indicating spectral bands and rows different samples, respectively.
 #' The Speclib-class provides converting routines to and from
-#' \code{RasterBrick}-class allowing to read and write geographic raster data
-#' via \code{\link[raster]{brick}} and its extension
-#' \code{\link{HyperSpecRaster-class}}. Since R is in general not intended to
+#' `RasterBrick`-class allowing to read and write geographic raster data
+#' via [raster::brick()] and its extension
+#' [HyperSpecRaster-class()]. Since R is in general not intended to
 #' be used for VERY large data sets, this functionality should be handled with
 #' care. If raster files are large, one should split them in multiple smaller
 #' ones and process each of the small files, separately. See the excellent
@@ -1295,17 +1295,17 @@ NULL
 #' satellite sensors. Here, data is plotted as solid lines and error bars at
 #' the mean position of each waveband indicating standard deviations by
 #' default.  } The kind of data may be chosen by the user by setting the
-#' attribute flag \code{"continuousdata"} (\code{attr(x,}
-#' \code{"continuousdata")}) or passing \code{continuousdata = TRUE/FALSE},
+#' attribute flag `"continuousdata"` (`attr(x,`
+#' `"continuousdata")`) or passing `continuousdata = TRUE/FALSE`,
 #' when initially converting data to \code{\linkS4class{Speclib}}-class. Take
-#' care of doing so, because some functions as \code{\link{spectralResampling}}
+#' care of doing so, because some functions as [spectralResampling()]
 #' may only work correctly with continuous data!
 #' 
 #' The unit of spectral data must be set initially, when converting data to
 #' speclib. Note that the package currently supports only "nm" as unit. This is
-#' particularly important for function like \code{\link{vegindex}}, which need
+#' particularly important for function like [vegindex()], which need
 #' to get correct bands out of the spectral data. } \subsection{Technical
-#' description An object of class \code{Speclib} contains the following slots:
+#' description An object of class `Speclib` contains the following slots:
 #' 
 #' \itemize{ \itemwavelength: Vector with wavelength information.  \itemfwhm:
 #' Vector or single numerical value giving the full-width-half-max value(s) for
@@ -1315,23 +1315,23 @@ NULL
 #' and nrow = number. Used if fromRaster == FALSE \itemspectra_ra:
 #' RasterBrick-object which is used if fromRaster == TRUE.  } Contains
 #' reflectance, transmittance or absorbance values. Handle with function
-#' \code{\link[=spectra.Speclib]{spectra}}.  \itemattributes: Data frame
+#' [=spectra.Speclib::spectra()].  \itemattributes: Data frame
 #' containing additional data to each spectrum. May be used for linear
 #' regression etc. Handle with function
-#' \code{\link[=attribute.speclib]{attribute}}.  \itemusagehistory: Vector
+#' [=attribute.speclib::attribute()].  \itemusagehistory: Vector
 #' giving information on history of usage of speclib. Handle with function
-#' \code{\link{usagehistory}}. } }
+#' [usagehistory()]. } }
 #' 
 #' @name Speclib-class
 #' @docType class
-#' @note See figure in \code{\link{hsdar-package}} for an overview of classes
+#' @note See figure in [hsdar-package()] for an overview of classes
 #' in hsdar.
 #' @author Lukas Lehnert
-#' @seealso \code{\link[=plot.Speclib]{plot}}, \code{\link{readGDAL}},
-#' \code{\link{mask}}, \code{\link{idSpeclib}},
+#' @seealso [=plot.Speclib::plot()], [readGDAL()],
+#' [mask()], [idSpeclib()],
 #' 
-#' \code{\link[=dim.speclib]{dim}}, \code{\link[=spectra.Speclib]{spectra}},
-#' \code{\link[=attribute.speclib]{attribute}}
+#' [=dim.speclib::dim()], [=spectra.Speclib::spectra()],
+#' [=attribute.speclib::attribute()]
 #' @keywords classes
 NULL
 
@@ -1361,10 +1361,10 @@ NULL
 #' @param spectra Data frame, matrix of raster object of class 'RasterBrick' or
 #' 'SpatialGridDataFrame' with spectral data
 #' @param x,object Object to be converted to or from Speclib. For conversion to
-#' Speclib it can be a of class \code{'data frame'}, \code{'matrix'},
-#' \code{'list'} or \code{'character string'}. In the latter case x is
-#' interpreted as path to raster object and read by \code{readGDAL}. For
-#' conversion from \code{Speclib} the object must be of class \code{Speclib}.
+#' Speclib it can be a of class `'data frame'`, `'matrix'`,
+#' `'list'` or `'character string'`. In the latter case x is
+#' interpreted as path to raster object and read by `readGDAL`. For
+#' conversion from `Speclib` the object must be of class `Speclib`.
 #' @param wavelength Vector with corresponding wavelength for each band. A
 #' matrix or data.frame may be passed giving the upper and lower limit of each
 #' band. In this case, the first column is used as lower band limit and the
@@ -1381,10 +1381,10 @@ NULL
 #' @param ylabel Label of spectral signal to be used for plots etc.
 #' @param rastermeta List of meta information for SpatialGridDataFrame or
 #' HyperSpecRaster. If missing, meta data in speclib is used. Use function
-#' \code{\link{rastermeta}} to create valid objects.
+#' [rastermeta()] to create valid objects.
 #' @param ...  Further arguments passed to specific (generic) functions or
 #' createspeclib
-#' @return An object of class \code{Speclib} containing the following slots is
+#' @return An object of class `Speclib` containing the following slots is
 #' returned:
 #' 
 #' \itemize{ \itemwavelength: Vector with wavelength information \itemfwhm:
@@ -1395,22 +1395,22 @@ NULL
 #' and nrow = number. Used if fromRaster == FALSE \itemspectra_ra:
 #' RasterBrick-object which is used if fromRaster == TRUE.  } Contains
 #' reflectance, transmittance or absorbance values. Handle with function
-#' \code{\link[=spectra.Speclib]{spectra}}.  \itemattributes: Data frame
+#' [=spectra.Speclib::spectra()].  \itemattributes: Data frame
 #' containing additional data to each spectrum. May be used for linear
 #' regression etc. Handle with function
-#' \code{\link[=attribute.speclib]{attribute}}.  \itemusagehistory: Vector
+#' [=attribute.speclib::attribute()].  \itemusagehistory: Vector
 #' giving information on history of usage of speclib. Handle with function
-#' \code{\link{usagehistory}}.  \itemrastermeta: List containing meta
+#' [usagehistory()].  \itemrastermeta: List containing meta
 #' information to create *Raster objects from Speclib. Handle with function
-#' \code{\link{rastermeta}}. }
+#' [rastermeta()]. }
 #' @author Lukas Lehnert
-#' @seealso \code{\linkS4class{Speclib}}, \code{\link[=plot.Speclib]{plot}},
-#' \code{\link{readGDAL}}, \code{\link{mask}},
+#' @seealso \code{\linkS4class{Speclib}}, [=plot.Speclib::plot()],
+#' [readGDAL()], [mask()],
 #' 
-#' \code{\link{idSpeclib}}, \code{\link[=dim.speclib]{dim}},
-#' \code{\link[=spectra.Speclib]{spectra}},
+#' [idSpeclib()], [=dim.speclib::dim()],
+#' [=spectra.Speclib::spectra()],
 #' 
-#' \code{\link[=attribute.speclib]{attribute}}
+#' [=attribute.speclib::attribute()]
 #' @keywords classes
 #' @examples
 #' 
@@ -1437,7 +1437,7 @@ NULL
 #' 
 #' @name spectral_data
 #' @docType data
-#' @format An object of class \code{Speclib}
+#' @format An object of class `Speclib`
 #' @author Wolfgang A. Obermeier, Lukas Lehnert, Hanna Meyer
 #' @keywords datasets
 NULL
@@ -1446,22 +1446,22 @@ NULL
 
 
 
-#' Subsetting \code{Nri}-objects
+#' Subsetting `Nri`-objects
 #' 
-#' Return subsets of \code{Nri}-objects which meet conditions.
+#' Return subsets of `Nri`-objects which meet conditions.
 #' 
 #' Matchable objects are attributes data. Use column names to identify the
-#' respectrive attribute. See \code{\link{attribute}} to access attributes of a
-#' \code{Nri}. IDs of samples may be accessed using "id.nri" as variable name.
+#' respectrive attribute. See [attribute()] to access attributes of a
+#' `Nri`. IDs of samples may be accessed using "id.nri" as variable name.
 #' 
 #' @aliases subset.nri subset,Nri-method
 #' @param x Object of class 'Nri'.
 #' @param subset Logical expression indicating spectra to keep: missing values
 #' are taken as false. See details section.
-#' @param ...  Further arguments passed to \code{\link{agrep}}.
-#' @return Object of class \code{Nri}.
+#' @param ...  Further arguments passed to [agrep()].
+#' @return Object of class `Nri`.
 #' @author Lukas Lehnert
-#' @seealso \code{\linkS4class{Nri}}, \code{\link{attribute}}
+#' @seealso \code{\linkS4class{Nri}}, [attribute()]
 #' @keywords utilities
 #' @examples
 #' 
@@ -1493,21 +1493,21 @@ NULL
 
 #' Subsetting speclibs
 #' 
-#' Return subsets of \code{Speclib}s which meet conditions.
+#' Return subsets of `Speclib`s which meet conditions.
 #' 
 #' Matchable objects are attributes data. Use column names to identify the
-#' respectrive attribute. See \code{\link{attribute}} to access attributes of a
-#' \code{Speclib}. IDs of spectra may be accessed using "id.speclib" as
+#' respectrive attribute. See [attribute()] to access attributes of a
+#' `Speclib`. IDs of spectra may be accessed using "id.speclib" as
 #' variable name.
 #' 
 #' @aliases subset.speclib subset,Speclib-method
 #' @param x Object of class 'Speclib'.
 #' @param subset Logical expression indicating spectra to keep: missing values
 #' are taken as false. See details section.
-#' @param ...  Further arguments passed to \code{\link{agrep}}.
-#' @return Object of class \code{Speclib}.
+#' @param ...  Further arguments passed to [agrep()].
+#' @return Object of class `Speclib`.
 #' @author Lukas Lehnert
-#' @seealso \code{\linkS4class{Speclib}}, \code{\link{attribute}}
+#' @seealso \code{\linkS4class{Speclib}}, [attribute()]
 #' @keywords utilities
 #' @examples
 #' 
@@ -1542,7 +1542,7 @@ NULL
 #' is used:
 #' 'ftp://ftpext.cr.usgs.gov/pub/cr/co/denver/speclab/pub/spectral.library/splib06.library/ASCII/'
 #' @param avl List of available files. Typically the result of
-#' \code{USGS_get_available_files}.
+#' `USGS_get_available_files`.
 #' @param pattern Search pattern to define a subset of all available spectra.
 #' @param retrieve Logical. Should the data be downloaded?
 #' @param loadAsSpeclib Logical. If TRUE, an object of class "Speclib" is

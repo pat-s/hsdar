@@ -11,21 +11,21 @@
 #' 
 #' 
 #' @aliases get_reflectance.speclib get_reflectance,Speclib-method
-#' @param spectra Object of class \code{Speclib} or data.frame with reflectance
+#' @param spectra Object of class `Speclib` or data.frame with reflectance
 #' values.
 #' @param wavelength Vector with wavelength values.
 #' @param position Numeric value passing the position of reflectance values to
 #' be returned in dimensions of the wavelength values.
 #' @param weighted Logical indicating if reflectance values should be
-#' interpolated to fit wavelength position. If \code{FALSE} the reflectance
+#' interpolated to fit wavelength position. If `FALSE` the reflectance
 #' values of nearest neighbour to passed position are returned.
 #' @param ...  Arguments to be passed to specific functions. For
-#' \code{get_reflectance.default} ignored.
+#' `get_reflectance.default` ignored.
 #' @return A vector with reflectance values for each spectrum is returned. If
-#' position falls outside of spectral range of input values, \code{NA} values
+#' position falls outside of spectral range of input values, `NA` values
 #' are returned.
 #' @author Lukas Lehnert & Hanna Meyer
-#' @seealso \code{\link[=spectra.Speclib]{spectra}}
+#' @seealso [=spectra.Speclib::spectra()]
 #' @examples
 #' 
 #' data(spectral_data)

@@ -3,7 +3,7 @@
 #' Get or mark best performing model(s) between narrow band indices and
 #' environmental variables
 #' 
-#' See details in \code{\link{glm.nri}} and \code{\link{glm}}.
+#' See details in [glm.nri()] and [glm()].
 #' 
 #' @aliases nri_best_performance mark_nri_best_performance
 #' @param nri Object of class nri
@@ -13,14 +13,14 @@
 #' @param predictor Name or index of term to plot
 #' @param abs Use absolute value (e.g. for t-values)
 #' @param findMax Find maximum or minimum values
-#' @param best Output from \code{nri_best_performance}
+#' @param best Output from `nri_best_performance`
 #' @param uppertriang Flag to mark the upper triangle
-#' @param ...  Further arguments passed to \code{\link{glm}} function. These
-#' must be the same as used for initial creation of \code{\link{glm.nri}}. For
-#' \code{mark_nri_best_performance} arguments are passed to
-#' \code{\link{polygon}}.
+#' @param ...  Further arguments passed to [glm()] function. These
+#' must be the same as used for initial creation of [glm.nri()]. For
+#' `mark_nri_best_performance` arguments are passed to
+#' [polygon()].
 #' @author Lukas Lehnert
-#' @seealso \code{\link{glm.nri}}, \code{\link{glm}}
+#' @seealso [glm.nri()], [glm()]
 #' @keywords multivariate
 #' @examples
 #' 
@@ -133,7 +133,7 @@ nri_best_performance <- function(nri,
 #' Return normalized ratio index values giving the wavelength
 #' 
 #' Wavelength can be passed in three ways. As the result of
-#' \code{\link{nri_best_performance}}, as a data frame with two columns or as a
+#' [nri_best_performance()], as a data frame with two columns or as a
 #' vector of length 2. In the first two cases, the result will be a data frame
 #' (if data frames contain more than one row) with the nri-values of each pair
 #' of wavelengths. In the latter case it will be a vector.
@@ -143,7 +143,7 @@ nri_best_performance <- function(nri,
 #' @param wavelength Wavelength values where nri is returned. See details
 #' section.
 #' @author Lukas Lehnert
-#' @seealso \code{\link{nri}}, \code{\linkS4class{Nri}}
+#' @seealso [nri()], \code{\linkS4class{Nri}}
 #' @keywords multivariate
 #' @examples
 #' 

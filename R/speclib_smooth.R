@@ -5,10 +5,10 @@
 #' 
 #' This function allows filtering using four different methods: \itemize{
 #' \itemSavitzky-Golay: Smoothing applying Savitzky-Golay-Filter. See
-#' \code{\link{sgolayfilt}} for details.  \itemLowess: Smoothing applying
-#' lowess-Filter. See \code{\link{lowess}} for details.  \itemSpline: Smoothing
-#' applying spline-Filter. See \code{\link{spline}} for details.  \itemMean:
-#' Smoothing applying mean-Filter. See \code{\link{meanfilter}} for details.  }
+#' [sgolayfilt()] for details.  \itemLowess: Smoothing applying
+#' lowess-Filter. See [lowess()] for details.  \itemSpline: Smoothing
+#' applying spline-Filter. See [spline()] for details.  \itemMean:
+#' Smoothing applying mean-Filter. See [meanfilter()] for details.  }
 #' 
 #' @param x Object of class \code{\linkS4class{Speclib}}.
 #' @param method Character string giving the method to be used. Predefined
@@ -16,10 +16,10 @@
 #' can also be the (character) name of any other filter function (see
 #' examples).
 #' @param ...  Further arguments passed to filter functions. See examples.
-#' @return Object of class \code{Speclib}.
+#' @return Object of class `Speclib`.
 #' @author Lukas Lehnert
-#' @seealso \code{\link{sgolayfilt}}, \code{\link{lowess}},
-#' \code{\link{spline}}, \code{\link{meanfilter}}
+#' @seealso [sgolayfilt()], [lowess()],
+#' [spline()], [meanfilter()]
 #' @references Tsai, F. & Philpot, W. (1998): Derivative analysis of
 #' hyperspectral data. Remote Sensing of Environment 66/1. 41-51.
 #' @keywords smooth
@@ -147,7 +147,7 @@ smoothSpeclib <- function(
 #' @param p Filter size.
 #' @return Filtered data frame of same dimension as input data frame
 #' @author Lukas Lehnert
-#' @seealso \code{\link{smoothSpeclib}}
+#' @seealso [smoothSpeclib()]
 #' @keywords smooth
 #' @examples
 #' 

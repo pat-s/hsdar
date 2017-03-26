@@ -4,35 +4,35 @@
 #' 
 #' The characteristics of (satellite) sensor to integrate spectra can be chosen
 #' from a list of already implemented sensors. See
-#' \code{\link{get.sensor.characteristics}} for available sensors.
+#' [get.sensor.characteristics()] for available sensors.
 #' 
-#' Otherwise the characteristics can be passed as a \code{data.frame} with two
+#' Otherwise the characteristics can be passed as a `data.frame` with two
 #' columns: first column with lower bounds of channels and second column with
-#' upper bounds. Alternatively, the \code{data.frame} may encompass band centre
+#' upper bounds. Alternatively, the `data.frame` may encompass band centre
 #' wavelength and full-width-half-maximum values of the sensor. Function will
 #' check the kind of data passed by partially matching the names of the data
-#' frame: If any column is named \code{"fwhm"} or \code{"center"}, it is
+#' frame: If any column is named `"fwhm"` or `"center"`, it is
 #' assumed that data are band centre and full-width-half-maximum values.
 #' 
 #' If sensor characteristics are defined manually, a Gaussian response is
 #' always assumed.
 #' 
 #' @aliases spectralResampling spectral.resampling
-#' @param x Object of class \code{Speclib}. Data to be spectrally resampled.
-#' @param sensor Character or \code{data.frame} containing definition of sensor
+#' @param x Object of class `Speclib`. Data to be spectrally resampled.
+#' @param sensor Character or `data.frame` containing definition of sensor
 #' characteristics. See details section for further information.
-#' @param rm.NA If \code{TRUE}, channels which are not covered by input data
+#' @param rm.NA If `TRUE`, channels which are not covered by input data
 #' wavelength are removed
 #' @param continuousdata Definition if returned \code{\linkS4class{Speclib}} is
 #' containing continuous data or not.
-#' @param response_function If \code{TRUE}, the spectral response function of
-#' the sensor is used for integration, if \code{FALSE} a Gaussian distribution
-#' is assumed and if \code{NA} the mean value of
-#' \code{spectra[min(ch):max(ch)]} is calculated.
-#' @return Object of class \code{Speclib}
+#' @param response_function If `TRUE`, the spectral response function of
+#' the sensor is used for integration, if `FALSE` a Gaussian distribution
+#' is assumed and if `NA` the mean value of
+#' `spectra[min(ch):max(ch)]` is calculated.
+#' @return Object of class `Speclib`
 #' @author Lukas Lehnert
-#' @seealso \code{\link{get.sensor.characteristics}},
-#' \code{\link{get.gaussian.response}}%%, \code{\link{speclib}},
+#' @seealso [get.sensor.characteristics()],
+#' [get.gaussian.response()]%%, [speclib()],
 #' @keywords multivariate
 #' @examples
 #' 

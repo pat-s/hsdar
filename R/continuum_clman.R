@@ -218,16 +218,16 @@ setReplaceMethod("spectra", signature(object = "Clman", value = "numeric"),
 #' Get fix points of continuum line within spectral range.
 #' 
 #' 
-#' @param x Object of class \code{Clman}.
+#' @param x Object of class `Clman`.
 #' @param ispec ID or index of spectrum to be analysed.
-#' @param subset Vector of \code{length = 2} giving the lower and upper limit
+#' @param subset Vector of `length = 2` giving the lower and upper limit
 #' of spectral range.
-#' @return Object of class \code{list} containing two elements: \itemize{
+#' @return Object of class `list` containing two elements: \itemize{
 #' \itemptscon: Data frame with wavelength and reflectance of fix points
-#' \itemispec: Index of analysed spectrum within passed \code{Clman}-object.  }
+#' \itemispec: Index of analysed spectrum within passed `Clman`-object.  }
 #' @author Lukas Lehnert and Hanna Meyer
-#' @seealso \code{\link{transformSpeclib}}, \code{\link{deletecp}},
-#' \code{\link{addcp}}, \code{\linkS4class{Clman}}
+#' @seealso [transformSpeclib()], [deletecp()],
+#' [addcp()], \code{\linkS4class{Clman}}
 #' @keywords utilities
 #' @examples
 #' 
@@ -294,16 +294,16 @@ getcp <- function(
 #' Delete fix point from continuum line.
 #' 
 #' 
-#' @param x Object of class \code{Clman}.
+#' @param x Object of class `Clman`.
 #' @param ispec ID or index of spectrum to be modified.
 #' @param cpdelete Single value or vector of wavelength containing fix point(s)
 #' to be deleted.
 #' @return Object of class \code{\linkS4class{Clman}} containing the updated
 #' version of x.
 #' @author Lukas Lehnert and Hanna Meyer
-#' @seealso \code{\link{transformSpeclib}}, \code{\link{addcp}},
-#' \code{\link{getcp}}, \code{\link{checkhull}}, \code{\link{makehull}},
-#' \code{\link{updatecl}}
+#' @seealso [transformSpeclib()], [addcp()],
+#' [getcp()], [checkhull()], [makehull()],
+#' [updatecl()]
 #' @keywords utilities
 #' @examples
 #' 
@@ -363,13 +363,13 @@ deletecp <- function (
 #' @param x Object of class Clman.
 #' @param ispec ID or index of spectrum to be modified.
 #' @param cpadd Single value or vector of wavelength containing new fix points.
-#' @return Object of class \code{Clman} containing the updated version of x.
+#' @return Object of class `Clman` containing the updated version of x.
 #' @author Lukas Lehnert and Hanna Meyer
-#' @seealso \code{\link{transformSpeclib}}, \code{\link{deletecp}},
-#' \code{\link{getcp}}, \code{\link{checkhull}}, \code{\link{makehull}},
-#' \code{\link{updatecl}},
+#' @seealso [transformSpeclib()], [deletecp()],
+#' [getcp()], [checkhull()], [makehull()],
+#' [updatecl()],
 #' 
-#' \code{\link{idSpeclib}}
+#' [idSpeclib()]
 #' @keywords utilities
 #' @examples
 #' 

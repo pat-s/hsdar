@@ -94,11 +94,11 @@ setMethod("plot", signature(x = "Nri"),
 #' 
 #' 
 #' @aliases t.test.nri t.test,Nri-method
-#' @param x Object of class \code{'nri'}.
-#' @param ...  Arguments to be passed to \code{\link{t.test}}.
+#' @param x Object of class `'nri'`.
+#' @param ...  Arguments to be passed to [t.test()].
 #' @return An object of class "data.frame"
 #' @author Lukas Lehnert & Hanna Meyer
-#' @seealso \code{\link{t.test}}, \code{\link{cor.test,Nri-method}}
+#' @seealso [t.test()], [cor.test,Nri-method()]
 #' @examples
 #' 
 #' %   \dontrun{
@@ -132,18 +132,18 @@ setMethod("plot", signature(x = "Nri"),
 #' 
 #' NRI-values may be used as x and/or as y variable. If x and y are NRI-values
 #' the number of samples in both datasets must be equal. For additional
-#' information on correlation tests see details in \code{\link{cor.test}}.
+#' information on correlation tests see details in [cor.test()].
 #' 
 #' @aliases cor.test.nri cor.test,Nri-method
-#' @param x Object of class \code{Nri} or numerical vector
-#' @param y Object of class \code{Nri} or numerical vector
-#' @param ...  Further arguments passed to \code{\link{cor.test}}
+#' @param x Object of class `Nri` or numerical vector
+#' @param y Object of class `Nri` or numerical vector
+#' @param ...  Further arguments passed to [cor.test()]
 #' @return Object of class \code{\linkS4class{Nri}}
 #' @author Lukas Lehnert
 #' @seealso
 #' 
-#' \code{\link[=plot.Nri]{plot}}, \code{\link{cor.test}},
-#' \code{\link{glm.nri}}, \code{\link{lm.nri}}, \code{\link{getNRI}}
+#' [=plot.Nri::plot()], [cor.test()],
+#' [glm.nri()], [lm.nri()], [getNRI()]
 #' @examples
 #' 
 #' data(spectral_data)

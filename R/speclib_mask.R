@@ -85,7 +85,7 @@ maskSpeclib <- function(object, lb, ub)
 
 #' Mask spectra
 #' 
-#' Returning and setting mask of spectra in Speclib. \code{interpolate.mask}
+#' Returning and setting mask of spectra in Speclib. `interpolate.mask`
 #' linearly interpolates masked parts in spectra.
 #' 
 #' Value may be an object of class vector, data frame or list. Data frames must
@@ -102,13 +102,13 @@ maskSpeclib <- function(object, lb, ub)
 #' @aliases mask mask<- maskSpeclib mask,Speclib-method
 #' mask<-,Speclib,data.frame-method mask<-,Speclib,list-method
 #' mask<-,Speclib,numeric-method mask<-,Speclib,matrix-method interpolate.mask
-#' @param object Object of class \code{Speclib}.
+#' @param object Object of class `Speclib`.
 #' @param value Numeric vector, data frame or list giving the mask boundaries
 #' in wavelength units. See details section.
-#' @return For \code{mask<-}, the updated object. Otherwise a data frame giving
+#' @return For `mask<-`, the updated object. Otherwise a data frame giving
 #' the mask boundaries.
 #' 
-#' \code{interpolate.mask} returns a new object of class Speclib.
+#' `interpolate.mask` returns a new object of class Speclib.
 #' @author Lukas Lehnert and Hanna Meyer
 #' @seealso \code{\linkS4class{Speclib}}
 #' @keywords utilities

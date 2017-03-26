@@ -244,7 +244,7 @@
 #' 
 #' }
 #' 
-#' * For references please type: \code{hsdardocs("References.pdf")}.\cr 
+#' * For references please type: `hsdardocs("References.pdf")`.\cr 
 #' * For GDVI n must be defined appending an underscore and the intended exponent to
 #' the index name. E.g., for n = 2, the correct index name would be "GDVI_2".
 #' Note that GDVI-indices with n = 2, 3, 4 will be derived if all available
@@ -257,7 +257,7 @@
 #' string. Consequently, the NDVI would be written as\cr
 #' "(R800-R680)/(R800+R680)".}
 #' 
-#' @param x Object of class \code{Speclib}
+#' @param x Object of class `Speclib`
 #' @param index Character string. Name or definition of index or vector with
 #' names/definitions of indices to calculate. See Details section for further
 #' information.
@@ -266,12 +266,27 @@
 #' determined by passed Speclib.
 #' @param L Factor for SAVI index. Unused for other indices.
 #' @param weighted Logical indicating if reflectance values should be
-#' interpolated to fit wavelength position. If \code{FALSE} the reflectance
+#' interpolated to fit wavelength position. If `FALSE` the reflectance
 #' values of nearest neighbour to passed position are returned. See
-#' \code{\link[=get_reflectance.speclib]{get_reflectance}} for further
+#' [=get_reflectance.speclib::get_reflectance()] for further
 #' explanation.
+#' @param filename Filename of the raster file written to disk. Only applies if 
+#' an object of class `HyperSpecRaster` is provided
+#' @param bnames (optional) Character vector of band names. Only applies if 
+#' an object of class `HyperSpecRaster` is provided
 #' @param ...  Further arguments passed to derivative functions. Only used for
 #' indices requiring derivations.
+#' 
+#' @details If the input object is of class `HyperSpecRaster`, a raster 
+#' file is written to disk if a file name is provided. 
+#' Otherwise an `HyperSpecRaster` object is returned. If the file is written to disk,
+#' the user needs to specify the final number of bands. This information is required 
+#' by `writeRaster`. NAs are handled internally. 
+#' 
+#' @details When using all vegetation indices available, make sure you cover the whole
+#' wavelength range. Otherwise the result will only be NA.
+#' 
+#' 
 #' @return A vector containing indices values. If index is a vector with length
 #' > 1, a data frame with ncol = length(index) and nrow = number of spectra in
 #' x is returned.
@@ -279,10 +294,10 @@
 #' If function is called without any arguments, return value will be a vector
 #' containing all available indices in alphabetical order.
 #' @author Hanna Meyer and Lukas Lehnert
-#' @seealso \code{\link{soilindex}}, \code{\link{derivative.speclib}},
-#' \code{\link{rededge}},
-#' \code{\link[=get_reflectance.speclib]{get_reflectance}}
-#' @references See \code{hsdardocs("References.pdf")}
+#' @seealso [soilindex()], [derivative.speclib()],
+#' [rededge()],
+#' [=get_reflectance.speclib::get_reflectance()]
+#' @references See `hsdardocs("References.pdf")`
 #' @keywords multivariate
 #' @examples
 #' 

@@ -15,31 +15,31 @@
 #' sides. In contrast to a convex hull, the segmented hull is able to identify
 #' small absorption features.
 #' 
-#' Specify \code{method = "ch"} for the convex hull and \code{method = "sh"}
-#' for the segmented hull. The output might be \code{"raw"}, \code{"bd"} or
-#' \code{"ratio"}: \itemize{ \item"raw": the continuum line is returned
+#' Specify `method = "ch"` for the convex hull and `method = "sh"`
+#' for the segmented hull. The output might be `"raw"`, `"bd"` or
+#' `"ratio"`: \itemize{ \item"raw": the continuum line is returned
 #' \item"bd": the spectra are transformed to band depth by \deqn{BD_\lambda =
 #' 1-\frac{R_\lambda}{CV_\lambda},} where \eqn{BD} is the band depth, \eqn{R}
 #' is the reflectance and \eqn{CV} is the continuum value at the wavelength
 #' \eqn{\lambda}. \item"ratio": the spectra are transformed by \deqn{BD_\lambda
 #' = \frac{R_\lambda}{CV_\lambda}.}
 #' 
-#' } In some cases it might be useful to apply \code{\link{smoothSpeclib}}
+#' } In some cases it might be useful to apply [smoothSpeclib()]
 #' before the transformation if too many small local maxima are present in the
 #' spectra. Anyway, a manual improvement of the continuum line is possible
-#' using \code{\link{addcp}} and \code{\link{deletecp}}.
+#' using [addcp()] and [deletecp()].
 #' 
 #' @param data Speclib to be transformed
 #' @param method Method to be used. See details section.
 #' @param out Kind of value to be returned. See details section.
 #' @param ...  Further arguments passed to generic functions. Currently
 #' ignored.
-#' @return If \code{out != "raw"} an object of class
+#' @return If `out != "raw"` an object of class
 #' \code{\linkS4class{Speclib}} containing transformed spectra is returned.
-#' Otherwise the return object will be of class \code{\link{Clman}}.
+#' Otherwise the return object will be of class [Clman()].
 #' @author Hanna Meyer and Lukas Lehnert
-#' @seealso \code{\link{Clman}}, \code{\link{addcp}}, \code{\link{deletecp}},
-#' \code{\link{checkhull}}
+#' @seealso [Clman()], [addcp()], [deletecp()],
+#' [checkhull()]
 #' @references Clark, R. N., King, T. V. V. and Gorelick, N. S. (1987):
 #' Automatic continuum analysis of reflectance spectra.  Proceedings of the
 #' Third Airborne Imaging Spectrometer Data Analysis Workshop, 30. 138-142.
@@ -250,12 +250,12 @@ if (out=="bd")
 #' Check if continuum line is intersecting the reflectance curve.
 #' 
 #' 
-#' @param x Object of class \code{clman}.
+#' @param x Object of class `clman`.
 #' @param ispec ID or index of spectrum to be checked.
-#' @return Object of class \code{list}.
+#' @return Object of class `list`.
 #' @author Lukas Lehnert and Hanna Meyer
-#' @seealso \code{\link{transformSpeclib}}, \code{\link{addcp}},
-#' \code{\link{deletecp}}, \code{\link{makehull}}, \code{\link{updatecl}}
+#' @seealso [transformSpeclib()], [addcp()],
+#' [deletecp()], [makehull()], [updatecl()]
 #' @keywords utilities
 #' @examples
 #' 
@@ -332,12 +332,12 @@ checkhull <- function(
 #' Check if continuum line is intersecting the reflectance curve.
 #' 
 #' 
-#' @param x Object of class \code{Clman}.
+#' @param x Object of class `Clman`.
 #' @param ispec Name or index of spectrum to be checked.
-#' @return Object of class \code{list}.
+#' @return Object of class `list`.
 #' @author Lukas Lehnert and Hanna Meyer
-#' @seealso \code{\link{transformSpeclib}}, \code{\link{addcp}},
-#' \code{\link{deletecp}}, \code{\link{makehull}}, \code{\link{updatecl}}
+#' @seealso [transformSpeclib()], [addcp()],
+#' [deletecp()], [makehull()], [updatecl()]
 #' 
 #' \code{\linkS4class{Clman}}
 #' @keywords utilities
@@ -432,12 +432,12 @@ makehull <- function(
 #' 
 #' 
 #' @param x Object of class \code{\linkS4class{Speclib}} transformed by
-#' \code{\link{transformSpeclib}}.
+#' [transformSpeclib()].
 #' @param hull Hull to be applied to x. Output of function
-#' \code{\link{makehull}}.
+#' [makehull()].
 #' @return Object of class \code{\linkS4class{Speclib}}.
 #' @author Lukas Lehnert and Hanna Meyer
-#' @seealso \code{\link{transformSpeclib}}, \code{\link{makehull}},
+#' @seealso [transformSpeclib()], [makehull()],
 #' \code{\linkS4class{Speclib}}
 #' @keywords utilities
 #' @examples

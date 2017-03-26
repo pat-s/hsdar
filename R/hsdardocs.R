@@ -3,8 +3,8 @@
 #' Access help documents and references for different methods.
 #' 
 #' 
-#' @param doc Name of document to load. Currently, only \code{"References.pdf"}
-#' and \code{"Copyright"} are available
+#' @param doc Name of document to load. Currently, only `"References.pdf"`
+#' and `"Copyright"` are available
 #' @author Lukas Lehnert
 #' @keywords utilities documentation
 #' @examples

@@ -15,10 +15,10 @@
 #' 
 #' Absorption features are defined as the area between local maxima in the
 #' reflectance spectra.  This function adds the information of the feature
-#' limits to the \code{Speclib}.  Thus, it is a pre-processing step to isolate
+#' limits to the `Speclib`.  Thus, it is a pre-processing step to isolate
 #' features.
 #' 
-#' @param x Object of class \code{Speclib} containing the band depth or ratio
+#' @param x Object of class `Speclib` containing the band depth or ratio
 #' transformed reflectance spectra.
 #' @param tol The tolerance of the band depth which defines a wavelength as a
 #' start or end point of a feature.  Usually a band depth of 0 or a ratio of 1
@@ -29,10 +29,10 @@
 #' feature to be isolated, e.g. the major absorption features. Features which
 #' include these specified wavelengths will be isolated.
 #' @return The updated \code{\linkS4class{Speclib}} containing additional
-#' information about the feature limits. If \code{FWL} is not \code{NULL},
+#' information about the feature limits. If `FWL` is not `NULL`,
 #' result will be of class \code{\linkS4class{Specfeat}}.
 #' @author Hanna Meyer and Lukas Lehnert
-#' @seealso \code{\link{transformSpeclib}}, \code{\link{specfeat}},
+#' @seealso [transformSpeclib()], [specfeat()],
 #' \code{\linkS4class{Specfeat}}
 #' @examples
 #' 
@@ -105,29 +105,29 @@ define.features <- function(
 #' Function to isolate spectral features
 #' 
 #' Function isolates specified absorption features previously identified by
-#' \code{\link{define.features}}.
+#' [define.features()].
 #' 
 #' 
 #' @aliases specfeat plot,Specfeat-method
-#' @param x Object of class \code{Speclib} containing the band depth or ratio
+#' @param x Object of class `Speclib` containing the band depth or ratio
 #' transformed reflectance spectra with additional information on feature
-#' limits calculated by \code{\link{define.features}}. For plot this must be
-#' object of class \code{specfeat}.
+#' limits calculated by [define.features()]. For plot this must be
+#' object of class `specfeat`.
 #' @param FWL A vector containing one wavelength per feature to be isolated,
 #' e.g. the major absorption features. Features which include these specified
 #' wavelengths will be isolated.
 #' @param fnumber Index of feature(s) to be plotted.
 #' @param stylebysubset Name of variable to be used as grouping factor. May be
 #' selected from attributes table, groups or subgroups and must be convertible
-#' to \code{factors}.
+#' to `factors`.
 #' @param changecol Flag, if line colour should be varied among groups
 #' @param changetype Flag, if line styles should be varied among groups
 #' @param autolegend Flag if, legend is printed automatically.
 #' @param new Create new plot or add data to existing one.
 #' @param ...  Further arguments passed to plot function.
-#' @return An object of class \code{Specfeat} containing the isolated features.
+#' @return An object of class `Specfeat` containing the isolated features.
 #' @author Hanna Meyer and Lukas Lehnert
-#' @seealso \code{\link{define.features}}, \code{\link{cut_specfeat}},
+#' @seealso [define.features()], [cut_specfeat()],
 #' \linkS4class{Specfeat}
 #' @keywords classes aplot
 #' @examples
@@ -215,7 +215,7 @@ specfeat <- function(
 #' 
 #' 
 #' @param x An object of class "Specfeat" containing isolated features
-#' determined by \code{\link{specfeat}}.
+#' determined by [specfeat()].
 #' @param fnumber A vector of the positions of the features in x to be cut.
 #' @param limits A vector containing the start and end wavelength for each
 #' fnumber.  The corresponding feature will be cut to this specified range.
@@ -224,7 +224,7 @@ specfeat <- function(
 #' @return An object of class \code{\linkS4class{Specfeat}} containing the cut
 #' features.
 #' @author Hanna Meyer and Lukas Lehnert
-#' @seealso \code{\link{define.features}}, \code{\link{specfeat}},
+#' @seealso [define.features()], [specfeat()],
 #' \code{\linkS4class{Specfeat}}
 #' @examples
 #' 
@@ -372,7 +372,7 @@ setMethod("plot", signature(x = "Specfeat"),
 #' Handling attributes of spectra
 #' 
 #' Returning and setting attributes of spectra in Speclib or Nri.%
-#' \code{setattributes} is a more comfortable and save function to set
+#' `setattributes` is a more comfortable and save function to set
 #' attributes of speclib using string matching.
 #' 
 #' 
@@ -380,11 +380,11 @@ setMethod("plot", signature(x = "Specfeat"),
 #' attribute<-,Speclib,data.frame-method attribute<-,Speclib,matrix-method
 #' attribute,Nri-method attribute<-,Nri,data.frame-method
 #' attribute<-,Nri,matrix-method
-#' @param object Object of class \code{Speclib} or \code{Nri}.
-#' @param value Data frame with \code{nrow(value) == nspectra(object)}, or
+#' @param object Object of class `Speclib` or `Nri`.
+#' @param value Data frame with `nrow(value) == nspectra(object)`, or
 #' NULL.
-#' @return For \code{attribute<-}, the updated object. \code{attribute} returns
-#' a data frame with attribute data.% The return value of \code{setattributes}
+#' @return For `attribute<-`, the updated object. `attribute` returns
+#' a data frame with attribute data.% The return value of `setattributes`
 #' is an object of class speclib.
 #' @author Lukas Lehnert
 #' @seealso \code{\linkS4class{Speclib}}, \code{\linkS4class{Nri}}
@@ -533,25 +533,25 @@ setMethod("plot", signature(x = "Specfeat"),
 
 #' Band depth ratio indices
 #' 
-#' Calculate band depth ratio indices for objects of class \code{Specfeat}.
+#' Calculate band depth ratio indices for objects of class `Specfeat`.
 #' 
-#' Method \code{"bdr"} calculates the normalised band depth ratio as
+#' Method `"bdr"` calculates the normalised band depth ratio as
 #' \deqn{bdr=\frac{BD}{Dc},} with \eqn{BD} is the band depth calculated by
-#' \code{\link{transformSpeclib}} and Dc is the maximum band depth called band
-#' centre.  Method \code{"ndbi"} calculates the the normalised band depth index
-#' as \deqn{ndbi= \frac{BD-Dc}{BD+Dc}.} Method \code{"bna"} calculates the band
+#' [transformSpeclib()] and Dc is the maximum band depth called band
+#' centre.  Method `"ndbi"` calculates the the normalised band depth index
+#' as \deqn{ndbi= \frac{BD-Dc}{BD+Dc}.} Method `"bna"` calculates the band
 #' depth normalised to band area as \deqn{bna=\frac{BD}{Da},} where \eqn{Da} is
-#' the area of the absorption feature (see \code{\link{feature_properties}}).
+#' the area of the absorption feature (see [feature_properties()]).
 #' For further information see Mutanga and Skidmore (2004).
 #' 
-#' @param x Object of class \code{Specfeat}.
+#' @param x Object of class `Specfeat`.
 #' @param fnumber Integer. Index of feature to modify.
-#' @param index Method to be applied. Currently, \code{"bdr"}, \code{"ndbi"}
-#' and \code{"bna"} are available.
-#' @return Object of class \code{specfeat} containing the updated version of x.
+#' @param index Method to be applied. Currently, `"bdr"`, `"ndbi"`
+#' and `"bna"` are available.
+#' @return Object of class `specfeat` containing the updated version of x.
 #' @author Lukas Lehnert and Hanna Meyer
-#' @seealso \code{\link{transformSpeclib}}, \code{\link{define.features}},
-#' \code{\link{specfeat}}
+#' @seealso [transformSpeclib()], [define.features()],
+#' [specfeat()]
 #' @references Mutanga, O. and Skidmore, A. (2004): Hyperspectral band depth
 #' analysis for a better estimation of grass biomass (\var{Cenchrus ciliaris})
 #' measured under controlled laboratory conditions. International Journal of

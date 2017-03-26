@@ -23,11 +23,11 @@
 #' 
 #' }
 #' 
-#' @param x Object of class \code{Specfeat}
-#' @return An object of class \code{Specfeat} containing the properties as
+#' @param x Object of class `Specfeat`
+#' @return An object of class `Specfeat` containing the properties as
 #' (part of the) attribute table.
 #' @author Hanna Meyer \& Lukas Lehnert
-#' @seealso \code{\link{define.features}}, \code{\link{specfeat}}
+#' @seealso [define.features()], [specfeat()]
 #' @keywords multivariate
 #' @examples
 #' 

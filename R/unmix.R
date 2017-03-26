@@ -16,16 +16,16 @@
 #' equal 0 \itemThe sum of all fractions must be 1 } Since this linear equation
 #' system is usually over-determined, a least square solution is performed. The
 #' error between the final approximation and the observed pixel vector is
-#' returned as vector (\code{error}) in list (\code{returnSpatialGrid = FALSE})
-#' or as last band if \code{returnSpatialGrid = TRUE}.
+#' returned as vector (`error`) in list (`returnSpatialGrid = FALSE`)
+#' or as last band if `returnSpatialGrid = TRUE`.
 #' 
 #' @param spectra Input spectra of class 'speclib'
 #' @param endmember Endmember spectra of class 'speclib'
 #' @param returnHCR Set class of value. If TRUE, value will be of class
-#' '\code{HyperSpecRaster}', otherwise a list is returned. If \code{auto},
+#' '`HyperSpecRaster`', otherwise a list is returned. If `auto`,
 #' function will switch to mode depending on input data characteristics.
 #' @param scale Flag to scale spectra to [0,1] if necessary.
-#' @param ...  Further arguments passed to \code{\link{HyperSpecRaster}}
+#' @param ...  Further arguments passed to [HyperSpecRaster()]
 #' (ignored if returnHCR = FALSE).
 #' @return A list containing the fraction of each endmember in each spectrum
 #' and an error value giving the euclidean norm of the error vector after least

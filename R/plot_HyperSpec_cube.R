@@ -59,16 +59,16 @@
 #' Plotting 3D cube of hyperspectral data using \pkg{rgl}-package
 #' 
 #' 
-#' @param x Object of class \code{HyperSpecRaster}.
+#' @param x Object of class `HyperSpecRaster`.
 #' @param r Integer. Index of band used as red channel. If omitted, the band
 #' closest to 680 nm is selected.
 #' @param g Integer. Index of band used as green channel. If omitted, the band
 #' closest to 540 nm is selected.
 #' @param b Integer. Index of band used as blue channel. If omitted, the band
 #' closest to 470 nm is selected.
-#' @param ncol Integer giving the column(s) in \code{x} which is/are used to
+#' @param ncol Integer giving the column(s) in `x` which is/are used to
 #' plot the spectral dimension.
-#' @param nrow Integer giving the row(s) in \code{x} which is/are used to plot
+#' @param nrow Integer giving the row(s) in `x` which is/are used to plot
 #' the spectral dimension.
 #' @param sidecol ColorRamp used to illustrate spectral dimension.
 #' @param ...  Further arguments (currently ignored)

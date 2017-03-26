@@ -3,24 +3,24 @@
 #' Calculate derivations of spectra
 #' 
 #' Two different methods are available: \itemize{ \itemFinite approximation
-#' (\code{finApprox}):
+#' (`finApprox`):
 #' \deqn{\frac{dr}{d\lambda}=\frac{r(\lambda_i)-r(\lambda_{i+1})}{\Delta\lambda},}
 #' where \eqn{r_i} is the reflection in band \eqn{i} and \eqn{\Delta\lambda}
 #' the spectral difference between adjacent bands.  \itemSavitzky-Golay
-#' derivative computation (\code{sgolay})%:
+#' derivative computation (`sgolay`)%:
 #' 
 #' % \deqn{\frac{dr^q}{d\lambda}=\sum_{i=-m}^{m}P_i^{(q)}r_{j+i},}
 #' 
 #' }
 #' 
-#' @param x Object of class \code{Speclib}.
+#' @param x Object of class `Speclib`.
 #' @param m Return the m-th derivative of the spectra.
 #' @param method Character string giving the method to be used. Valid options
-#' are \code{"finApprox"} or \code{"sgolay"}.
-#' @param ...  Further arguments passed to \code{\link{sgolayfilt}}.
+#' are `"finApprox"` or `"sgolay"`.
+#' @param ...  Further arguments passed to [sgolayfilt()].
 #' @return Object of class \code{\linkS4class{Speclib}}.
 #' @author Lukas Lehnert
-#' @seealso \code{\link{sgolayfilt}}, \code{\link{vegindex}}
+#' @seealso [sgolayfilt()], [vegindex()]
 #' @references Tsai, F. & Philpot, W. (1998): Derivative analysis of
 #' hyperspectral data. Remote Sensing of Environment 66/1. 41-51.
 #' @keywords utilities

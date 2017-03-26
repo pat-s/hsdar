@@ -4,10 +4,10 @@
 #' 
 #' 
 #' @aliases idSpeclib idSpeclib<-
-#' @param x Object of class \code{Speclib}.
-#' @param value Character vector of the same length as \code{nspectra(x)}, or
+#' @param x Object of class `Speclib`.
+#' @param value Character vector of the same length as `nspectra(x)`, or
 #' NULL.
-#' @return For \code{idSpeclib<-}, the updated object. Otherwise a vector
+#' @return For `idSpeclib<-`, the updated object. Otherwise a vector
 #' giving the ID of each spectrum in Speclib is returned.
 #' @author Lukas Lehnert
 #' @seealso \code{\linkS4class{Speclib}}

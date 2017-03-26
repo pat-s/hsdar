@@ -1,14 +1,14 @@
 #' Handling names of bands
 #' 
-#' Returning and setting names of bands in \code{Speclib}
+#' Returning and setting names of bands in `Speclib`
 #' 
 #' 
 #' @aliases bandnames bandnames<-
-#' @param x Object of class \code{Speclib}.
-#' @param value Character vector of the same length as \code{nbands(x)}, or
+#' @param x Object of class `Speclib`.
+#' @param value Character vector of the same length as `nbands(x)`, or
 #' NULL.
-#' @return For \code{bandnames<-}, the updated object. Otherwise a vector
-#' giving the name of each band in \code{Speclib} is returned.
+#' @return For `bandnames<-`, the updated object. Otherwise a vector
+#' giving the name of each band in `Speclib` is returned.
 #' @author Lukas Lehnert
 #' @seealso \code{\linkS4class{Speclib}}
 #' @keywords utilities

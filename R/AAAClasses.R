@@ -32,8 +32,8 @@ setClass("Speclib",
 #' 
 #' Returning and setting spectra in Speclib
 #' 
-#' For \code{spectra<-}, the function does not check if dimensions of spectra
-#' match dimensions of Speclib. Additionally, no conversion into \code{matrix}
+#' For `spectra<-`, the function does not check if dimensions of spectra
+#' match dimensions of Speclib. Additionally, no conversion into `matrix`
 #' is performed! If spectra are not correctly stored, errors in other functions
 #' may arise. Thus check always carefully, if spectra are modified by hand.
 #' 
@@ -47,15 +47,15 @@ setClass("Speclib",
 #' cellFromXY,Speclib-method colFromX,Speclib-method
 #' fourCellsFromXY,Speclib-method rowFromY,Speclib-method
 #' readAll,Speclib-method
-#' @param object Object of class \code{Speclib}.
+#' @param object Object of class `Speclib`.
 #' @param i Index of spectra to return. If missing all spectra are returned.
 #' @param j Index of bands to return. If missing all bands are returned.
 #' @param ...  Passed to internal function. Currently only one parameter is
-#' accepted: \code{return_names}: Logical indicating, if names of columns and
-#' rows should be set to \code{\link{bandnames}} and \code{\link{idSpeclib}}.
+#' accepted: `return_names`: Logical indicating, if names of columns and
+#' rows should be set to [bandnames()] and [idSpeclib()].
 #' @param value Matrix or RasterBrick-object containing spectral values. If
 #' value is a matrix, columns are band values and rows are spectra.
-#' @return For \code{spectra<-}, the updated object. Otherwise a matrix of the
+#' @return For `spectra<-`, the updated object. Otherwise a matrix of the
 #' spectra in x is returned.
 #' @author Lukas Lehnert
 #' @seealso \code{\linkS4class{Speclib}}
@@ -82,9 +82,9 @@ setClass("Speclib",
 #' fwhm<- fwhm<-,Speclib,numeric-method fwhm fwhm,Speclib-method
 #' wavelength,HyperSpecRaster-method
 #' wavelength<-,HyperSpecRaster,numeric-method
-#' @param object Object of class \code{Speclib} or \code{HyperSpecRaster}.
+#' @param object Object of class `Speclib` or `HyperSpecRaster`.
 #' @param value Numeric vector or data.frame containing wavelength values.
-#' @return For \code{wavelength<-} and \code{fwhm<-}, the updated object.
+#' @return For `wavelength<-` and `fwhm<-`, the updated object.
 #' Otherwise a numeric vector of the wavelength and fwhm-values is returned.
 #' @author Lukas Lehnert
 #' @seealso \code{\linkS4class{Speclib}}, \code{\linkS4class{HyperSpecRaster}}
@@ -117,7 +117,7 @@ setClass("Speclib",
 #' @param x Object of class Speclib
 #' @param value Character string to be added to usagehistory or NULL, if
 #' usagehistory should be deleted.
-#' @return For \code{usagehistory<-}, the updated object. Otherwise a vector
+#' @return For `usagehistory<-`, the updated object. Otherwise a vector
 #' giving the history of usage of Speclib is returned.
 #' @author Lukas Lehnert
 #' @seealso \code{\linkS4class{Speclib}}

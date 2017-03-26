@@ -7,13 +7,13 @@
 #' Distance between spectra
 #' 
 #' Calculation of distance matrices by using one of the various distance
-#' measure to compute the distances between the spectra in \code{Speclib}.
-#' Spectral Angle Mapper (SAM) is calculated with \code{sam} giving reference
-#' spectra or with \code{sam_distance} taking all combinations between spectra
+#' measure to compute the distances between the spectra in `Speclib`.
+#' Spectral Angle Mapper (SAM) is calculated with `sam` giving reference
+#' spectra or with `sam_distance` taking all combinations between spectra
 #' in single Speclib into account.
 #' 
-#' Available distance measures are "spectral angle mapper" (\code{sam}) and all
-#' distance measures available in \code{\link{dist}}. Spectral angle mapper is
+#' Available distance measures are "spectral angle mapper" (`sam`) and all
+#' distance measures available in [dist()]. Spectral angle mapper is
 #' calculated with the following formula:
 #' \deqn{sam=\cos^{-1}\left(\frac{\sum_{i=1}^{nb}{t_i
 #' r_i}}{\sqrt{\sum_{i=1}^{nb}{t_i^2}}\sqrt{\sum_{i=1}^{nb}{r_i^2}}}\right)}{
@@ -23,16 +23,16 @@
 #' spectrum in band \eqn{i}, respectively.
 #' 
 #' @aliases dist.speclib sam sam_distance
-#' @param x Object of class \code{Speclib}.
+#' @param x Object of class `Speclib`.
 #' @param method The distance measure to be used. This must be one of "sam",
 #' "euclidean", "maximum", "manhattan", "canberra", "binary" or "minkowski".
-#' @param ref Object of class \code{Speclib} containing reference spectra.
+#' @param ref Object of class `Speclib` containing reference spectra.
 #' @param ...  Further arguments, passed to other methods.
-#' @return The \code{dist-method} for Speclibs returns an object of class
-#' \code{"dist"}. See \code{\link{dist}} for further information on class
-#' \code{"dist"}. Both other functions return an object of class matrix.
+#' @return The `dist-method` for Speclibs returns an object of class
+#' `"dist"`. See [dist()] for further information on class
+#' `"dist"`. Both other functions return an object of class matrix.
 #' @author Lukas Lehnert
-#' @seealso \code{\link{dist}}, \code{\linkS4class{Speclib}}
+#' @seealso [dist()], \code{\linkS4class{Speclib}}
 #' @references Kruse, F. A.; Lefkoff, A. B.; Boardman, J. W.; Heidebrecht, K.
 #' B.; Shapiro, A. T.; Barloon, P. J. & Goetz, A. F. H. (1993). The spectral
 #' image processing system (SIPS) -- interactive visualization and analysis of

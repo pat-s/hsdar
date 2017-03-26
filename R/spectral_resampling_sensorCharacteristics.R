@@ -51,7 +51,7 @@ list.available.sensors <- function(returnHelp = FALSE)
 #' sensors.
 #' @param response_function If TRUE, the spectral response function is returned
 #' @author Lukas Lehnert
-#' @seealso \code{\link{spectralResampling}}
+#' @seealso [spectralResampling()]
 #' @keywords utilities
 #' @examples
 #' 
@@ -377,13 +377,13 @@ get.sensor.characteristics <- function (
 #' 
 #' Get satellite sensor name by integer value
 #' 
-#' See \code{\link{get.sensor.characteristics}} to get overview on available
+#' See [get.sensor.characteristics()] to get overview on available
 #' satellite sensors.
 #' 
 #' @param sensor Integer value to match against predefined satellite sensors.
 #' @return Name of satellite sensor as character string.
 #' @author Lukas Lehnert
-#' @seealso \code{\link{get.sensor.characteristics}}
+#' @seealso [get.sensor.characteristics()]
 #' @keywords utilities
 #' @examples
 #' 

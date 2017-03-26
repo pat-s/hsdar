@@ -21,20 +21,20 @@
 #' \code{\link{smoothSpeclib}(x, method = "spline", n = round(nbands(x)/10,0))}
 #' 
 #' prior to all calculations. Note that reflectance values returned by the
-#' \code{rededge}-function are original values and not the smoothed
+#' `rededge`-function are original values and not the smoothed
 #' reflectances. This would not be the case, if already smoothed reflectance
-#' values are passed to \code{rededge}-function.
+#' values are passed to `rededge`-function.
 #' 
-#' @param x List of class \code{Speclib}
+#' @param x List of class `Speclib`
 #' @param smooth Logical indicating if spectral data should be smoothed. See
 #' details section.
 #' @param round Logical indicating if resulting wavelength position should be
 #' rounded.
-#' @param ...  Further arguments passed to \code{\link{derivative.speclib}}
+#' @param ...  Further arguments passed to [derivative.speclib()]
 #' @return A data frame containing parameters for each spectrum.
 #' @author Hanna Meyer
-#' @seealso \code{\link{vegindex}}, \code{\link{derivative.speclib}},
-#' \code{\link{smoothSpeclib}}
+#' @seealso [vegindex()], [derivative.speclib()],
+#' [smoothSpeclib()]
 #' @references Bach, H. (1995): Die Bestimmung hydrologischer und
 #' landwirtschaftlicher Oberflaechenparameter aus hyperspektralen
 #' Fernerkundungsdaten.  Muenchner Geographische Abhandlungen Reihe B, Band

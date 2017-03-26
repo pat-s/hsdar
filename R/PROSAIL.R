@@ -23,16 +23,16 @@
 #' zenith angle\tab deg \cr psi\tab Relative azimuth angle\tab deg \cr }
 #' 
 #' Functions for distribution of leaf angles within the canopy may work in two
-#' modes, which is controlled via \code{TypeLidf}: \enumerate{
-#' \item\code{TypeLidf == 1} (default): \code{lidfa} is the average leaf slope
-#' and \code{lidfb} describes bimodality of leaf distribution. The following
+#' modes, which is controlled via `TypeLidf`: \enumerate{
+#' \item`TypeLidf == 1` (default): `lidfa` is the average leaf slope
+#' and `lidfb` describes bimodality of leaf distribution. The following
 #' list gives an overview on typical settings: \tabular{lrr}{ LIDF type\tab
-#' \code{lidfa} \tab \code{lidfb}\cr \tab\tab\cr Planophile \tab 1 \tab 0\cr
+#' `lidfa` \tab `lidfb`\cr \tab\tab\cr Planophile \tab 1 \tab 0\cr
 #' Erectophile \tab -1 \tab 0\cr Plagiophile \tab 0 \tab -1\cr Extremophile\tab
 #' 0 \tab 1\cr Spherical (default) \tab -0.35 \tab -0.15\cr }
 #' 
-#' \item\code{TypeLidf != 1}: \code{lidfa} is the average leaf angle in degree
-#' (0 = planophile / 90 = erectophile); \code{lidfb} is 0 }
+#' \item`TypeLidf != 1`: `lidfa` is the average leaf angle in degree
+#' (0 = planophile / 90 = erectophile); `lidfb` is 0 }
 #' 
 #' @param N Structure parameter
 #' @param Cab Chlorophyll content% (in \eqn{\mu}{u}g/cm\eqn{^2}{2})
@@ -50,20 +50,20 @@
 #' @param tts Solar zenith angle
 #' @param tto Observer zenith angle
 #' @param psi Relative azimuth angle
-#' @param parameterList An optional object of class \code{'data.frame'}.
+#' @param parameterList An optional object of class `'data.frame'`.
 #' Function will iterate over rows of parameterList setting missing entries to
 #' default values. See examples section.
-#' @param rsoil An optional object of class \code{'Speclib'} containing the
+#' @param rsoil An optional object of class `'Speclib'` containing the
 #' background (soil) reflectance. Note that reflectance values must be in range
 #' [0...1].
-#' @return An object of class \code{Speclib}. If parameterList is used, the
-#' parameter are stored in attributes table of \code{Speclib}.
+#' @return An object of class `Speclib`. If parameterList is used, the
+#' parameter are stored in attributes table of `Speclib`.
 #' @note The function is based on the FORTRAN version of the PROSAIL-code
 #' initially developed by Stephane JACQUEMOUD, Jean-Baptiste FERET, Christophe
 #' FRANCOIS and Eben BROADBENT. SAIL component has been developed by Wout
 #' VERHOEF.
 #' @author Lukas Lehnert
-#' @seealso \code{\link{PROSPECT}}, \code{\linkS4class{Speclib}}
+#' @seealso [PROSPECT()], \code{\linkS4class{Speclib}}
 #' @references Jacquemoud, S., Verhoef, W., Baret, F., Bacour, C.,
 #' Zarco-Tejada, P.J., Asner, G.P., Francois, C., and Ustin, S.L. (2009):
 #' PROSPECT + SAIL models: a review of use for vegetation characterization,
