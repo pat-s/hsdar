@@ -200,7 +200,13 @@
 #' Consequently, the NDVI would be written as "(R800-R680)/(R800+R680)".
 #' }
 #' 
-#' @param x Object of class `Speclib` or `HyperSpecRaster`
+#' \subsection{HyperSpecRaster}{If the input object is of class `HyperSpecRaster`, a raster 
+#' file is written to disk if a file name is provided. 
+#' Otherwise an `HyperSpecRaster` object is returned. If the file is written to disk,
+#' the user needs to specify the final number of bands. This information is required 
+#' by `writeRaster`. NAs are handled internally. }
+#' 
+#' @param x Object of class `Speclib` or `HyperSpecRaster`.
 #' @param index Character string. Name or definition of index or vector with
 #' names/definitions of indices to calculate. See Details section for further
 #' information.
@@ -213,21 +219,14 @@
 #' values of nearest neighbour to passed position are returned. See
 #' [=get_reflectance.speclib::get_reflectance()] for further
 #' explanation.
-#' @param filename Filename of the raster file written to disk. Only applies if 
+#' @param filename Filename of the raster file written to disk. Only used if 
 #' an object of class `HyperSpecRaster` is provided
-#' @param bnames (optional) Character vector of band names. Only applies if 
+#' @param bnames (optional) Character vector of band names. Only used if 
 #' an object of class `HyperSpecRaster` is provided
 #' @param ...  Further arguments passed to derivative functions. Only used for
 #' indices requiring derivations.
 #' 
-#' @details If the input object is of class `HyperSpecRaster`, a raster 
-#' file is written to disk if a file name is provided. 
-#' Otherwise an `HyperSpecRaster` object is returned. If the file is written to disk,
-#' the user needs to specify the final number of bands. This information is required 
-#' by `writeRaster`. NAs are handled internally. 
 #' 
-#' @details When using all vegetation indices available, make sure you cover the whole
-#' wavelength range. Otherwise the result will only be NA.
 #' 
 #' @return A vector containing indices values. If index is a vector with 
 #' `length > 1`, a data frame with ncol = length(index) and nrow = number of spectra in
