@@ -44,12 +44,12 @@ vegindex_available <- function() {
 #' @export
 #' 
 return_index <- function(x)
-{
-  if (eval.parent(convertSpatialGrid))
-  {
-    spec <- speclib(x, 1)
-    spec@rastermeta <- gridMeta
-    result <- HyperSpecRaster(spec)
-  }
+{ # not sure if needed at all?
+  # if (eval.parent(convertSpatialGrid))
+  # {
+  #   spec <- speclib(x, 1)
+  #   spec@rastermeta <- gridMeta
+  #   result <- HyperSpecRaster(spec)
+  # }
   return (x)
 }
