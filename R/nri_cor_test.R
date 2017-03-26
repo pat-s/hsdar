@@ -1,3 +1,38 @@
+#' Test for association/correlation between nri values and vector of samples
+#' 
+#' Test for association between paired samples (with one variable being
+#' nri-values), using one of Pearson's product moment correlation coefficient,
+#' Kendall's tau or Spearman's rho.
+#' 
+#' NRI-values may be used as x and/or as y variable. If x and y are NRI-values
+#' the number of samples in both datasets must be equal. For additional
+#' information on correlation tests see details in [cor.test()].
+#' 
+#' @aliases cor.test.nri cor.test,Nri-method
+#' @param x Object of class `Nri` or numerical vector
+#' @param y Object of class `Nri` or numerical vector
+#' @param ...  Further arguments passed to [cor.test()]
+#' @return Object of class \code{\linkS4class{Nri}}
+#' @author Lukas Lehnert
+#' @seealso
+#' 
+#' [=plot.Nri::plot()], [cor.test()],
+#' [glm.nri()], [lm.nri()], [getNRI()]
+#' @examples
+#' 
+#' data(spectral_data)
+#' 
+#' ## Calculate all possible combinations for WorldView-2-8
+#' spec_WV <- spectralResampling(spectral_data, "WorldView2-8",
+#'                               response_function = FALSE)
+#' nri_WV <- nri(spec_WV, recursive = TRUE)
+#' 
+#' cortestnri <- cor.test(nri_WV, attribute(spec_WV)$chlorophyll)
+#' 
+#' cortestnri
+#' 
+#' @export
+
 setMethod("cor.test", signature(x = "Nri"),
           function(x, y, ...)
 {

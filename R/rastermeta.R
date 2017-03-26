@@ -1,3 +1,22 @@
+#' Create list containing rastermeta-information
+#' 
+#' Create valid objects for slot `rastermeta` in
+#' \code{\linkS4class{Speclib}}.
+#' 
+#' 
+#' @param x Optional. Object of one of the following classes: "Raster",
+#' "RasterBrick", "RasterStack", "HyperSpecRaster".
+#' @param dim Optional. Vector with length == 2. The first and second elements
+#' give the number of rows and columns, respectively.
+#' @param ext Optional. Object of class `extent`.
+#' @param crs Optional. Object of class `CRS`.
+#' @return List with following elements (in exactly this order!): \itemize{
+#' \item dim: Vector with length == 2. The first and second elements give the
+#' number of rows and columns, respectively.  \item ext: Object of class
+#' `extent`.  \item crs: Object of class `CRS`.  }
+#' @author Lukas Lehnert
+#' @seealso \code{\linkS4class{Speclib}}, \code{\linkS4class{HyperSpecRaster}}
+#' @export rastermeta
 rastermeta <- function(x, dim, ext, crs)
 {
   if (any(c(missing(dim),

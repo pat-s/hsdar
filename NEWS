@@ -1,0 +1,230 @@
+hsdar 0.5.2.9000
+--------------------------------------------------------------------------------
+
+New functionalities:
+  * `vegindex()` now handles `HyperSpecRaster` as input
+  * new arguments `filename` and `bnames` for `vegindex()` when `HyperSpecRaster` is provided. 
+  * Function predictHyperspec added which is a wrapper for predict but using any kind of classes provided by the hsdar package.  
+
+Bug fixes:
+  * Indexing of Nri objects now works with attributes encompassing a data.frame with one single column
+  * NA values in raster images are removed before data is converted to Speclib. 
+  * Bug from indexing of Specfeat objects removed  
+
+Miscellanoueous:
+  * Converting documentation to roxygen2 v6.0
+  * start using tests (test_that)
+
+
+
+hsdar 0.5.2
+--------------------------------------------------------------------------------
+
+* Added a `NEWS.md` file to track changes to the package.
+
+
+
+hsdar 0.5.1 09 December 2016
+--------------------------------------------------------------------------------
+
+New functionalities:
+   * Functions to convert to and from class "hyperSpec" from the hyperSpec*package added
+Bug fixes:
+   * spectralResampling works with NA values
+   * subset Speclib works if attributes data.frame only has one column
+
+
+
+
+hsdar 0.5.0 09 September 2016
+--------------------------------------------------------------------------------
+
+New functionalities:
+   * subset method for class Nri
+   * Sentinel 2A integrated
+   * Set and replace methods for fwhm*values added
+   * Functions to handle parallel backend added
+   * New 'transformSpeclib' allowing parallel processing
+   * Function 'glm.nri' supports parallel processing
+Bug fixes:
+   * dist.speclib does not crash any more if speclib is not masked
+   * Erroneous calculation of REP_Li corrected. Thanks go to Xavier Bailleau for finding
+     the error.
+   * Plot*method for Nri sets figure window correctly and allows to start a new plot.
+   * IDs of spectra are correctly set after subsetting Speclib.
+   * In function merge: IDs in Speclibs are linked together.
+   * Argument "upperdiag" changed to "uppertriang" in plot method for Nri (for compatibility, 
+     the old argument still works)
+   * Functions for indexing and masking of Speclibs now consider 'bandnames'
+   * Functions for indexing and masking of Speclibs now consider 'fwhm'
+   * Function 'feature_properties' works if initial object does not contain attributes
+   * Tabs in Fortran code replaced by whitespaces
+Vignettes:
+   * Hsdar*intro: Example for manual hull changed.
+
+
+
+
+hsdar 0.4.1 23 February 2016
+--------------------------------------------------------------------------------
+
+New functionalities:
+   * Soil spectrum may be passed to PROSAIL
+   * Function "transform_speclib" renamed as "transformSpeclib"
+   * Class Nri contains usagehistory
+   * Inversion of PROSPECT
+Bug fixes:
+   * Dependency on texi2dvi for vignettes removed 
+   
+
+
+hsdar 0.4.0 12 January 2016
+--------------------------------------------------------------------------------
+
+New functionalities:
+   * Index*method for class Nri
+   * Class Nri may contain attributes data.frame
+   * Set and replace methods for attributes in Nri Objects added
+   * New internal class '.CaretHyperspectral' added. 
+   * New functions for caret support added:
+       * setResponse
+       * setPredictor
+       * showCaretParameters
+   * New wrapper methods for caret functions added:
+       * preProcess
+       * gafs
+       * sfb
+       * safs
+       * rfe
+       * createDataPartition
+       * createResample
+       * createFolds
+       * createMultiFolds
+       * featurePlot
+       * train
+       * train.formula
+   * More efficient way of reading subset of spectra implemented if spectra are 
+     stored as RasterBrick.
+   * print, show and [*methods for class .Spectra added
+   * Download function for spectra from USGS added
+  * Example datasets changed
+  
+Bug fixes:
+   * Bandnames are correctly used
+   * Integration of indexing into history of Speclibs
+   * Actualize usagehistory after masking
+
+
+
+hsdar 0.3.1 6 October 2015
+--------------------------------------------------------------------------------
+
+New functionalities:
+   * as.data.frame method for class Nri
+Bug fixes:
+   * Spectral.resampling searches for names "lb" and "ub" in data.frames of user 
+     defined sensors
+   * Bounds error in apply_response.f90 fixed
+
+
+hsdar 0.3.0 27 July 2015
+--------------------------------------------------------------------------------
+
+New functionalities:
+   * '.Spectra' class to handle spectra added
+   * '.Spectra' now may contain spectral data eiter as a matrix or as a RasterBrick
+     object.
+   * smoothSpeclib accepts now all available filter functions from the signal*package
+   * unmix accepts NA values and scales spectra to [0, 1] on demand
+   * Blockwise calculation if spectra are read from RasterBrick*object in following 
+     functions:
+       * sam
+       * rededge
+       * soilindex
+       * vegindex
+       * mask
+       * spectral.resampling
+       * unmix
+       * smoothSpeclib
+       * transform_speclib
+       * derivative.speclib
+   * extract and writeRaster methods added for spectra from RasterBrick object.
+   
+Bug fixes:
+   * plot.Speclib accepts xaxt and yaxt settings
+   * get.response correctly accepts center and fwhm values
+   * transform_speclib get correct upper hull if method = "ch"
+   * Indexing of speclibs works if only one band or only one spectrum is remaining
+   * transform_speclib returns interpolated spectra if input speclib is masked
+
+
+
+
+hsdar 0.2.1 19 June 2015
+--------------------------------------------------------------------------------
+
+Bug fixes:
+   * Memmory access error in unmix fixed
+
+
+
+hsdar 0.2 18 June 2015
+--------------------------------------------------------------------------------
+
+New functionalities:
+   * Tutorial added
+   * nri accepts vector of bands to calculate nri indices
+Bug fixes:
+   * plot.Nri accepts NAs in coefficients to be plotted
+
+
+
+
+hsdar 0.1.5 22 May 2015
+--------------------------------------------------------------------------------
+
+Bug fixes:
+   * Memory access error in fortran subroutine smgm fixed
+   
+
+
+
+hsdar 0.1.4 21 May 2015
+--------------------------------------------------------------------------------
+
+New functionalities:
+   * new function cubePlot to produce a 3D plot of a HyperSpecRaster
+   * brick method for Speclib
+   * wavelength method for HyperSpecRaster
+   
+Bug fixes:
+   * HyperSpecRaster method for Speclib returns HyperSpecRaster object 
+     (instead of RasterBrick)
+   * row.names of spectra are correctly used as ID in speclib 
+     (for createspeclib*function)
+   * r.squared value is returned by lm.nri if NRI*values are predictors
+   * constraint in plot.Nri selects correct layer in respective 
+     coefficient
+
+
+
+hsdar 0.1.3 30 April 2015
+--------------------------------------------------------------------------------
+
+New functionalities (suggested and supported by Andr? Gro?e*Stoltenberg):
+  * Function for soil indices implemented (soilindex)
+  * In soilindex and vegindex, user defined indices can be passed
+  * Gaussian model on soil spectra implemented (Special thanks to Michael Whiting 
+    for providing his IDL code and helping on the development of the FORTRAN implemention)
+Bug fixes:
+  * transform_speclib: The bugs only affected the continuum hull
+  * vegindex: Some indices were missing or calculation was faulty
+
+
+
+
+hsdar 0.1.2 08 April 2015
+--------------------------------------------------------------------------------
+
+* Starting this log
+

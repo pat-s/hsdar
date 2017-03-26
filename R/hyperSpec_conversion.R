@@ -1,3 +1,15 @@
+#' hyperSpec
+#' 
+#' Conversion from `Speclib`- to `hyperSpec`-object
+#' 
+#' 
+#' @param object Object of class `Speclib`.
+#' @return Object of class `hyperSpec`.
+#' @note Package hyperSpec must be installed.
+#' @author Lukas Lehnert
+#' @seealso \code{\linkS4class{Speclib}}
+#' @keywords utilities
+#' @export as.hyperSpec
 as.hyperSpec <- function(object)
 {
   if (!requireNamespace("hyperSpec", quietly = TRUE))

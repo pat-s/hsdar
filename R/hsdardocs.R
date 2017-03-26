@@ -1,3 +1,23 @@
+#' Load additional documents
+#' 
+#' Access help documents and references for different methods.
+#' 
+#' 
+#' @param doc Name of document to load. Currently, only `"References.pdf"`
+#' and `"Copyright"` are available
+#' @author Lukas Lehnert
+#' @keywords utilities documentation
+#' @examples
+#' 
+#' \dontrun{
+#' ## Open references of hyperspectral vegetation indices (PDF-file)
+#' hsdardocs("References.pdf")
+#' 
+#' ## See copyrights of routines and data used in hsdar-package (ascii-file)
+#' hsdardocs("Copyright")
+#' }
+#' 
+#' @export hsdardocs
 hsdardocs <- function(doc)
 {
 if (doc == "References.pdf")

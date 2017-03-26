@@ -2,6 +2,62 @@
 
 # dist <- function(x,...) UseMethod("dist")
 
+
+
+#' Distance between spectra
+#' 
+#' Calculation of distance matrices by using one of the various distance
+#' measure to compute the distances between the spectra in `Speclib`.
+#' Spectral Angle Mapper (SAM) is calculated with `sam` giving reference
+#' spectra or with `sam_distance` taking all combinations between spectra
+#' in single Speclib into account.
+#' 
+#' Available distance measures are "spectral angle mapper" (`sam`) and all
+#' distance measures available in [dist()]. Spectral angle mapper is
+#' calculated with the following formula:
+#' \deqn{sam=\cos^{-1}\left(\frac{\sum_{i=1}^{nb}{t_i
+#' r_i}}{\sqrt{\sum_{i=1}^{nb}{t_i^2}}\sqrt{\sum_{i=1}^{nb}{r_i^2}}}\right)}{
+#' \cos^{-1}(\sum_{i=1}^{nb}{t_i r_i} \sum_{i=1}^{nb}{t_i^2}^{-0.5}
+#' \sum_{i=1}^{nb}{r_i^2}^{-0.5})} \eqn{nb} is the number of bands in Speclib.
+#' \eqn{t_i} and \eqn{r_i} are the reflectances of target and reference
+#' spectrum in band \eqn{i}, respectively.
+#' 
+#' @aliases dist.speclib sam sam_distance
+#' @param x Object of class `Speclib`.
+#' @param method The distance measure to be used. This must be one of "sam",
+#' "euclidean", "maximum", "manhattan", "canberra", "binary" or "minkowski".
+#' @param ref Object of class `Speclib` containing reference spectra.
+#' @param ...  Further arguments, passed to other methods.
+#' @return The `dist-method` for Speclibs returns an object of class
+#' `"dist"`. See [dist()] for further information on class
+#' `"dist"`. Both other functions return an object of class matrix.
+#' @author Lukas Lehnert
+#' @seealso [dist()], \code{\linkS4class{Speclib}}
+#' @references Kruse, F. A.; Lefkoff, A. B.; Boardman, J. W.; Heidebrecht, K.
+#' B.; Shapiro, A. T.; Barloon, P. J. & Goetz, A. F. H. (1993). The spectral
+#' image processing system (SIPS) -- interactive visualization and analysis of
+#' imaging spectrometer data. Remote Sensing of Environment, 44, 145-163.
+#' @examples
+#' 
+#' data(spectral_data)
+#' 
+#' ## Mask channel crossing part (arround 1050 nm) and strong 
+#' ## water absorption part (above 1350 nm)
+#' mask(spectral_data) <- c(1045, 1055, 1350, 1706)
+#' 
+#' ## Calculate distance between all spectra from spring 
+#' ## using spectral angle mapper 
+#' dist.speclib(subset(spectral_data, season == "spring"))
+#' 
+#' 
+#' ## Calculate spectral angle mapper between reference spectrum
+#' ## and spectral_data
+#' ## Use first spectrum from summer as reference
+#' distance <- sam(subset(spectral_data, season == "spring"), 
+#'                 subset(spectral_data, season == "summer")[1,])
+#' 
+#' 
+#' @export dist.speclib
 dist.speclib <- function(
                          x,
                          method="sam",

@@ -1,3 +1,36 @@
+#' t-test for nri values
+#' 
+#' Performs t-tests for nri values.
+#' 
+#' 
+#' @aliases t.test.nri t.test,Nri-method
+#' @param x Object of class `'nri'`.
+#' @param ...  Arguments to be passed to [t.test()].
+#' @return An object of class "data.frame"
+#' @author Lukas Lehnert & Hanna Meyer
+#' @seealso [t.test()], [cor.test,Nri-method()]
+#' @examples
+#' 
+#' %   \dontrun{
+#' data(spectral_data)
+#' 
+#' 
+#' ## Calculate nri-values for WorldView-2-8
+#' spec_WV <- spectralResampling(spectral_data, "WorldView2-8",
+#'                               response_function = FALSE)
+#' nri_WV <- nri(spec_WV, recursive = TRUE)
+#' 
+#' ## Perform t.tests between nri-values of both sites 
+#' season <- spec_WV$attributes$season
+#' ttestres <- t.test(x = nri_WV, y = season, alternative = "two.sided")
+#' ttestres
+#' 
+#' ## Plot p.values of t.tests
+#' plot(ttestres)
+#' %   }
+#' 
+#' @export
+
 setMethod("t.test", signature(x = "Nri"),
           function(x, ...)
 {

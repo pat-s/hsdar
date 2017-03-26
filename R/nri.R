@@ -1,3 +1,54 @@
+#' Normalised ratio index
+#' 
+#' Calculate normalised ratio index for a single given band combination or for
+#' all possible band combinations
+#' 
+#' Function performs the following calculation:
+#' \deqn{nri_{B1,~B2}=\frac{R_{B1}-R_{B2}}{R_{B1}-R_{B2}};} with \eqn{R} being
+#' reflectance values at wavelength \eqn{B1} and \eqn{B2}, respectively.
+#' 
+#' If recursive = TRUE, all possible band combinations are calculated.
+#' 
+#' @param x List of class `Speclib` or of class `Nri` for print and
+#' as.matrix methods
+#' @param b1 Band 1 given as index or wavelength
+#' @param b2 Band 2 given as index or wavelength
+#' @param recursive If TRUE indices for all possible band combinations are
+#' calculated
+#' @param bywavelength Flag to determine if b1 and b2 are indices (bywavelength
+#' = FALSE) or wavelength (bywavelength = TRUE)
+#' @param ...  Further arguments passed to generic functions. Currently
+#' ignored.
+#' @return If recursive = FALSE, a data frame with index values is returned.
+#' Otherwise result is an object of class `nri`. See [glm.nri()]
+#' for applying a generalised linear model to an array of normalised ratio
+#' indices.
+#' @author Lukas Lehnert
+#' @seealso [glm.nri()], [glm()],
+#' \code{\linkS4class{Speclib}}, \code{\linkS4class{Nri}}
+#' @references Sims, D.A.; Gamon, J.A. (2002). Relationships between leaf
+#' pigment content and spectral reflectance across a wide range of species,
+#' leaf structures and developmental stages. Remote Sensing of Environment:
+#' 81/2, 337 - 354.
+#' 
+#' Thenkabail, P.S.; Smith, R.B.; Pauw, E.D. (2000). Hyperspectral vegetation
+#' indices and their relationships with agricultural crop characteristics.
+#' Remote Sensing of Environment: 71/2, 158 - 182.
+#' @keywords multivariate
+#' @examples
+#' 
+#' data(spectral_data)
+#' 
+#' ## Calculate NDVI
+#' ndvi <- nri(spectral_data, b1=800, b2=680)
+#' 
+#' ## Calculate all possible combinations for WorldView-2-8
+#' spec_WV <- spectralResampling(spectral_data, "WorldView2-8",
+#'                               response_function = FALSE)
+#' nri_WV <- nri(spec_WV, recursive = TRUE)
+#' nri_WV
+#' 
+#' @export nri
 nri <- function(
                 x,
                 b1,

@@ -7,6 +7,47 @@
   return(x@transformation)
 }
 
+
+
+#' Definition of absorption features
+#' 
+#' Function sets the spectral range of absorption features.
+#' 
+#' Absorption features are defined as the area between local maxima in the
+#' reflectance spectra.  This function adds the information of the feature
+#' limits to the `Speclib`.  Thus, it is a pre-processing step to isolate
+#' features.
+#' 
+#' @param x Object of class `Speclib` containing the band depth or ratio
+#' transformed reflectance spectra.
+#' @param tol The tolerance of the band depth which defines a wavelength as a
+#' start or end point of a feature.  Usually a band depth of 0 or a ratio of 1
+#' indicates feature limits, however, better results are achieved if slightly
+#' deviating values are tolerated.
+#' @param FWL Optional. If passed, result is directly converted into
+#' \code{\linkS4class{Specfeat}}. A vector containing one wavelength per
+#' feature to be isolated, e.g. the major absorption features. Features which
+#' include these specified wavelengths will be isolated.
+#' @return The updated \code{\linkS4class{Speclib}} containing additional
+#' information about the feature limits. If `FWL` is not `NULL`,
+#' result will be of class \code{\linkS4class{Specfeat}}.
+#' @author Hanna Meyer and Lukas Lehnert
+#' @seealso [transformSpeclib()], [specfeat()],
+#' \code{\linkS4class{Specfeat}}
+#' @examples
+#' 
+#' % \dontrun{
+#' data(spectral_data)
+#' 
+#' ##Example to define feature limits
+#' bd <- transformSpeclib(subset(spectral_data, season == "summer"), 
+#'                        method = "sh", out = "bd")
+#' 
+#' ## Define features
+#' features <- define.features(bd)
+#' % }
+#' 
+#' @export define.features
 define.features <- function(
                             x,    
                             tol = 1.0e-7,
@@ -59,6 +100,61 @@ define.features <- function(
 }
 
 
+
+
+#' Function to isolate spectral features
+#' 
+#' Function isolates specified absorption features previously identified by
+#' [define.features()].
+#' 
+#' 
+#' @aliases specfeat plot,Specfeat-method
+#' @param x Object of class `Speclib` containing the band depth or ratio
+#' transformed reflectance spectra with additional information on feature
+#' limits calculated by [define.features()]. For plot this must be
+#' object of class `specfeat`.
+#' @param FWL A vector containing one wavelength per feature to be isolated,
+#' e.g. the major absorption features. Features which include these specified
+#' wavelengths will be isolated.
+#' @param fnumber Index of feature(s) to be plotted.
+#' @param stylebysubset Name of variable to be used as grouping factor. May be
+#' selected from attributes table, groups or subgroups and must be convertible
+#' to `factors`.
+#' @param changecol Flag, if line colour should be varied among groups
+#' @param changetype Flag, if line styles should be varied among groups
+#' @param autolegend Flag if, legend is printed automatically.
+#' @param new Create new plot or add data to existing one.
+#' @param ...  Further arguments passed to plot function.
+#' @return An object of class `Specfeat` containing the isolated features.
+#' @author Hanna Meyer and Lukas Lehnert
+#' @seealso [define.features()], [cut_specfeat()],
+#' \linkS4class{Specfeat}
+#' @keywords classes aplot
+#' @examples
+#' 
+#' % \dontrun{
+#' data(spectral_data)
+#' 
+#' ## Transform speclib
+#' bd <- transformSpeclib(spectral_data, method = "sh", out = "bd")
+#' 
+#' ## Define features automatically
+#' features <- define.features(bd)
+#' 
+#' ##Example to isolate the features around 450nm, 700nm, 1200nm and 1500nm.
+#' featureSelection <- specfeat(features, c(450,700,1200,1500))
+#' 
+#' ## Plot features
+#' plot(featureSelection, 1:4)
+#' 
+#' ## Advanced plotting example
+#' plot(featureSelection, 1:4, stylebysubset = "season")
+#' 
+#' plot(featureSelection, 1:4, stylebysubset = "season", changecol = FALSE, 
+#'      changetype = TRUE)
+#' % }
+#' 
+#' @export specfeat
 specfeat <- function(
                      x, 
                      FWL
@@ -111,6 +207,48 @@ specfeat <- function(
   return(feature)
 }
 
+
+
+#' Cut absorption features
+#' 
+#' Function cuts absorption features to a user-specified range.
+#' 
+#' 
+#' @param x An object of class "Specfeat" containing isolated features
+#' determined by [specfeat()].
+#' @param fnumber A vector of the positions of the features in x to be cut.
+#' @param limits A vector containing the start and end wavelength for each
+#' fnumber.  The corresponding feature will be cut to this specified range.
+#' @param ...  Further arguments passed to generic functions. Currently
+#' ignored.
+#' @return An object of class \code{\linkS4class{Specfeat}} containing the cut
+#' features.
+#' @author Hanna Meyer and Lukas Lehnert
+#' @seealso [define.features()], [specfeat()],
+#' \code{\linkS4class{Specfeat}}
+#' @examples
+#' 
+#' data(spectral_data)
+#' 
+#' ##Example to cut the features around 450nm and 700nm to a specific range
+#' ## Transform speclib
+#' bd <- transformSpeclib(subset(spectral_data, season == "summer"),
+#'                        method = "sh", out = "bd")
+#' 
+#' ## Define features
+#' features <- define.features(bd)
+#' 
+#' ## Convert speclib to specfeat giving center wavelength of features
+#' featureSelection <- specfeat(features, c(450,700,1200,1500))
+#' 
+#' ## Cut 1st and 2nd feature to [310 nm, 560 nm] and [589 nm, 800 nm]
+#' featuresCut <- cut_specfeat(x = featureSelection, fnumber = c(1,2), 
+#'                             limits = c(c(310, 560), c(589, 800)))
+#' 
+#' ## Plot result (1st and 2nd feature)
+#' plot(featuresCut, fnumber = 1:2)
+#' 
+#' @export cut_specfeat
 cut_specfeat <- function(
                          x, ..., 
                          fnumber,
@@ -229,6 +367,36 @@ setMethod("plot", signature(x = "Specfeat"),
       {
         stop(paste(stylebysubset,"not found in attributes of x"))
       } else {
+
+
+#' Handling attributes of spectra
+#' 
+#' Returning and setting attributes of spectra in Speclib or Nri.%
+#' `setattributes` is a more comfortable and save function to set
+#' attributes of speclib using string matching.
+#' 
+#' 
+#' @aliases attribute attribute.speclib attribute<- attribute,Speclib-method
+#' attribute<-,Speclib,data.frame-method attribute<-,Speclib,matrix-method
+#' attribute,Nri-method attribute<-,Nri,data.frame-method
+#' attribute<-,Nri,matrix-method
+#' @param object Object of class `Speclib` or `Nri`.
+#' @param value Data frame with `nrow(value) == nspectra(object)`, or
+#' NULL.
+#' @return For `attribute<-`, the updated object. `attribute` returns
+#' a data frame with attribute data.% The return value of `setattributes`
+#' is an object of class speclib.
+#' @author Lukas Lehnert
+#' @seealso \code{\linkS4class{Speclib}}, \code{\linkS4class{Nri}}
+#' @keywords utilities
+#' @examples
+#' 
+#' data(spectral_data)
+#' 
+#' ## Returning attributes
+#' attribute(spectral_data)
+#' 
+#' @export attribute
           attribute <- x@attributes[,i]
       }
       if (is.vector(attribute) | is.factor(attribute))
@@ -361,6 +529,61 @@ setMethod("plot", signature(x = "Specfeat"),
 }
 ) 
 
+
+
+#' Band depth ratio indices
+#' 
+#' Calculate band depth ratio indices for objects of class `Specfeat`.
+#' 
+#' Method `"bdr"` calculates the normalised band depth ratio as
+#' \deqn{bdr=\frac{BD}{Dc},} with \eqn{BD} is the band depth calculated by
+#' [transformSpeclib()] and Dc is the maximum band depth called band
+#' centre.  Method `"ndbi"` calculates the the normalised band depth index
+#' as \deqn{ndbi= \frac{BD-Dc}{BD+Dc}.} Method `"bna"` calculates the band
+#' depth normalised to band area as \deqn{bna=\frac{BD}{Da},} where \eqn{Da} is
+#' the area of the absorption feature (see [feature_properties()]).
+#' For further information see Mutanga and Skidmore (2004).
+#' 
+#' @param x Object of class `Specfeat`.
+#' @param fnumber Integer. Index of feature to modify.
+#' @param index Method to be applied. Currently, `"bdr"`, `"ndbi"`
+#' and `"bna"` are available.
+#' @return Object of class `specfeat` containing the updated version of x.
+#' @author Lukas Lehnert and Hanna Meyer
+#' @seealso [transformSpeclib()], [define.features()],
+#' [specfeat()]
+#' @references Mutanga, O. and Skidmore, A. (2004): Hyperspectral band depth
+#' analysis for a better estimation of grass biomass (\var{Cenchrus ciliaris})
+#' measured under controlled laboratory conditions. International Journal of
+#' applied Earth Observation and Geoinformation, 5, 87-96
+#' @keywords utilities
+#' @examples
+#' 
+#' % \dontrun{
+#' data(spectral_data)
+#' 
+#' ## Transform speclib
+#' bd <- transformSpeclib(subset(spectral_data, season == "summer"),
+#'                        method = "sh", out = "bd")
+#' 
+#' ## Define features automatically
+#' features <- define.features(bd)
+#' 
+#' ## Isolate the features around 450nm, 700nm, 1200nm and 1500nm and 
+#' ## convert to specfeat.
+#' featureSelection <- specfeat(features, c(450,700,1200,1500))
+#' 
+#' ## Plot features
+#' plot(featureSelection,1:4)
+#' 
+#' ## Calculate normalized band depth index for first feature
+#' featureSelection_bdri <- bdri(featureSelection, 1, index = "ndbi")
+#' 
+#' ## Plot result
+#' plot(featureSelection_bdri)
+#' % }
+#' 
+#' @export bdri
 bdri <- function(
                  x,
                  fnumber,

@@ -14,13 +14,13 @@ setClass(".Spectra",
            fromRaster = "logical",
            spectra_ma = "matrix",
            spectra_ra = 'RasterBrick'#,
-#            valid_spec = '.ValidDataFromRaster'
+           #            valid_spec = '.ValidDataFromRaster'
          ),
          prototype(
            fromRaster = FALSE,
            spectra_ma = matrix(),
            spectra_ra = new("RasterBrick")#,
-#            valid_spec = new(".ValidDataFromRaster")
+           #            valid_spec = new(".ValidDataFromRaster")
          )
 )
 
@@ -86,8 +86,8 @@ setClass('HyperSpecRaster',
            wavelength = numeric(),
            fwhm       = numeric(),
            attributes = data.frame()
-                   )
-        )
+         )
+)
 
 setClass("DistMat3D",
          representation(
@@ -142,7 +142,7 @@ setClass('Clman',
          prototype (
            cp         = matrix(),
            hull       = matrix()
-                   ),
+         ),
          validity = function(object)
          {
            if (ncol(object@cp) != length(object@wavelength))
@@ -153,7 +153,7 @@ setClass('Clman',
              stop("Number of samples in spectra and continuum points differ") 
            return(TRUE)
          }
-        )
+)
 
 setClass('Specfeat',
          contains = 'Speclib',
@@ -164,94 +164,94 @@ setClass('Specfeat',
          prototype (
            features      = list(),
            featureLimits = list()
-                   )#,
-#          validity = function(object)
-#          {
-#            if (ncol(object@cp) != length(object@wavelength))
-#              stop("Number of bands in continuum points and length of wavelength differ")
-#            if (ncol(object@spectra) != length(object@wavelength))
-#              stop("Number of bands in spectra and length of wavelength differ")
-#            if (nrow(object@spectra) != nrow(object@cp))
-#              stop("Number of samples in spectra and continuum points differ") 
-#            return(TRUE)
-#          }
-        )
-        
+         )#,
+         #          validity = function(object)
+         #          {
+         #            if (ncol(object@cp) != length(object@wavelength))
+         #              stop("Number of bands in continuum points and length of wavelength differ")
+         #            if (ncol(object@spectra) != length(object@wavelength))
+         #              stop("Number of bands in spectra and length of wavelength differ")
+         #            if (nrow(object@spectra) != nrow(object@cp))
+         #              stop("Number of samples in spectra and continuum points differ") 
+         #            return(TRUE)
+         #          }
+)
 
-         
+
+
 setClassUnion(".CaretHyperspectral", c("Speclib", "Nri", "Specfeat"))
 
 if (!isGeneric("speclib")) {
   setGeneric("speclib", function(spectra, wavelength, ...)
-  standardGeneric("speclib"))
+    standardGeneric("speclib"))
 }
 
 if (!isGeneric("spectra")) {
   setGeneric("spectra", function(object, ...)
-  standardGeneric("spectra"))
+    standardGeneric("spectra"))
 }
 if (!isGeneric("spectra<-")) {
   setGeneric("spectra<-",function(object, value)
-  standardGeneric("spectra<-"))
+    standardGeneric("spectra<-"))
 }
 
 if (!isGeneric("mask")) {
   setGeneric("mask", function(object, ...)
-  standardGeneric("mask"))
+    standardGeneric("mask"))
 }
 if (!isGeneric("mask<-")) {
   setGeneric("mask<-",function(object, value)
-  standardGeneric("mask<-"))
+    standardGeneric("mask<-"))
 }
 
 if (!isGeneric("attribute")) {
   setGeneric("attribute", function(object)
-  standardGeneric("attribute"))
+    standardGeneric("attribute"))
 }
 if (!isGeneric("attribute<-")) {
   setGeneric("attribute<-", function(object, value)
-  standardGeneric("attribute<-"))
+    standardGeneric("attribute<-"))
 }
 
 if (!isGeneric("wavelength")) {
   setGeneric("wavelength", function(object, ...)
-  standardGeneric("wavelength"))
+    standardGeneric("wavelength"))
 }
 if (!isGeneric("wavelength<-")) {
   setGeneric("wavelength<-",function(object, value)
-  standardGeneric("wavelength<-"))
+    standardGeneric("wavelength<-"))
 }
 
 if (!isGeneric("fwhm")) {
   setGeneric("fwhm", function(object, ...)
-  standardGeneric("fwhm"))
+    standardGeneric("fwhm"))
 }
 if (!isGeneric("fwhm<-")) {
   setGeneric("fwhm<-",function(object, value)
-  standardGeneric("fwhm<-"))
+    standardGeneric("fwhm<-"))
 }
 
 
 if (!isGeneric("distMat3D")) {
   setGeneric("distMat3D",function(x, ...)
-  standardGeneric("distMat3D"))
+    standardGeneric("distMat3D"))
 }
 
 if (!isGeneric('HyperSpecRaster')) 
 {
   setGeneric('HyperSpecRaster', function(x, wavelength, ...)
-  standardGeneric('HyperSpecRaster')) 
+    standardGeneric('HyperSpecRaster')) 
 }
 
 
 if (!isGeneric("ncol")) {
   setGeneric("ncol", function(object, ...)
-  standardGeneric("ncol"))
+    standardGeneric("ncol"))
 }
 
 if (!isGeneric("nrow")) {
   setGeneric("nrow", function(object, ...)
-  standardGeneric("nrow"))
+    standardGeneric("nrow"))
 }
 
 if (!isGeneric("as.data.frame")) {

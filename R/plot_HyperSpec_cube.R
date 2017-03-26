@@ -52,6 +52,39 @@
   return(fi)
 }
 
+
+
+#' cubePlot
+#' 
+#' Plotting 3D cube of hyperspectral data using \pkg{rgl}-package
+#' 
+#' 
+#' @param x Object of class `HyperSpecRaster`.
+#' @param r Integer. Index of band used as red channel. If omitted, the band
+#' closest to 680 nm is selected.
+#' @param g Integer. Index of band used as green channel. If omitted, the band
+#' closest to 540 nm is selected.
+#' @param b Integer. Index of band used as blue channel. If omitted, the band
+#' closest to 470 nm is selected.
+#' @param ncol Integer giving the column(s) in `x` which is/are used to
+#' plot the spectral dimension.
+#' @param nrow Integer giving the row(s) in `x` which is/are used to plot
+#' the spectral dimension.
+#' @param sidecol ColorRamp used to illustrate spectral dimension.
+#' @param ...  Further arguments (currently ignored)
+#' @author Lukas Lehnert
+#' @seealso \code{\linkS4class{HyperSpecRaster}}
+#' @keywords utilities
+#' @examples
+#' 
+#' \dontrun{
+#' data(spectral_data)
+#' ras <- HyperSpecRaster(spectral_data, nrow = 9, ncol = 9)
+#' 
+#' cubePlot(ras)
+#' }
+#' 
+#' @export cubePlot
 cubePlot <- function(x, r, g, b, ncol = 1, nrow = 1, sidecol = colorRamp(palette(heat.colors(100))), ...)
 {
   if (!requireNamespace("rgl", quietly = TRUE))
