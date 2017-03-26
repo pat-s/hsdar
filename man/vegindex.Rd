@@ -8,7 +8,7 @@ vegindex(x, index, returnHCR = "auto", L = 0.5, weighted = TRUE,
   bnames = NULL, filename = "", method = NULL, ...)
 }
 \arguments{
-\item{x}{Object of class \code{Speclib} or \code{HyperSpecRaster}}
+\item{x}{Object of class \code{Speclib} or \code{HyperSpecRaster}.}
 
 \item{index}{Character string. Name or definition of index or vector with
 names/definitions of indices to calculate. See Details section for further
@@ -26,10 +26,10 @@ values of nearest neighbour to passed position are returned. See
 \code{\link[=get_reflectance.speclib:get_reflectance]{=get_reflectance.speclib::get_reflectance()}} for further
 explanation.}
 
-\item{bnames}{(optional) Character vector of band names. Only applies if
+\item{bnames}{(optional) Character vector of band names. Only used if
 an object of class \code{HyperSpecRaster} is provided}
 
-\item{filename}{Filename of the raster file written to disk. Only applies if
+\item{filename}{Filename of the raster file written to disk. Only used if
 an object of class \code{HyperSpecRaster} is provided}
 
 \item{...}{Further arguments passed to derivative functions. Only used for
@@ -227,7 +227,8 @@ Vogelmann4 \tab \eqn{(R_{734}-R_{747})/(R_{715}+R_{720})}                       
 
 * For references please type: \code{hsdardocs("References.pdf")}. \cr
 ** For GDVI n must be defined appending an underscore and the intended exponent to
-the index name. E.g., for n = 2, the correct index name would be "GDVI_2".
+the index name.
+E.g., for n = 2, the correct index name would be "GDVI_2".
 Note that GDVI-indices with n = 2, 3, 4 will be derived if all available
 indices are calculated.
 }
@@ -243,14 +244,11 @@ entire definition of the index must be passed as one character string.
 Consequently, the NDVI would be written as "(R800-R680)/(R800+R680)".
 }
 
-If the input object is of class \code{HyperSpecRaster}, a raster
+\subsection{HyperSpecRaster}{If the input object is of class \code{HyperSpecRaster}, a raster
 file is written to disk if a file name is provided.
 Otherwise an \code{HyperSpecRaster} object is returned. If the file is written to disk,
 the user needs to specify the final number of bands. This information is required
-by \code{writeRaster}. NAs are handled internally.
-
-When using all vegetation indices available, make sure you cover the whole
-wavelength range. Otherwise the result will only be NA.
+by \code{writeRaster}. NAs are handled internally. }
 }
 \examples{
 
