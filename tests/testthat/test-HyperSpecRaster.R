@@ -1,3 +1,4 @@
+context("vegindex.R")
 
 pacman::p_load(hsdar, raster, here, rasterFunctions, testthat)
 
@@ -5,10 +6,10 @@ testthat::test_that("vegindex works with object of class HyperSpecRaster", {
   
   hyperspecs <- readRDS(here("inst/hyperspecraster.rda"))
   
-  out <- vegindex(hyperspecs, "NDVI", method = "finApprox", nl = 1,
+  out <- vegindex(hyperspecs, c("NDVI", "Boochs"), method = "finApprox", nl = 2,
                   filename = here("inst/test.tif"))
   
-  expect_s4_class(out, "RasterLayer")
+  expect_s4_class(out, "RasterBrick")
   expect_type(out@data@max, "double")
   
 })
@@ -19,7 +20,16 @@ testthat::test_that("vegindex works with object of class HyperSpecRaster when no
   
   out <- vegindex(hyperspecs, "NDVI", method = "finApprox")
   
-  expect_s4_class(out, "RasterLayer")
+  expect_s4_class(out, "RasterBrick")
   expect_type(out@data@max, "double")
+  
+})
+
+testthat::test_that("vegindex works with object of class Speclib", {
+  
+  data("spectral_data")
+  
+  out <- vegindex(spectral_data, c("NDVI", "Boochs"), method = "finApprox")
+  
   
 })
