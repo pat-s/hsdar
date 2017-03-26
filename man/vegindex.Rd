@@ -27,18 +27,21 @@ values of nearest neighbour to passed position are returned. See
 explanation.}
 
 \item{bnames}{(optional) Character vector of band names. Only used if
-an object of class \code{HyperSpecRaster} is provided}
+an object of class \code{HyperSpecRaster} is provided.}
 
-\item{filename}{Filename of the raster file written to disk. Only used if
-an object of class \code{HyperSpecRaster} is provided}
+\item{filename}{(optional) Filename of the raster file written to disk. Only used if
+an object of class \code{HyperSpecRaster} is provided.}
+
+\item{method}{Character string giving the method to be used in \code{derivate_speclib}.
+Valid options are "finApprox" or "sgolay". See details for more.}
 
 \item{...}{Further arguments passed to derivative functions. Only used for
 indices requiring derivations.}
 }
 \value{
 A vector containing indices values. If index is a vector with
-\code{length > 1}, a data frame with ncol = length(index) and nrow = number of spectra in
-x is returned.
+\code{length > 1}, a data frame with \code{ncol = length(index)} and
+\code{nrow = number of spectra in x} is returned.
 
 If function is called without any arguments, return value will be a vector
 containing all available indices in alphabetical order.
@@ -244,11 +247,15 @@ entire definition of the index must be passed as one character string.
 Consequently, the NDVI would be written as "(R800-R680)/(R800+R680)".
 }
 
-\subsection{HyperSpecRaster}{If the input object is of class \code{HyperSpecRaster}, a raster
+\subsection{HyperSpecRaster objects}{If the input object is of class \code{HyperSpecRaster}, a raster
 file is written to disk if a file name is provided.
 Otherwise an \code{HyperSpecRaster} object is returned. If the file is written to disk,
 the user needs to specify the final number of bands. This information is required
-by \code{writeRaster}. NAs are handled internally. }
+by \code{writeRaster}. NAs are handled internally.
+
+If no method is set for an input of class \code{HyperSpecraster}, \code{method = "finApprox"}
+will be used. Note that \code{method = sgolay} only works if there are no NAs in
+the hyperspectral image.}
 }
 \examples{
 
