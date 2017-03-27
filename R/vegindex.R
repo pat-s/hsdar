@@ -328,8 +328,14 @@ vegindex <- function(
         # account for multiple names of "NBI" index
         if (!is.null(bnames) && any(grepl("NBI", paste0(as.list(match.call()))))) {
           # get index of "NBI" index in argument "index"
+          
+          if (length(bnames) == 1) {
+            paste0(as.list(match.call())$bnames) %>% 
+              match("NBI", .) -> ind
+          } else {
           paste0(as.list(match.call())$bnames)[-1] %>% 
             match("NBI", .) -> ind
+          }
           
           # merge all vectors
           bnames[-ind] %>% append(sapply(seq_along(1:(length(x@wavelength) - 1)), function(i) paste0("NBI_b", i, "_", "b", i + 1)),
