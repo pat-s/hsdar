@@ -279,14 +279,12 @@ vegindex <- function(
   method = NULL, 
   ...
 )
-  #### ToDo: 
-  # - hand over "nl" argument automatically from length(index)
-  # - when not writing to disk, return rasterlayer/stack instead of HyperSpecRaster
 {  
   # to avoid possible errors introduced by NAs in hyperspectral images
   if (is.null(method) && class(x) == "HyperSpecRaster") {
     method <- "finApprox"
   }
+  bnames_bak <- bnames
   
   ### HyperSpecRaster approach  Sat Mar 25 09:20:18 2017 ------------------------------
   # HyperSpecRaster is converted in speclib in `hsdar::getValuesBlock`. 
@@ -310,23 +308,36 @@ vegindex <- function(
       vv <- matrix(ncol = nrow(out_ras), nrow = ncol(out_ras))
       todisk <- FALSE
     }
-
+    
     bs <- blockSize(x)
     pb <- pbCreate(bs$n, ...)
-
+    
     if (todisk) {
+      
       for (i in 1:bs$n) {
         v <- hsdar::getValuesBlock(x, row = bs$row[i], nrows = bs$nrows[i] )
-
+        
         ### processing function here
         v <- as.matrix(vegindex(v, index = index, method = method))
         ###
-
-        # provide the possibility to rename bands
-        if (!is.null(bnames)) {
+        
+        ### band names
+        
+        # restore initial band name vector otherwise it is appended multiple times
+        bnames <- bnames_bak
+        # account for multiple names of "NBI" index
+        if (!is.null(bnames) && any(grepl("NBI", paste0(as.list(match.call()))))) {
+          # get index of "NBI" index in argument "index"
+          paste0(as.list(match.call())$bnames)[-1] %>% 
+            match("NBI", .) -> ind
+          
+          # merge all vectors
+          bnames[-ind] %>% append(sapply(seq_along(1:(length(x@wavelength) - 1)), function(i) paste0("NBI_b", i, "_", "b", i + 1)),
+                                  ind - 1) -> bnames
+          names(out_ras) <- bnames
+        } else {
           names(out_ras) <- bnames
         }
-
         out_ras <- writeValues(out_ras, v, bs$row[i])
         pbStep(pb, i)
       }
@@ -334,19 +345,14 @@ vegindex <- function(
     } else {
       for (i in 1:bs$n) {
         v <- getValuesBlock(x, row = bs$row[i], nrows = bs$nrows[i] )
-
+        
         v <- as.matrix(vegindex(v, index = index))
-
+        
         cols <- bs$row[i]:(bs$row[i] + bs$nrows[i] - 1)
         vv[,cols] <- matrix(v, nrow = out_ras@ncols)
         pbStep(pb, i)
       }
       out_ras <- setValues(out_ras, as.vector(vv))
-    }
-    # provide the possibility to rename bands (second time, just in case for returning the objects)
-    # too lazy to check if this is really necessary atm
-    if (!is.null(bnames)) {
-      names(out_ras) <- bnames
     }
     pbClose(pb)
     return(out_ras)
@@ -423,6 +429,17 @@ vegindex <- function(
   
   y <- spectra(x)
   x <- wavelength(x)
+  
+  # Narrow Band Indices Mon Mar 27 18:00:37 2017 -------------------------------
+  if (index == "NBI") {
+    position1 <- x
+    position2 <- x[-1]
+    
+    # apply x-1 times of available bands
+    matr <- sapply(seq_along(1:(length(x)-1)), function(i) (get_reflectance(y, x, position1[i], weighted) - get_reflectance(y, x, position2[i], weighted)) /
+                                                                      (get_reflectance(y, x, position1[i],weighted) + get_reflectance(y, x, position2[i], weighted)))
+    return(matr)
+  }
   
   #######################################################STRUCTURAL INDICES#############################################
   if (index == "NDVI")
