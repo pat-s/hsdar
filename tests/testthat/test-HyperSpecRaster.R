@@ -35,10 +35,17 @@ testthat::test_that("vegindex works with object of class Speclib", {
 })
 
 
-testthat::test_that("nbi calculation works with object of class HyperSpecRaster", {
+testthat::test_that("nbi calculation works with object of class HyperSpecRaster when writing to disk", {
   
   hyperspecs <- readRDS(here("inst/hyperspecraster.rda"))
   
-  out <- nbi(hyperspecs, "NBI", nl = 7938,
+  out <- nbi_raster(hyperspecs, "NBI", nl = 7875,
              filename = here("inst/test"), bnames = "NBI")
+})
+
+testthat::test_that("nbi calculation works with object of class HyperSpecRaster when doing calculation in memory", {
+  
+  hyperspecs <- readRDS(here("inst/hyperspecraster.rda"))
+  
+  out <- nbi_raster(hyperspecs, nl = 7875, bnames = "NBI")
 })
