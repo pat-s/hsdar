@@ -23,29 +23,10 @@ Object of class \code{RasterBrick}
 \description{
 Calculates all possible combinations of narrow band indices
 }
-\details{
-nbi_raster
-
-Caution! This function creates a somewhat large raster file.
-Example: If your 'HyperSpecRaster' has 126 bands, 7875 indices will be calculated.
-File size would be 1,7 GB in native R raster format (.gri).
-
-This function is to be used with objects of class \code{HyperSpecRaster}. The equivalent
-function for objects of class \code{Speclib} is \code{\link[=nri]{nri()}}.
-
-\subsection{Raster formats and layer names}{When calculating hundres/thousands of indices
-you need layer names. Formats like .tif do not support layer names. It is strongly
-recommended to use the native format of the \code{raster} package in R (.gri) which preserves layer
-names. However, .gri files cannot simply be opened in other applications. To get this working,
-you need to create an additional \code{.hdr} file. See examples how to do so.}
-}
 \examples{
 
 data(hyperspecs)
-nbi <- nbi_raster(hyperspecs, nl = 7875)
-
-# create header for raster file 
-hdr(nbi, format = "ENVI")
+nbi <- nbi_raster(hyperspecs)
 
 }
 \seealso{

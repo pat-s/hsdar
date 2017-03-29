@@ -23,18 +23,14 @@
 #' \subsection{Raster formats and layer names}{When calculating hundres/thousands of indices
 #' you need layer names. Formats like .tif do not support layer names. It is strongly
 #' recommended to use the native format of the `raster` package in R (.gri) which preserves layer 
-#' names. However, .gri files cannot simply be opened in other applications. To get this working,
-#' you need to create an additional `.hdr` file. See examples how to do so.}
+#' names.
 #' 
 #' @author Patrick Schratz
 #' @seealso [vegindex()], [nri()], [get_reflectance()]
 #' @examples
 #' 
 #' data(hyperspecs)
-#' nbi <- nbi_raster(hyperspecs, nl = 7875)
-#' 
-#' # create header for raster file 
-#' hdr(nbi, format = "ENVI")
+#' nbi <- nbi_raster(hyperspecs)
 #' 
 #' @export
 #' 
@@ -51,19 +47,26 @@ nbi_raster <- function(x, weighted = TRUE, bnames = "NBI",
   
   if (is.null(filename)) {
     filename_init <- filename
-    filename <- paste0(tempdir(), "/nbi")
+    filename <- paste0(tempdir(), "/nbi.grd")
   }
+  
+  if (!grepl(".grd", filename)) {
+    warning("When writing to other format than '.grd', layer names are not preserved",
+            call. = FALSE)
+  }
+  
   
   filename <- trim(filename)
   
-  out_ras <- writeStart(out_ras, filename, overwrite = TRUE, ...)
+  nl <- (x@file@nbands*(x@file@nbands-1)) / 2
+  out_ras <- writeStart(out_ras, filename, overwrite = TRUE, nl = nl, ...)
   
   bs <- blockSize(x)
   pb <- pbCreate(bs$n, ...)
   
   for (i in 1:bs$n) {
     
-    v <- hsdar::getValuesBlock(x, row = bs$row[i], nrows = bs$nrows[i] )
+    v <- getValuesBlock(x, row = bs$row[i], nrows = bs$nrows[i] )
     
     s <- spectra(v)
     w <- wavelength(v)
@@ -130,10 +133,14 @@ nbi_raster <- function(x, weighted = TRUE, bnames = "NBI",
   out_ras <- writeStop(out_ras)
   
   # load raster from tempdir if not written to disk
-  if (is.null(filename_init)) {
+  if (exists("filename_init")) {
     out_ras <- brick(filename)
   }
   
-  return(out_ras)
+  # write .hdr file if format is .grd
+  if (!grepl(".grd", filename)) {
+    hdr(out_ras, format = "ENVI")
+  }
   
+  return(out_ras)
 }
