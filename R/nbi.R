@@ -2,430 +2,205 @@
 #' 
 #' Function calculates all possible combinations of narrow band indices
 #' 
-#' Index must be a charater vector containing pre-defined indices (selected by their name) or self defined indices or any combination of pre- and self-defined indices.
-#' \subsection{Pre-defined indices}{
-#'   The following indices are available:
-#'     \tabular{lll}{
-#'       \tab\tab\cr
-#'       \strong{Name}\tab \strong{Formula} \tab \strong{Reference*}\cr
-#'       \tab\tab\cr
-#'       Boochs \tab \eqn{D_{703}}                                                                       \tab Boochs et al. (1990)\cr
-#'       Boochs2 \tab \eqn{D_{720}}                                                                      \tab Boochs et al. (1990)\cr
-#'       CAI \tab \eqn{0.5\cdot (R_{2000}+R_{2200})-R_{2100}}{0.5*(R_{2000}+R_{2200})-R_{2100}}          \tab Nagler et al. (2003)\cr
-#'       CARI \tab \eqn{a = (R_{700}-R_{550}) / 150}                                                     \tab Kim et al. (1994)\cr
-#'       \tab \eqn{b = R_{550}-(a\cdot 550)}{b = R_{550}-(a*550)}                                   \tab \cr
-#'       \tab \eqn{R_{700}\cdot \textnormal{abs}(a\cdot 670+R_{670}+b)/R_{670}\cdot}{R_{700}*abs(a*670+R_{670}+b)/R_{670}*} 
-#'       \tab \cr
-#'       \tab \eqn{(a^2+1)^{0.5}}                                                                   \tab \cr
-#'       Carter \tab \eqn{R_{695}/R_{420}}                                                               \tab Carter (1994)\cr
-#'       Carter2 \tab \eqn{R_{695}/R_{760}}                                                              \tab Carter (1994)\cr
-#'       Carter3 \tab \eqn{R_{605}/R_{760}}                                                              \tab Carter (1994)\cr
-#'       Carter4 \tab \eqn{R_{710}/R_{760}}                                                              \tab Carter (1994)\cr
-#'       Carter5 \tab \eqn{R_{695}/R_{670}}                                                              \tab Carter (1994)\cr
-#'       Carter6 \tab \eqn{R_{550}}                                                                      \tab Carter (1994)\cr
-#'       CI \tab \eqn{R_{675}\cdot R_{690}/R_{683}^2}{R_{675}*R_{690}/R_{683}^2}                         \tab Zarco-Tejada et al. \cr
-#'       \tab                                                                                         \tab (2003)\cr
-#'       CI2 \tab \eqn{R_{760}/R_{700}-1}                                                                \tab Gitelson et al. (2003) \cr   
-#'       ClAInt \tab \eqn{\int_{600 nm}^{735 nm} R}                                                      \tab Oppelt and Mauser\cr
-#'       \tab                                                                                     \tab (2004)\cr
-#'       CRI1 \tab \eqn{1/R_{515}-1/R_{550}}                                                             \tab Gitelson et al. (2003)\cr
-#'       CRI2 \tab \eqn{1/R_{515}-1/R_{770}}                                                             \tab Gitelson et al. (2003)\cr
-#'       CRI3 \tab \eqn{1/R_{515}-1/R_{550}\cdot R_{770}}{1/R_{515}-1/R_{550}*R_{770}}                   \tab Gitelson et al. (2003)\cr
-#'       CRI4 \tab \eqn{1/R_{515}-1/R_{700}\cdot R_{770}}{1/R_{515}-1/R_{700}*R_{770}}                   \tab Gitelson et al. (2003)\cr
-#'       D1 \tab \eqn{D_{730}/D_{706}}                                                                   \tab Zarco-Tejada et al. \cr
-#'       \tab                                                                                         \tab (2003)\cr
-#'       D2 \tab \eqn{D_{705}/D_{722}}                                                                   \tab Zarco-Tejada et al. \cr
-#'       \tab                                                                                         \tab (2003)\cr
-#'       Datt \tab \eqn{(R_{850}-R_{710})/(R_{850}-R_{680})}                                             \tab  Datt (1999b) \cr
-#'       Datt2 \tab \eqn{R_{850}/R_{710}}                                                                \tab  Datt (1999b) \cr
-#'       Datt3 \tab \eqn{D_{754}/D_{704}}                                                                \tab  Datt (1999b) \cr
-#'       Datt4 \tab \eqn{R_{672}/(R_{550}\cdot R_{708})}{R_{672}/(R_{550}*R_{708})}                      \tab  Datt (1998) \cr
-#'       Datt5 \tab \eqn{R_{672}/R_{550}}                                                                \tab  Datt (1998) \cr
-#'       Datt6 \tab \eqn{(R_{860})/(R_{550}\cdot R_{708})}{(R_{860})/(R_{550}*R_{708})}                  \tab  Datt (1998) \cr
-#'       Datt7 \tab \eqn{(R_{860} - R_{2218})/(R_{860} - R_{1928})}                                      \tab  Datt (1999a) \cr
-#'       Datt8 \tab \eqn{(R_{860} - R_{1788})/(R_{860} - R_{1928})}                                      \tab  Datt (1999a) \cr
-#'       DD \tab \eqn{(R_{749}-R_{720})-(R_{701}-R_{672})}                                               \tab le Maire et al. (2004)\cr
-#'       DDn \tab \eqn{2\cdot (R_{710}-R_{660}-R_{760})}{2*(R_{710}-R_{660}-R_{760})}                    \tab le Maire et al. (2008)\cr
-#'       DPI\tab \eqn{(D_{688}\cdot D_{710})/D_{697}^2}{(D_{688}*D_{710})/D_{697}^2}                     \tab Zarco-Tejada et al. \cr
-#'       \tab                                                                                         \tab (2003)\cr
-#'       DWSI1 \tab \eqn{R_{800}/R_{1660}}\tab Apan et al. (2004)\cr
-#'       DWSI2 \tab \eqn{R_{1660}/R_{550}}\tab Apan et al. (2004)\cr
-#'       DWSI3 \tab \eqn{R_{1660}/R_{680}}\tab Apan et al. (2004)\cr
-#'       DWSI4 \tab \eqn{R_{550}/R_{680}}\tab Apan et al. (2004)\cr
-#'       DWSI5 \tab \eqn{(R_{800} + R_{550})/(R_{1660} + R_{680})}\tab Apan et al. (2004)\cr
-#'       EGFN \tab \eqn{(\max(D_{650:750})-\max(D_{500:550}))/}                                          \tab Penuelas et al. \cr     
-#'       \tab \eqn{(\max(D_{650:750})+\max(D_{500:550}))}                                           \tab (1994)\cr
-#'       EGFR \tab \eqn{\max(D_{650:750})/\max(D_{500:550})}                                             \tab Penuelas et al. (1994)\cr
-#'       EVI \tab \eqn{2.5\cdot ((R_{800}-R_{670})/}{2.5*((R_{800}-R_{670})/}                            \tab Huete et al. (1997)\cr    
-#'       \tab \eqn{(R_{800}-(6\cdot R_{670})-(7.5\cdot R_{475})+1))}{(R_{800}-(6*R_{670})-(7.5*R_{475})+1))} 
-#'       \tab \cr
-#'       GDVI\tab \eqn{(R_{800}^n-R_{680}^n) / (R_{800}^n+R_{680}^n)}**                                  \tab Wu (2014)\cr                                                                                             
-#'       GI \tab \eqn{R_{554}/R_{677}}                                                                   \tab Smith et al. (1995)\cr
-#'       Gitelson \tab \eqn{1/R_{700}}                                                                   \tab Gitelson et al. (1999)\cr
-#'       Gitelson2 \tab \eqn{(R_{750}-R_{800}/R_{695}-R_{740})-1}                                        \tab Gitelson et al. (2003)\cr
-#'       GMI1 \tab \eqn{R_{750}/R_{550}}                                                                 \tab Gitelson et al. (2003)\cr
-#'       GMI2 \tab \eqn{R_{750}/R_{700}}                                                                 \tab Gitelson et al. (2003)\cr
-#'       Green NDVI \tab \eqn{(R_{800}-R_{550})/(R_{800}+R_{550})}                                       \tab Gitelson et al. (1996)\cr
-#'       LWVI_1 \tab \eqn{(R_{1094}-R_{983}) / (R_{1094}+R_{983})}                                       \tab Galvao et al. (2005)\cr
-#'       LWVI_2 \tab \eqn{(R_{1094}-R_{1205}) / (R_{1094}+R_{1205})}                                     \tab Galvao et al. (2005)\cr
-#'       Maccioni \tab \eqn{(R_{780}-R_{710})/(R_{780}-R_{680})}                                         \tab Maccioni et al. (2001)\cr
-#'       MCARI \tab \eqn{((R_{700}-R_{670})-0.2\cdot (R_{700}-R_{550}))\cdot}{((R_{700}-R_{670})-0.2*(R_{700}-R_{550}))*}   
-#'       \tab Daughtry et al. (2000)\cr
-#'       \tab \eqn{(R_{700}/R_{670})}                                                              \tab \cr
-#'       MCARI/OSAVI \tab                                                                                \tab Daughtry et al. (2000)\cr
-#'       MCARI2 \tab \eqn{((R_{750}-R_{705})-0.2\cdot (R_{750}-R_{550}))\cdot}{((R_{750}-R_{705})-0.2*(R_{750}-R_{550}))*}    
-#'       \tab Wu et al. (2008)\cr     
-#'       \tab \eqn{ (R_{750}/R_{705})}                                                            \tab \cr
-#'       MCARI2/OSAVI2\tab                                                                               \tab Wu et al. (2008)\cr
-#'       mND705 \tab \eqn{(R_{750}-R_{705})/(R_{750}+R_{705}-2\cdot R_{445})}{(R_{750}-R_{705})/(R_{750}+R_{705}-2*R_{445})}  
-#'       \tab Sims and Gamon (2002)\cr
-#'       mNDVI \tab \eqn{(R_{800}-R_{680})/(R_{800}+R_{680}-2\cdot R_{445})}{(R_{800}-R_{680})/(R_{800}+R_{680}-2*R_{445})}    
-#'       \tab Sims and Gamon (2002)\cr
-#'       MPRI \tab \eqn{(R_{515}-R_{530})/(R_{515}+R_{530})}                                             \tab Hernandez-Clemente et al.\cr
-#'       \tab                                                                                       \tab (2011)\cr   
-#'       mREIP \tab Red-edge inflection point using Gaussain fit                                         \tab Miller et al. (1990)\cr
-#'       MSAVI \tab \eqn{0.5 \cdot  (2\cdot R_{800}+1-}{0.5*(2*R_{800}+1-}                               \tab Qi et al. (1994)\cr      
-#'       \tab \eqn{((2\cdot R_{800}+1)^2-8\cdot (R_{800}-R_{670}))^{0.5})}{((2*R_{800}+1)^2-8*(R_{800}-R_{670}))^{0.5})}  
-#'       \tab \cr
-#'       MSI \tab \eqn{R_{1600}/ R_{817}}                                                                \tab Hunt and Rock (1989)\cr
-#'       mSR \tab \eqn{(R_{800}-R_{445})/(R_{680}-R_{445})}                                              \tab Sims and Gamon (2002)\cr
-#'       mSR2 \tab \eqn{(R_{750}/R_{705})-1/(R_{750}/R_{705}+1)^{0.5}}                                   \tab Chen (1996)\cr
-#'       mSR705 \tab \eqn{(R_{750}-R_{445})/(R_{705}-R_{445})}                                           \tab Sims and Gamon (2002)\cr
-#'       MTCI \tab \eqn{(R_{754}-R_{709})/(R_{709}-R_{681})}                                             \tab Dash and Curran (2004)\cr
-#'       MTVI \tab \eqn{1.2\cdot (1.2\cdot (R_{800}-R_{550})-}{1.2*(1.2*(R_{800}-R_{550})-}              \tab Haboudane et al.\cr
-#'       \tab \eqn{2.5\cdot (R_{670}-R_{550}))}{2.5* (R_{670}-R_{550}))}                            \tab (2004)\cr
-#'       NDLI\tab \eqn{(log(1/R_{1754}) - log(1/R_{1680}))/}                                             \tab Serrano et al. (2002) \cr 
-#'       \tab \eqn{(log(1/R_{1754}) + log(1/R_{1680}))}                                              \tab \cr
-#'       NDNI\tab \eqn{(log(1/R_{1510}) - log(1/R_{1680}))/}                                             \tab Serrano et al. (2002) \cr 
-#'       \tab \eqn{(log(1/R_{1510}) + log(1/R_{1680}))}                                              \tab \cr
-#'       NDVI \tab \eqn{(R_{800}-R_{680}) / (R_{800}+R_{680})}                                           \tab Tucker (1979)\cr
-#'       NDVI2 \tab \eqn{(R_{750}-R_{705})/(R_{750}+R_{705})}                                            \tab Gitelson and Merzlyak  \cr
-#'       \tab                                                                                      \tab (1994)\cr
-#'       NDVI3 \tab \eqn{(R_{682}-R_{553})/(R_{682}+R_{553})}                                            \tab Gandia et al. (2004)\cr
-#'       NDWI \tab \eqn{(R_{860}-R_{1240}) / (R_{860}+R_{1240})}                                         \tab Gao (1996)\cr
-#'       NPCI \tab \eqn{(R_{680}-R_{430})/(R_{680}+R_{430})}                                             \tab Penuelas et al. (1994)\cr
-#'       OSAVI \tab \eqn{(1+0.16) \cdot  (R_{800}-R_{670})/}{(1+0.16)*(R_{800}-R_{670})/}                \tab Rondeaux et al.\cr
-#'       \tab \eqn{(R_{800}+R_{670}+0.16)}                                                         \tab (1996)\cr
-#'       OSAVI2 \tab \eqn{(1+0.16) \cdot  (R_{750}-R_{705})/}{(1+0.16)*(R_{750}-R_{705})/}               \tab Wu et al. (2008)\cr
-#'       \tab \eqn{(R_{750}+R_{705}+0.16)}                                                        \tab \cr
-#'       PARS \tab \eqn{R_{746}/R_{513}}                                                                 \tab Chappelle et al. (1992)\cr
-#'       PRI \tab \eqn{(R_{531}-R_{570})/(R_{531}+R_{570})}                                              \tab Gamon et al. (1992)\cr
-#'       PRI_norm \tab \eqn{\textnormal{PRI} \cdot (-1)/(\textnormal{RDVI}\cdot R_{700}/R_{670})}{PRI*(-1)/(RDVI*R_{700}/R_{670})}
-#'       \tab Zarco-Tejada et al. \cr
-#'       \tab                                                                                        \tab (2013)\cr
-#'       PRI*CI2 \tab \eqn{\textnormal{PRI} \cdot \textnormal{CI}2}{PRI*CI2}                             \tab Garrity et al. (2011)\cr
-#'       PSRI \tab \eqn{(R_{678}-R_{500}/R_{750}}                                                        \tab Merzlyak et al. (1999)\cr
-#'       PSSR \tab \eqn{R_{800}/R_{635}}                                                                 \tab Blackburn (1998)\cr
-#'       PSND \tab \eqn{(R_{800}-R_{470})/(R_{800}-R_{470})}                                             \tab Blackburn (1998)\cr
-#'       PWI \tab \eqn{R_{970}/R_{900}}                                                                  \tab Penuelas et al. (1997)\cr
-#'       RDVI \tab \eqn{(R_{800}-R_{670})/\sqrt{R_{800}+R_{670}}}                                        \tab Roujean and Breon (1995)\cr
-#'       % RDVI \tab \eqn{(R_{800}-R_{670})/(R_{800}+R_{670})^{0.5}}                                     \tab Roujean and Breon (1995)\cr
-#'       REP_LE \tab Red-edge position through linear extrapolation.                                     \tab Cho and Skidmore (2006)\cr
-#'       REP_Li \tab \eqn{R_{re}=(R_{670}+R_{780})/2}                                                    \tab Guyot and Baret (1988)\cr
-#'       \tab \eqn{700 + 40\cdot((R_{re} -R_{700})/(R_{740}-R_{700}))}{700 + 40*((R_{re} -R_{700})/(R_{740}-R_{700}))}\tab \cr
-#'       % REP_Li \tab \eqn{700 + 40((((R_{670}+R_{780})/2)-R_{700})/}                                     \tab Guyot and Baret (1988)\cr
-#'       %        \tab \eqn{(R_{740}-R_{700}))}                                                            \tab \cr
-#'       SAVI \tab \eqn{(1+L)\cdot (R_{800}-R_{670})/(R_{800}+R_{670}+L)}{(1+L)*(R_{800}-R_{670})/(R_{800}+R_{670}+L)} 
-#'       \tab Huete (1988)\cr
-#'       SIPI \tab \eqn{(R_{800}-R_{445})/(R_{800}-R_{680})}                                             \tab Penuelas et al. (1995),\cr
-#'       \tab                                                                                       \tab Penuelas et al. (1995a) \cr
-#'       SPVI \tab \eqn{0.4\cdot 3.7\cdot (R_{800}-R_{670})-1.2\cdot }{0.4*3.7*(R_{800}-R_{670})-1.2*}   \tab Vincini et al. (2006)\cr  
-#'       \tab \eqn{((R_{530}-R_{670})^2)^{0.5}}                                                     \tab \cr
-#'       SR \tab \eqn{R_{800}/R_{680}}                                                                   \tab Jordan (1969)\cr
-#'       SR1 \tab \eqn{R_{750}/R_{700}}                                                                  \tab Gitelson and Merzlyak  \cr
-#'       \tab                                                                                        \tab (1997)\cr
-#'       SR2 \tab \eqn{R_{752}/R_{690}}                                                                  \tab Gitelson and Merzlyak  \cr
-#'       \tab                                                                                        \tab (1997)\cr
-#'       SR3 \tab \eqn{R_{750}/R_{550}}                                                                  \tab Gitelson and Merzlyak  \cr
-#'       \tab                                                                                        \tab (1997)\cr
-#'       SR4 \tab \eqn{R_{700}/R_{670}}                                                                  \tab McMurtey et al. (1994)\cr
-#'       SR5 \tab \eqn{R_{675}/R_{700}}                                                                  \tab Chappelle et al. (1992)\cr
-#'       SR6 \tab \eqn{R_{750}/R_{710}}                                                                  \tab Zarco-Tejada and Miller  \cr
-#'       \tab                                                                                        \tab (1999)\cr
-#'       SR7 \tab \eqn{R_{440}/R_{690}}                                                                  \tab Lichtenthaler et al. (1996)\cr
-#'       SR8 \tab \eqn{R_{515}/R_{550}}                                                                  \tab Hernandez-Clemente et al. \cr
-#'       \tab                                                                                        \tab (2012)\cr
-#'       SRPI \tab \eqn{R_{430}/R_{680}}                                                                 \tab Penuelas et al. (1995)\cr
-#'       SRWI \tab \eqn{R_{850}/R_{1240}}                                                                \tab Zarco-Tejada et al. \cr
-#'       \tab                                                                                        \tab (2003)\cr
-#'       Sum_Dr1 \tab \eqn{\sum_{i=626}^{795} D1_i}                                                      \tab Elvidge and Chen (1995)\cr
-#'       Sum_Dr2 \tab \eqn{\sum_{i=680}^{780} D1_i}                                                      \tab Filella and Penuelas  \cr
-#'       \tab                                                                                        \tab (1994)\cr
-#'       SWIR FI\tab \eqn{R_{2133}^2/(R_{2225} \cdot R_{2209}^3}                                         \tab Levin et al. (2007)\cr  
-#'       SWIR LI\tab \eqn{3.87  \cdot (R_{2210} - R_{2090}) - }                                          \tab Lobell et al. (2001)\cr
-#'       \tab \eqn{27.51 \cdot (R_{2280} - R_{2090}) - 0.2}                                       \tab \cr  
-#'       SWIR SI\tab \eqn{-41.59 \cdot (R_{2210} - R_{2090}) + }                                          \tab Lobell et al. (2001)\cr
-#'       \tab \eqn{1.24 \cdot (R_{2280} - R_{2090}) + 0.64}                                       \tab \cr 
-#'       SWIR VI\tab \eqn{37.72  \cdot (R_{2210} - R_{2090}) + }                                          \tab Lobell et al. (2001)\cr
-#'       \tab \eqn{26.27 \cdot (R_{2280} - R_{2090}) + 0.57}                                       \tab \cr        
-#'       TCARI \tab \eqn{3\cdot ((R_{700}-R_{670})-0.2\cdot (R_{700}-R_{550})\cdot}{3*((R_{700}-R_{670})-0.2*R_{700}-R_{550})*} 
-#'       \tab Haboudane et al. (2002)\cr  
-#'       \tab \eqn{(R_{700}/R_{670}))}                                                             \tab \cr
-#'       TCARI/OSAVI \tab  \eqn{\textnormal{TCARI} / \textnormal{OSAVI}}{TCARI/OSAVI}                    \tab Haboudane et al. (2002)\cr
-#'       TCARI2 \tab \eqn{3\cdot ((R_{750}-R_{705})-0.2\cdot (R_{750}-R_{550})\cdot}{3*((R_{750}-R_{705})-0.2*(R_{750}-R_{550})*}
-#'       \tab Wu et al. (2008)\cr  
-#'       \tab \eqn{(R_{750}/R_{705}))}                                                            \tab \cr
-#'       TCARI2/OSAVI2 \tab \eqn{\textnormal{TCARI}2 / \textnormal{OSAVI}2}{TCARI2/OSAVI2}               \tab Wu et al. (2008)\cr
-#'       TGI\tab \eqn{-0.5 (190 (R_{670} - R_{550} ) - 120 (R_{670} - R_{480} ))}                        \tab Hunt et al. (2013)\cr
-#'       TVI \tab \eqn{0.5\cdot (120\cdot (R_{750}-R_{550})-}{0.5*(120*(R_{750}-R_{550})-}               \tab Broge and Leblanc \cr
-#'       \tab \eqn{200\cdot (R_{670}-R_{550}))}{200*(R_{670}-R_{550}))}                              \tab (2000)\cr
-#'       Vogelmann \tab \eqn{R_{740}/R_{720}}                                                            \tab Vogelmann et al. (1993)\cr
-#'       Vogelmann2 \tab \eqn{(R_{734}-R_{747})/(R_{715}+R_{726})}                                       \tab Vogelmann et al. (1993)\cr
-#'       Vogelmann3 \tab \eqn{D_{715}/D_{705}}                                                           \tab Vogelmann et al. (1993)\cr
-#'       Vogelmann4 \tab \eqn{(R_{734}-R_{747})/(R_{715}+R_{720})}                                       \tab Vogelmann et al. (1993)\cr
-#'       % CI_Hanna \tab \eqn{R_{760}/R_{695}}\tab \cr
-#'       % REIP \tab \eqn{NULL}                                                                          \tab Collins (1978), Horler et al. (1983)\cr
-#'       % TCARI \tab \eqn{3\cdot ((R_{700}-R_{670})-0.2\cdot (R_{700}-R_{550})\cdot (R_{700}/R_{670}))} \tab \cr
-#'       % TVI \tab \eqn{0.5\cdot (120\cdot (R_{750}-R_{550})-200\cdot (R_{670}-R_{550}))}               \tab \cr
-#'       % WBI \tab \eqn{R_{970}/ R_{900}}                                                               \tab \cr
-#'       
-#'     }
 #' 
-#' \* For references please type: `hsdardocs("References.pdf")`. \cr
-#' \** For GDVI n must be defined appending an underscore and the intended exponent to
-#' the index name.  
-#' E.g., for n = 2, the correct index name would be "GDVI_2".
-#' Note that GDVI-indices with n = 2, 3, 4 will be derived if all available
-#' indices are calculated.
-#' }
-#' 
-#' \subsection{Self-defining indices}{  
-#' Self-defined indices may be passed using the following syntax:
-#'  \itemize{
-#'    \item{Rxxx: }{Reflectance at wavelength 'xxx'. Note that R must be upper case.}
-#'    \item{Dxxx: }{First derivation of reflectance values at wavelength 'xxx'. Note that D must be upper case.}
-#'  }
-#' Using this syntax, complex indices can be easily defined. Note that the 
-#' entire definition of the index must be passed as one character string. 
-#' Consequently, the NDVI would be written as "(R800-R680)/(R800+R680)".
-#' }
-#' 
-#' \subsection{HyperSpecRaster objects}{If the input object is of class `HyperSpecRaster`, a raster 
-#' file is written to disk if a file name is provided. 
-#' Otherwise an `HyperSpecRaster` object is returned. If the file is written to disk,
-#' the user needs to specify the final number of bands. This information is required 
-#' by `writeRaster`. NAs are handled internally. 
-#' 
-#' If no method is set for an input of class `HyperSpecraster`, `method = "finApprox"` 
-#' will be used. Note that `method = sgolay` only works if there are no NAs in 
-#' the hyperspectral image.}
-#' 
-#' @param x Object of class `Speclib` or `HyperSpecRaster`.
-#' @param index Character string. Name or definition of index or vector with
-#' names/definitions of indices to calculate. See Details section for further
-#' information.
-#' @param returnHCR If TRUE, the result will be of class HyperSpecRaster,
-#' otherwise it is a data frame. If "auto", the class is automatically
-#' determined by passed Speclib.
-#' @param L Factor for SAVI index. Unused for other indices.
+#' @param x Object of class `HyperSpecRaster`.
 #' @param weighted Logical indicating if reflectance values should be
 #' interpolated to fit wavelength position. If `FALSE` the reflectance
 #' values of nearest neighbour to passed position are returned. See
-#' [=get_reflectance.speclib::get_reflectance()] for further
+#' [get_reflectance()] for further
 #' explanation.
 #' @param filename (optional) Filename of the raster file written to disk. Only used if 
 #' an object of class `HyperSpecRaster` is provided.
-#' @param bnames (optional) Character vector of band names. Only used if 
-#' an object of class `HyperSpecRaster` is provided.
-#' @param ...  Further arguments passed to derivative functions. Only used for
-#' indices requiring derivations.
-#' @param method Character string giving the method to be used in `derivate_speclib`. 
-#' Valid options are "finApprox" or "sgolay". See details for more.
 #' 
-#' @return A vector containing indices values. If index is a vector with 
-#' `length > 1`, a data frame with `ncol = length(index)` and 
-#' `nrow = number of spectra in x` is returned.
 #' 
-#' If function is called without any arguments, return value will be a vector
-#' containing all available indices in alphabetical order.
+#' @return Object of class RasterBrick
 #' 
-#' @author Hanna Meyer and Lukas Lehnert
-#' @seealso [soilindex()], [derivative.speclib()],
-#' [rededge()],
-#' [=get_reflectance.speclib::get_reflectance()]
-#' @references See `hsdardocs("References.pdf")`
-#' @keywords multivariate
+#' @author Patrick Schratz
+#' @seealso [vegindex()], [nri()], [get_reflectance()]
 #' @examples
 #' 
-#' ## Example calculating NDVI
 #' data(spectral_data)
-#' ndvi <- vegindex(spectral_data, "NDVI")
-#' 
-#' 
-#' ## Example calculating all available indices
-#' ## Get available indices
-#' avl <- vegindex()
-#' vi <- vegindex(spectral_data, avl)
-#' 
-#' ## Self-defined indices
-#' ## NDVI
-#' vi <- vegindex(spectral_data, "(R800-R680)/(R800+R680)")
-#' ## NDNI
-#' vi <- vegindex(spectral_data, 
-#'                "(log(1/R1510) - log(1/R1680))/(log(1/R1510) + log(1/R1680))")
-#' ## D1
-#' vi <- vegindex(spectral_data, "D730/D706")
-#' 
+#' nbi <- nbi(spectral_data, "NDVI")
+#' example data missing here
 #' @export
 #' 
-nbi <- function(x, index = "NBI", weighted = TRUE, bnames = "NBI", filename = '', ...
-)
-{  
+nbi <- function(x, index = "NBI", weighted = TRUE, bnames = "NBI", 
+                filename = '', ...) {  
+  
+  if (!class(x) == "HyperSpecRaster") {
+    stop("Input is not of class 'HyperSpecRaster'")
+  }
+  
   bnames_bak <- bnames
   
-  ### HyperSpecRaster approach  Sat Mar 25 09:20:18 2017 ------------------------------
-  # HyperSpecRaster is converted in speclib in `hsdar::getValuesBlock`. 
-  # Then vegindex calculation is performed with the `vegindex` function on class `speclib`
-  # Advantages: 
-  # - Write raster to disk when filename is provided
-  # - label bands by calculated vegindices when writing to format "raster" (.gri)
-  # 
-  if (class(x) == "HyperSpecRaster") {
+  out_ras <- x
+  
+  # get nbands
+  nlayers <- x@file@nbands^2 / 2
+  
+  big <- !canProcessInMemory(out_ras, 3)
+  filename <- trim(filename)
+  if (big & filename == '') {
+    filename <- rasterTmpFile()
+  }
+  if (filename != '') {
+    out_ras <- writeStart(out_ras, filename, overwrite = TRUE, ...)
+    todisk <- TRUE
+  } else {
+    vv <- matrix(ncol = nrow(out_ras), nrow = ncol(out_ras))
+    todisk <- FALSE
+  }
+  
+  bs <- blockSize(x)
+  pb <- pbCreate(bs$n, ...)
+  
+  if (todisk) {
     
-    out_ras <- x
-    big <- !canProcessInMemory(out_ras, 3)
-    filename <- trim(filename)
-    if (big & filename == '') {
-      filename <- rasterTmpFile()
-    }
-    if (filename != '') {
-      out_ras <- writeStart(out_ras, filename, overwrite = TRUE, ...)
-      todisk <- TRUE
-    } else {
-      vv <- matrix(ncol = nrow(out_ras), nrow = ncol(out_ras))
-      todisk <- FALSE
-    }
-    
-    bs <- blockSize(x)
-    pb <- pbCreate(bs$n, ...)
-    
-    if (todisk) {
+    for (i in 1:bs$n) {
       
-      for (i in 1:bs$n) {
+      v <- hsdar::getValuesBlock(x, row = bs$row[i], nrows = bs$nrows[i] )
+      
+      s <- spectra(v)
+      w <- wavelength(v)
+      
+      # Narrow Band Indices Mon Mar 27 18:00:37 2017 -------------------------------
+      if (index == "NBI") {
+        position1 <- position2 <- w
         
-        v <- hsdar::getValuesBlock(x, row = bs$row[i], nrows = bs$nrows[i] )
+        # calculation of narrow band indices 
+        lapply(seq_along(1:(length(w))), function(u) 
+          sapply(seq_along(1:(length(w))), function(i) 
+            (get_reflectance(s, w, position1[u], weighted) - get_reflectance(s, w, position2[i], weighted)) /
+              (get_reflectance(s, w, position1[u],weighted) + get_reflectance(s, w, position2[i], weighted)))) -> v
         
-        s <- spectra(v)
-        w <- wavelength(v)
+        ### remove unwanted indices 
+        # - self_band indices (e.g.B1_B1)
+        # - duplicate indices (e.g. B15_B71 <-> B71_B15). First combination is removed
+        # total number of valid indices: (nbands*(nabnds-1)) / 2.         Numbers example: 126*125 = 15750 / 2 = 7875
         
-        ### processing function here
+        v <- lapply(seq_along(1:(length(w))), function(i) {
+          if (i > 1) {
+            v[[i]] <- v[[i]][, 1:(i - 1)] # subset matrices so that we have only one combination of each index (e.g. B3_B1)
+          } else {
+            v[[i]] <- NULL
+          }
+        })
+        v <- v[-1]
         
-        # v <- as.matrix(vegindex(v, index = index, method = method))
+        # list 'v' here contains no band1, 1 entry for band 2 (b2_b1), 2 entries for band 3 (b3_b1, b3_b2) etc. 
         
-        # Narrow Band Indices Mon Mar 27 18:00:37 2017 -------------------------------
-        if (index == "NBI") {
-          position1 <- w
-          # position2 <- w[-1] # for continuous band approach
-          position2 <- w
-          
-          # new approch: calculate all possible combinations
-          # B1_B2, B1_B3, B1_B4, ... -> number of bands/2 times to avoid double calculations (e.g. B34_76 u B76_34)
-          
-          # matri = list with all 
-          v <- lapply(seq_along(1:(length(w)/2)), function (u) 
-            sapply(seq_along(1:(length(w))), function(i) (get_reflectance(s, w, position1[u], weighted) - get_reflectance(s, w, position2[i], weighted)) /
-                     (get_reflectance(s, w, position1[u],weighted) + get_reflectance(s, w, position2[i], weighted)))
-          )
-          v <- as.matrix(v)
-          # now we have 63 matrices (instead of one) with 126 layers each which need to be written to disk
-          # 7128 is the number of pixels
-          
-        }
-        ###
-        
-        ### band names
-        
-        # restore initial band name vector otherwise it is appended multiple times
-        bnames <- bnames_bak
-        # account for multiple names of "NBI" index
-        if (!is.null(bnames) && any(grepl("NBI", paste0(as.list(match.call()))))) {
-          # get index of "NBI" index in argument "index"
-          
-          paste0(as.list(match.call())$bnames) %>% 
-            match("NBI", .) -> ind
-          
-          # merge bnames vectors provided by user and account for NBI calculation
-          bnames[-ind] %>% append(sapply(seq_along(1:dim(v)[1]), function(z) 
-            sapply(seq_along(1:length(x@wavelength)), function(i) 
-              paste0("NBI_b", z, "_", "b", i))),
-            ind - 1) -> bnames
-          
-          names(out_ras) <- bnames
-        } else {
-          names(out_ras) <- bnames
-        }
-        if (any(grepl("NBI", paste0(as.list(match.call()))))) {
-          # stack matrices to have nbands*(nbands/2) number of layers and all values stored in one matrix
-          # list arriving here is of length `nbands/2' and consists of nbands layers (e.g.126). It will be merged into one matrix to have one matrix with all layers (e.g. 126 * 63 = 7983)
-          v <- do.call(cbind, v)
-          
-          out_ras <- writeValues(out_ras, v, bs$row[i])
-        } else {
-          out_ras <- writeValues(out_ras, v, bs$row[i])
-        }
-        pbStep(pb, i)
+        # convert to matrix for further processing
+        v <- as.matrix(v)
       }
-      out_ras <- writeStop(out_ras)
-    } else {
-      for (i in 1:bs$n) {
-        v <- getValuesBlock(x, row = bs$row[i], nrows = bs$nrows[i] )
-        
-        v <- as.matrix(vegindex(v, index = index))
-        
-        cols <- bs$row[i]:(bs$row[i] + bs$nrows[i] - 1)
-        vv[,cols] <- matrix(v, nrow = out_ras@ncols)
-        pbStep(pb, i)
-      }
-      out_ras <- setValues(out_ras, as.vector(vv))
-    }
-    pbClose(pb)
-    return(out_ras)
-  }
-  
-  #### end of HyperSpecRaster approach
-  
-  if (length(names(match.call())) == 0)
-  {
-    return(vegindex_available())
-  }
-  
-  if (x@spectra@fromRaster)
-    return(.blockwise(speclib_obj =  "x", pos = 1))
-  
-  # x_back <- x # not used in scope?
-  
-  d_indexs <- c("Boochs","Boochs2","Datt3","D1","D2","EGFR","EGFN",
-                "Vogelmann3","Sum_Dr1","Sum_Dr2","REP_LE","DPI")
-  m <- c(rep.int(1,length(d_indexs)))
-  
-  # index_current <<- index
-  # row_names_x <<- row.names(x$spectra)
-  
-  if (any(index == d_indexs)) {
-    x <- derivative.speclib(x, m = m[d_indexs == index], method = method, ...)
-  }
-  
-  y <- spectra(x)
-  x <- wavelength(x)
-  
-  # Narrow Band Indices Mon Mar 27 18:00:37 2017 -------------------------------
-  if (index == "NBI") {
-    position1 <- x
-    position2 <- x
-    
-    # new approch: calculate all possible combinations
-    # B1_B2, B1_B3, B1_B4, ... -> number of bands/2 times to avoid double calculations (e.g. B34_76 u B76_34)
-    
-    # matri = list with all 
-    matr <- lapply(seq_along(1:(length(x)/2)), function (u) 
-      sapply(seq_along(1:(length(x))), function(i) (get_reflectance(y, x, position1[u], weighted) - get_reflectance(y, x, position2[i], weighted)) /
-               (get_reflectance(y, x, position1[u],weighted) + get_reflectance(y, x, position2[i], weighted)))
-    )
-    # now we have 63 matrices (instead of one) with 126 layers each which need to be written to disk
-    # 7128 is the number of pixels
-    
-    return(matr)
-  }
+      
+      ### band names
+      
+      # restore initial bnames vector otherwise it is appended multiple times during the apply call
+      bnames <- bnames_bak
+      
+      # create band names 
+      bnames_calc <- lapply(seq_along(1:(dim(v)[1] + 1)), function(z) 
+        sapply(seq_along(1:length(x@wavelength)), function(i) 
+          paste0("NBI_b", z, "_", "b", i)))
+      
+      bnames_calc <- lapply(seq_along(1:(length(w))), function(i) {
+        if (i > 1) {
+          bnames_calc[[i]] <- bnames_calc[[i]][1:(i - 1)] # same as subset approach for indices (see ABOVE)
+        } else {
+          bnames_calc[[i]] <- NULL
+        }
+      })
+      
+      # convert list to vector
+      bnames_calc[-1] %>% unlist() -> bnames_calc
+      
+      # combine matrices into single matrix
+      v <- do.call(cbind, v)
+      
+      # set names of output raster
+      names(out_ras) <- bnames_calc
 
-  return(index_val)
+      out_ras <- writeValues(out_ras, v, bs$row[i])
+      pbStep(pb, i)
+    }
+    out_ras <- writeStop(out_ras)
+  } else {
+    for (i in 1:bs$n) {
+      v <- getValuesBlock(x, row = bs$row[i], nrows = bs$nrows[i] )
+      
+      s <- spectra(v)
+      w <- wavelength(v)
+      
+      # Narrow Band Indices Mon Mar 27 18:00:37 2017 -------------------------------
+      if (index == "NBI") {
+        position1 <- position2 <- w
+        
+        # calculation of narrow band indices 
+        lapply(seq_along(1:(length(w))), function(u) 
+          sapply(seq_along(1:(length(w))), function(i) 
+            (get_reflectance(s, w, position1[u], weighted) - get_reflectance(s, w, position2[i], weighted)) /
+              (get_reflectance(s, w, position1[u],weighted) + get_reflectance(s, w, position2[i], weighted)))) -> v
+        
+        ### remove unwanted indices 
+        # - self_band indices (e.g.B1_B1)
+        # - duplicate indices (e.g. B15_B71 <-> B71_B15). First combination is removed
+        # total number of valid indices: (nbands*(nabnds-1)) / 2.         Numbers example: 126*125 = 15750 / 2 = 7875
+        
+        v <- lapply(seq_along(1:(length(w))), function(i) {
+          if (i > 1) {
+            v[[i]] <- v[[i]][, 1:(i - 1)] # subset matrices so that we have only one combination of each index (e.g. B3_B1)
+          } else {
+            v[[i]] <- NULL
+          }
+        })
+        v <- v[-1]
+        
+        # list 'v' here contains no band1, 1 entry for band 2 (b2_b1), 2 entries for band 3 (b3_b1, b3_b2) etc. 
+        
+        # convert to matrix for further processing
+        v <- as.matrix(v)
+      }
+      
+      ### band names
+      
+      # restore initial bnames vector otherwise it is appended multiple times during the apply call
+      bnames <- bnames_bak
+      
+      # create band names 
+      bnames_calc <- lapply(seq_along(1:(dim(v)[1] + 1)), function(z) 
+        sapply(seq_along(1:length(x@wavelength)), function(i) 
+          paste0("NBI_b", z, "_", "b", i)))
+      
+      bnames_calc <- lapply(seq_along(1:(length(w))), function(i) {
+        if (i > 1) {
+          bnames_calc[[i]] <- bnames_calc[[i]][1:(i - 1)] # same as subset approach for indices (see ABOVE)
+        } else {
+          bnames_calc[[i]] <- NULL
+        }
+      })
+      
+      # convert list to vector
+      bnames_calc[-1] %>% unlist() -> bnames_calc
+      
+      # combine matrices into single matrix
+      v <- do.call(cbind, v)
+      
+      # cols <- bs$row[i]:(bs$row[i] + bs$nrows[i] - 1)
+      # vv[,cols] <- matrix(v, nrow = out_ras@ncols)
+      
+      # convert to brick
+      out_ras <- brick(out_ras, nl = length(bnames_calc))
+      # set names of output raster
+      names(out_ras) <- bnames_calc
+      
+      out_ras <- setValues(out_ras, v, bs$row[i])
+      
+      
+      pbStep(pb, i)
+    }
+    #out_ras <- setValues(out_ras, as.vector(vv))
+  }
+  pbClose(pb)
+  return(out_ras)
+  
 }
