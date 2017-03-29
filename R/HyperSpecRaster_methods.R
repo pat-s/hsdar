@@ -1,5 +1,11 @@
+#' @import raster
+# setOldClass("raster")
+# if (!isGeneric("writeStart")) {
+#   setGeneric("writeStart")
+# }
+#' @export
 setMethod('writeStart', signature(x = 'HyperSpecRaster', filename = "character"),
-           function(x, filename, ...) 
+           function(x, filename, nl, ...) 
  {
    mc <- match.call(definition = sys.function(-1), 
                     call = sys.call(-1), expand.dots = TRUE)
