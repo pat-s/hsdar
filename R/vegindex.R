@@ -346,7 +346,7 @@ vegindex <- function(x, index, returnHCR = "auto", L = 0.5, weighted = TRUE,
     }
     
     # write .hdr file if format is .grd
-    if (!grepl(".grd", filename)) {
+    if (grepl(".grd", filename)) {
       hdr(out_ras, format = "ENVI")
     }
     

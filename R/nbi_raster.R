@@ -138,7 +138,7 @@ nbi_raster <- function(x, weighted = TRUE, bnames = "NBI",
   }
   
   # write .hdr file if format is .grd
-  if (!grepl(".grd", filename)) {
+  if (grepl(".grd", filename)) {
     hdr(out_ras, format = "ENVI")
   }
   
