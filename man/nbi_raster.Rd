@@ -4,7 +4,7 @@
 \alias{nbi_raster}
 \title{Calculates all possible combinations of narrow band indices}
 \usage{
-nbi_raster(x, weighted = TRUE, bnames = "NBI", filename = NULL, ...)
+nbi_raster(x, weighted = TRUE, bnames_prefix = "", filename = NULL, ...)
 }
 \arguments{
 \item{x}{Object of class \code{HyperSpecRaster}.}
@@ -14,6 +14,8 @@ interpolated to fit wavelength position. If \code{FALSE} the reflectance
 values of nearest neighbour to passed position are returned. See
 \code{\link[=get_reflectance]{get_reflectance()}} for further
 explanation.}
+
+\item{bnames_prefix}{(optional) Prefix of band name}
 
 \item{filename}{(optional) Filename of the raster file written to disk.}
 }
@@ -26,6 +28,7 @@ Calculates all possible combinations of narrow band indices
 \examples{
 
 data(hyperspecs)
+hyperspecs@file@name = system.file("data/laukiz1.tif", package = "hsdar")
 nbi <- nbi_raster(hyperspecs)
 
 }

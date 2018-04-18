@@ -13,6 +13,8 @@ importFrom("signal", sgolay)
 importFrom("signal", sgolayfilt)
 importFrom("stats", "cor", "na.fail")
 importFrom("utils", "read.table")
+importFrom("glue", "glue")
+importFrom("purrr", "map")
 
 useDynLib(hsdar)
 
