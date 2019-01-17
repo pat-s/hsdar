@@ -64,7 +64,7 @@ nbi_raster <- function(x, weighted = TRUE, bnames_prefix = "",
 
   filename <- trim(filename)
 
-  nl <- (x@file@nbands * (x@file@nbands - 1)) / 2
+  nl <- (x@data@nlayers * (x@data@nlayers - 1)) / 2
   out_ras <- writeStart(out_ras, filename, overwrite = TRUE, nl = nl, ...)
 
   bs <- blockSize(x)
