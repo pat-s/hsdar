@@ -107,6 +107,21 @@ setMethod('HyperSpecRaster', signature(x = 'RasterBrick', wavelength = "numeric"
    } 
 )
 
+setMethod('HyperSpecRaster', signature(x = 'RasterStack', wavelength = "numeric"),
+   function(x, wavelength, fwhm = NULL, attributes = NULL) 
+   {
+      if (nlayers(x) != length(wavelength))
+         stop("Length of wavelength do not equal number of bands in file")
+      res <- as(x, 'HyperSpecRaster')
+      res@wavelength <- wavelength
+      if (!is.null(fwhm))
+         res@fwhm <- fwhm
+      if (!is.null(attributes))
+         res@attributes <- attributes
+      return(res)
+   } 
+)
+
 setMethod('HyperSpecRaster', signature(x = 'RasterLayer', wavelength = "numeric"),
    function(x, wavelength, fwhm = NULL, attributes = NULL, stack = FALSE) 
    {
